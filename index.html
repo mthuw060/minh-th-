@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mthuw ♡ - Một chút về tui</title>
+<style>
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  background: #fff6fb;
+  color: #352844;
+  transition: .3s;
+}
+body.dark { background: #201b2d; color: #fff0fa; }
+nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 8%; background: #292238; color: white;
+  position: sticky; top: 0; z-index: 10;
+}
+.logo { font-size: 23px; font-weight: bold; color: #f5b9dc; }
+nav a { color: white; text-decoration: none; margin-left: 16px; }
+nav button {
+  border: 0; border-radius: 50%; padding: 10px;
+  cursor: pointer; background: #f5b9dc;
+}
+.hero {
+  min-height: 480px; padding: 75px 10%;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 30px; color: white;
+  background: linear-gradient(135deg, #292238, #745276, #d5a3c8);
+}
+.hero h1 { font-size: clamp(42px, 7vw, 76px); margin: 10px 0; }
+.hero h1 span { color: #ffc9e8; }
+.hero p { font-size: 18px; line-height: 1.8; max-width: 550px; }
+.avatar {
+  font-size: 125px; background: #fce5f3;
+  border-radius: 50%; padding: 25px;
+  box-shadow: 0 10px 35px #21182c66;
+}
+.btn {
+  display: inline-block; margin: 10px 8px 0 0;
+  padding: 12px 22px; border-radius: 30px;
+  text-decoration: none; background: #ffc9e8;
+  color: #352844; font-weight: bold;
+}
+section { padding: 65px 9%; }
+h2 { text-align: center; font-size: 34px; }
+.subtitle { text-align: center; color: #a678a1; margin-bottom: 35px; }
+.about {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 25px; max-width: 1000px; margin: auto;
+}
+.card {
+  padding: 28px; border-radius: 22px;
+  background: white; box-shadow: 0 8px 28px #4b315014;
+}
+.dark .card { background: #302740; }
+.card p { line-height: 1.9; }
+.facts { display: grid; gap: 12px; }
+.fact {
+  padding: 15px; border-radius: 15px;
+  background: #f5e6f5;
+}
+.dark .fact { background: #45364f; }
+.hobbies { background: #f4e8f5; }
+.dark .hobbies { background: #292236; }
+.grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 18px; max-width: 1050px; margin: auto;
+}
+.hobby {
+  text-align: center; padding: 25px 15px;
+  border-radius: 20px; background: white;
+  transition: transform .2s;
+}
+.hobby:hover { transform: translateY(-5px); }
+.dark .hobby { background: #302740; }
+.emoji { font-size: 42px; }
+.quote {
+  text-align: center; color: white;
+  background: linear-gradient(120deg, #292238, #745276);
+  padding: 60px 20px; font-size: 22px;
+}
+footer { text-align: center; padding: 25px; color: #9b7d9e; }
+@media(max-width:700px) {
+  nav { flex-wrap: wrap; gap: 12px; }
+  nav a { margin-left: 5px; font-size: 13px; }
+  .hero { flex-direction: column-reverse; text-align: center; padding: 45px 7%; }
+  .avatar { font-size: 85px; }
+  .about { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width:420px) {
+  .grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">Mthuw ♡</div>
+  <div>
+    <a href="#home">Home</a>
+    <a href="#about">Về tui</a>
+    <a href="#hobby">Sở thích</a>
+  </div>
+  <button onclick="toggleTheme()" id="theme">☾</button>
+</nav>
+
+<header class="hero" id="home">
+  <div>
+    <p>♡ WELCOME TO MY LITTLE WORLD ♡</p>
+    <h1>Hi, I'm <span>Mthuw!</span></h1>
+    <p>
+      Một chút mơ mộng, một chút tò mò,
+      và luôn cố gắng trở thành phiên bản tốt hơn
+      của chính mình mỗi ngày.
+    </p>
+    <a class="btn" href="#about">♡ Khám phá tui</a>
+    <a class="btn" href="#hobby">✿ Sở thích</a>
+  </div>
+  <div class="avatar">🌙</div>
+</header>
+
+<section id="about">
+  <h2>✧ Một chút về tui ✧</h2>
+  <p class="subtitle">Welcome to my little corner of the internet ♡</p>
+  <div class="about">
+    <div class="card">
+      <h3>🌷 Xin chào, tui là Mthuw!</h3>
+      <p>
+        Tui là một người vẫn đang khám phá bản thân,
+        học thêm những điều mới và sưu tầm thật nhiều
+        kỷ niệm nhỏ.
+      </p>
+      <p>
+        Tui thích những thứ dễ thương, những buổi tối
+        yên bình và cảm giác được làm điều mình yêu thích.
+        Tui không hoàn hảo, nhưng vẫn đang lớn lên từng
+        ngày theo cách của riêng mình.
+      </p>
+      <p><i>“Từng chút một cũng là đang tiến về phía trước.” ♡</i></p>
+    </div>
+    <div class="facts">
+      <div class="fact">🎀 <b>Biệt danh:</b> Mthuw</div>
+      <div class="fact">🎂 <b>Sinh nhật:</b> Đang cập nhật...</div>
+      <div class="fact">🌏 <b>Đến từ:</b> Việt Nam 🇻🇳</div>
+      <div class="fact">💭 <b>Ước mơ:</b> Trải nghiệm nhiều điều mới mẻ.</div>
+    </div>
+  </div>
+</section>
+
+<section class="hobbies" id="hobby">
+  <h2>♡ Những thứ tui thích ♡</h2>
+  <p class="subtitle">A few things that make me happy</p>
+  <div class="grid">
+    <div class="hobby">
+      <div class="emoji">🎮</div>
+      <h3>Chơi game</h3>
+      <p>Free Fire và những trận chơi vui cùng bạn bè.</p>
+    </div>
+    <div class="hobby">
+      <div class="emoji">🎧</div>
+      <h3>Nghe nhạc</h3>
+      <p>Bật playlist rồi chill theo tâm trạng.</p>
+    </div>
+    <div class="hobby">
+      <div class="emoji">📚</div>
+      <h3>Học hỏi</h3>
+      <p>Biết thêm một điều mới mỗi ngày.</p>
+    </div>
+    <div class="hobby">
+      <div class="emoji">📸</div>
+      <h3>Chụp ảnh</h3>
+      <p>Lưu giữ những khoảnh khắc đáng nhớ.</p>
+    </div>
+    <div class="hobby">
+      <div class="emoji">🐱</div>
+      <h3>Mèo và đồ cute</h3>
+      <p>Nhìn thấy là vui ngang luôn.</p>
+    </div>
+    <div class="hobby">
+      <div class="emoji">🌙</div>
+      <h3>Thời gian riêng</h3>
+      <p>Một chút yên tĩnh để nạp lại năng lượng.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>💌 Một lời nhắn nhỏ</h2>
+  <p class="subtitle">
+    Không cần phải hoàn hảo mới xứng đáng được yêu thương.
+    Cứ là chính mình và tiến về phía trước nhé!
+  </p>
+</section>
+
+<div class="quote">
+  “Be yourself. Your story is still being written.” ♡
+  <p>— made with love by Mthuw —</p>
+</div>
+
+<footer>
+  © <span id="year"></span> Mthuw's little world · Made with ♡
+</footer>
+
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+  document.getElementById("theme").textContent =
+    document.body.classList.contains("dark") ? "☀" : "☾";
+}
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
