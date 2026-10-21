@@ -964,6 +964,36 @@
     }
   
 
+
+/* ===== Section navigation: shared identity transition ===== */
+:root { --section-transition-ms: 1200ms; }
+.shared-flight {
+  position: fixed;
+  z-index: 10001;
+  margin: 0;
+  pointer-events: none;
+  transform-origin: top left;
+  will-change: transform, opacity;
+  color: #9a5578;
+  font: 800 19px/1.2 "Be Vietnam Pro", sans-serif;
+  white-space: nowrap;
+  text-shadow: 0 2px 14px rgba(255,255,255,.9);
+}
+.section-arrive > .site-wrap,
+.hero.section-arrive > .site-wrap {
+  animation: section-content-arrive 420ms ease both;
+}
+@keyframes section-content-arrive {
+  from { opacity: .15; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+body.section-transitioning { overflow-x: hidden; }
+body.section-transitioning main { pointer-events: none; }
+body.section-transitioning .topbar { pointer-events: auto; }
+@media (prefers-reduced-motion: reduce) {
+  .shared-flight, .section-arrive > .site-wrap { animation: none !important; transition: none !important; }
+}
+
 /* ===== DREAMY SCRAPBOOK UPGRADE ✧ ===== */
 :root {
   --fairy-cream: #fff7fc;
