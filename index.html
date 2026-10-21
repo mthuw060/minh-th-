@@ -1124,7 +1124,49 @@ a:focus-visible, button:focus-visible {
   }
 }
 
-</style>
+
+/* Section navigation: shared-element transition */
+.section-morph {
+  position: fixed;
+  z-index: 10001;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: min(78vw, 520px);
+  padding: 12px 18px;
+  border: 1px solid rgba(255,255,255,.95);
+  border-radius: 20px;
+  color: #704b62;
+  background: linear-gradient(120deg, rgba(255,250,253,.97), rgba(245,214,229,.97), rgba(233,220,244,.97));
+  box-shadow: 0 12px 34px rgba(112,75,98,.2);
+  pointer-events: none;
+  transform-origin: top left;
+  will-change: left, top, width, height, transform, border-radius;
+}
+.section-morph .morph-icon { font-size: 26px; line-height: 1; }
+.section-morph .morph-title { font-size: 14px; font-weight: 800; line-height: 1.35; }
+.section-morph.is-moving {
+  transition: left 1.2s ease-in-out, top 1.2s ease-in-out, width 1.2s ease-in-out,
+    height 1.2s ease-in-out, border-radius 1.2s ease-in-out, padding 1.2s ease-in-out;
+}
+.section-content-ready > .site-wrap,
+.section-content-ready > .hero-grid {
+  animation: section-arrive .45s ease-out both;
+}
+@keyframes section-arrive {
+  from { opacity: .35; transform: translateY(9px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+body.section-transitioning { overflow-x: hidden; }
+@media (prefers-reduced-motion: reduce) {
+  .section-morph, .section-morph.is-moving { transition: none !important; }
+  .section-content-ready > .site-wrap,
+  .section-content-ready > .hero-grid { animation: none !important; }
+}
+
+  </style>
 </head>
 
 <body>
@@ -1998,6 +2040,170 @@ a:focus-visible, button:focus-visible {
 
     // Footer date is intentionally omitted to keep the page timeless.
   </script>
+
+  
+<script>
+  // Navigation transitions: keep the same visual token throughout the move.
+  (() => {
+    const nav = document.querySelector(".nav-links");
+    const sections = [...document.querySelectorAll("body > section, main > section")];
+    const navLinks = [...document.querySelectorAll('.nav-links a, .brand[href^="#"]')];
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let activeSection = document.getElementById("home");
+    let moving = false;
+
+    function mainSectionFor(target) {
+      return target?.closest("#home, #about, #world, #facts") || target;
+    }
+    function titleFor(section) {
+      return section?.querySelector("h1, .section-head h2, h2, h3") || section;
+    }
+    function iconFor(section, title) {
+      const iconSource = section?.querySelector(".fact-icon, .album-art, .food-emoji, .float-sticker");
+      const text = iconSource?.textContent?.trim();
+      if (text) return text.slice(0, 4);
+      const match = (title?.textContent || "").match(/([🎀🎧🍿🍓💗♡✧💬])/u);
+      return match ? match[1] : "✧";
+    }
+    function setInteractiveSection(section) {
+      activeSection = section;
+      document.querySelectorAll("#home, #about, #world, #facts").forEach(panel => {
+        const isActive = panel === section;
+        panel.inert = !isActive;
+        panel.setAttribute("aria-hidden", String(!isActive));
+      });
+      // Within the world panel, only the selected appendix is interactive.
+      const world = document.getElementById("world");
+      if (section === world) {
+        const subTargets = ["music", "movies", "food"].map(id => document.getElementById(id)).filter(Boolean);
+        const selected = window.location.hash.slice(1);
+        subTargets.forEach(sub => {
+          const isActive = !["music", "movies", "food"].includes(selected) || sub.id === selected;
+          sub.inert = !isActive;
+          sub.setAttribute("aria-hidden", String(!isActive));
+        });
+      } else {
+        ["music", "movies", "food"].forEach(id => {
+          const sub = document.getElementById(id);
+          if (sub) { sub.inert = true; sub.setAttribute("aria-hidden", "true"); }
+        });
+      }
+    }
+    function stopMedia(section) {
+      if (!section) return;
+      section.querySelectorAll("audio, video").forEach(media => {
+        try { media.pause(); media.currentTime = 0; } catch (_) {}
+      });
+      section.querySelectorAll("iframe").forEach(frame => {
+        const src = frame.getAttribute("src");
+        if (src && /youtube|vimeo/i.test(src)) frame.setAttribute("src", src);
+      });
+    }
+    function targetForLink(link) {
+      const id = (link.getAttribute("href") || "").slice(1);
+      const target = document.getElementById(id);
+      if (!target) return null;
+      return { target, section: mainSectionFor(target), id };
+    }
+    function moveTo(link, { fromKeyboard = false } = {}) {
+      const info = targetForLink(link);
+      if (!info || moving) return;
+      const { target, section, id } = info;
+      if (section === activeSection && !["music", "movies", "food"].includes(id)) {
+        target.scrollIntoView({ behavior: reduceMotion.matches ? "auto" : "smooth", block: "start" });
+        return;
+      }
+      const currentTitle = titleFor(activeSection);
+      const currentIcon = iconFor(activeSection, currentTitle);
+      const startRect = (link || currentTitle).getBoundingClientRect();
+      const morph = document.createElement("div");
+      morph.className = "section-morph";
+      morph.innerHTML = '<span class="morph-icon"></span><span class="morph-title"></span>';
+      morph.querySelector(".morph-icon").textContent = currentIcon;
+      morph.querySelector(".morph-title").textContent = currentTitle?.textContent?.trim() || "mthuw's little corner";
+      morph.style.left = startRect.left + "px";
+      morph.style.top = startRect.top + "px";
+      morph.style.width = Math.max(150, startRect.width) + "px";
+      morph.style.height = Math.max(48, startRect.height) + "px";
+      document.body.appendChild(morph);
+      moving = true;
+      document.body.classList.add("section-transitioning");
+      stopMedia(activeSection);
+
+      if (reduceMotion.matches) {
+        setInteractiveSection(section);
+        window.scrollTo({ top: Math.max(0, target.getBoundingClientRect().top + window.scrollY - 105), behavior: "auto" });
+        morph.remove();
+        section.classList.add("section-content-ready");
+        moving = false;
+        document.body.classList.remove("section-transitioning");
+        history.replaceState(null, "", "#" + id);
+        return;
+      }
+
+      // Place destination first, then animate the same icon/title token into it.
+      window.scrollTo({ top: Math.max(0, target.getBoundingClientRect().top + window.scrollY - 105), behavior: "auto" });
+      const destinationTitle = titleFor(target.id === "music" || target.id === "movies" || target.id === "food" ? target : section);
+      const endRect = destinationTitle.getBoundingClientRect();
+      setInteractiveSection(section);
+      morph.classList.add("is-moving");
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        morph.style.left = Math.max(8, endRect.left) + "px";
+        morph.style.top = Math.max(8, endRect.top) + "px";
+        morph.style.width = Math.max(150, Math.min(endRect.width + 28, window.innerWidth - 16)) + "px";
+        morph.style.height = Math.max(48, endRect.height + 20) + "px";
+        morph.style.borderRadius = "14px";
+        morph.style.padding = "10px 14px";
+      }));
+      const finish = () => {
+        morph.removeEventListener("transitionend", onEnd);
+        morph.remove();
+        section.classList.remove("section-content-ready");
+        void section.offsetWidth;
+        section.classList.add("section-content-ready");
+        moving = false;
+        document.body.classList.remove("section-transitioning");
+        history.replaceState(null, "", "#" + id);
+        target.setAttribute("tabindex", "-1");
+        if (fromKeyboard) target.focus({ preventScroll: true });
+      };
+      const onEnd = event => { if (event.propertyName === "left") finish(); };
+      morph.addEventListener("transitionend", onEnd);
+      window.setTimeout(finish, 1350);
+    }
+
+    navLinks.forEach(link => link.addEventListener("click", event => {
+      const info = targetForLink(link);
+      if (!info) return;
+      event.preventDefault();
+      moveTo(link);
+    }));
+
+    document.addEventListener("keydown", event => {
+      if (!["ArrowLeft", "ArrowRight"].includes(event.key)) return;
+      if (event.altKey || event.ctrlKey || event.metaKey) return;
+      const focused = document.activeElement;
+      if (focused && (focused.matches("input, textarea, select, button, a, [contenteditable='true']") || focused.closest(".modal.open"))) return;
+      const sequence = ["home", "about", "world", "facts"];
+      const currentId = activeSection?.id || "home";
+      const index = sequence.indexOf(currentId);
+      const nextIndex = index + (event.key === "ArrowRight" ? 1 : -1);
+      if (nextIndex < 0 || nextIndex >= sequence.length) return;
+      event.preventDefault();
+      const nextLink = navLinks.find(link => link.getAttribute("href") === "#" + sequence[nextIndex]);
+      if (nextLink) moveTo(nextLink, { fromKeyboard: true });
+    });
+
+    // Direct URL hashes and browser back/forward are respected.
+    const initialId = window.location.hash.slice(1);
+    const initialTarget = document.getElementById(initialId) || document.getElementById("home");
+    setInteractiveSection(mainSectionFor(initialTarget));
+    window.addEventListener("hashchange", () => {
+      const target = document.getElementById(window.location.hash.slice(1));
+      if (target) setInteractiveSection(mainSectionFor(target));
+    });
+  })();
+</script>
 
   <div class="fairy-dust" aria-hidden="true"></div>
   <script>
