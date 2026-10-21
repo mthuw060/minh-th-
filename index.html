@@ -2210,6 +2210,87 @@ body.section-transitioning { overflow-x: hidden; }
   })();
 </script>
 
+  <script>
+    // Appendix navigation: 1.2s shared-identity movement, no looping.
+    (() => {
+      const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
+      const nav = document.querySelector(".nav-links");
+      const brand = document.querySelector(".brand");
+      const order = ["home", "about", "world", "facts"].map(id => document.getElementById(id)).filter(Boolean);
+      let active = 0, busy = false, token = 0;
+      const getSection = target => ["music","movies","food"].includes(target?.id)
+        ? document.getElementById("world") : target?.closest("section") || target;
+      const sync = section => { const i = order.indexOf(section); if (i >= 0) active = i; };
+      function stopMedia(section) {
+        section?.querySelectorAll("video,audio").forEach(m => { try { m.pause(); } catch (_) {} });
+        section?.querySelectorAll("iframe").forEach(frame => {
+          const src = frame.getAttribute("src");
+          if (src && /youtube|vimeo/i.test(src)) { frame.dataset.pausedSrc = src; frame.src = "about:blank"; }
+        });
+      }
+      function restoreMedia(section) {
+        section?.querySelectorAll("iframe[data-paused-src]").forEach(frame => {
+          frame.src = frame.dataset.pausedSrc; delete frame.dataset.pausedSrc;
+        });
+      }
+      function moveTo(target) {
+        if (!target) return;
+        const dest = getSection(target), source = order[active] || order[0];
+        if (!dest) return;
+        if (dest === source || busy || reduceMotion.matches) {
+          sync(dest); target.scrollIntoView({behavior:"auto",block:"start"}); return;
+        }
+        const from = brand.getBoundingClientRect();
+        const heading = dest.querySelector("h1,h2,h3") || dest;
+        const to = heading.getBoundingClientRect();
+        const flight = document.createElement("div");
+        flight.className = "shared-flight";
+        flight.textContent = brand.textContent.trim() + " 🎀";
+        flight.setAttribute("aria-hidden","true");
+        Object.assign(flight.style,{left:from.left+"px",top:from.top+"px",fontSize:getComputedStyle(brand).fontSize});
+        document.body.appendChild(flight);
+        busy = true; const thisToken = ++token;
+        document.body.classList.add("section-transitioning");
+        stopMedia(source);
+        const scale = Math.max(.65,Math.min(1.35,to.width/Math.max(from.width,1)));
+        const anim = flight.animate([
+          {transform:"translate(0,0) scale(1)",opacity:1},
+          {transform:`translate(${to.left-from.left}px,${to.top-from.top}px) scale(${scale})`,opacity:1}
+        ],{duration:1200,easing:"ease-in-out",fill:"forwards"});
+        const finish = () => {
+          if (thisToken !== token) return;
+          flight.remove(); document.body.classList.remove("section-transitioning"); busy = false;
+          sync(dest); restoreMedia(dest);
+          dest.classList.remove("section-arrive"); void dest.offsetWidth; dest.classList.add("section-arrive");
+          target.scrollIntoView({behavior:"auto",block:"start"});
+          setTimeout(() => dest.classList.remove("section-arrive"),450);
+        };
+        anim.onfinish = finish; anim.oncancel = finish;
+      }
+      nav?.addEventListener("click", event => {
+        const link = event.target.closest("a[href^='#']");
+        if (!link) return;
+        const target = document.getElementById(decodeURIComponent(link.hash.slice(1)));
+        if (!target) return;
+        event.preventDefault(); history.replaceState(null,"",link.hash); moveTo(target);
+      });
+      brand?.addEventListener("click", event => {
+        event.preventDefault(); history.replaceState(null,"","#home"); moveTo(document.getElementById("home"));
+      });
+      document.addEventListener("keydown", event => {
+        if (!["ArrowLeft","ArrowRight"].includes(event.key) || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+        if (event.target.matches("input,textarea,select,[contenteditable='true']") || document.querySelector(".modal.open")) return;
+        if (!document.querySelector("main")?.contains(event.target)) return;
+        const next = active + (event.key === "ArrowRight" ? 1 : -1);
+        if (next < 0 || next >= order.length) return;
+        event.preventDefault(); moveTo(order[next]);
+      });
+      order.forEach(section => section.addEventListener("focusin",() => sync(section)));
+      const initial = document.getElementById(location.hash.slice(1));
+      sync(getSection(initial) || order[0]);
+    })();
+  </script>
+
   <div class="fairy-dust" aria-hidden="true"></div>
   <script>
     // A few slow, lightweight fairy-dust sparkles; no external libraries needed.
