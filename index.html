@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#eb267e">
+  <meta name="theme-color" content="#f5d6e5">
   <meta name="description" content="A tiny scrapbook about mthuw — music, movies, food and little things about me.">
   <title>mthuw's little corner ♡</title>
 
@@ -14,16 +14,16 @@
 
   <style>
     :root {
-      --hot: #eb267e;
-      --rose: #e655a7;
-      --pink: #ffc9e2;
-      --lilac: #ffc9ff;
-      --peach: #ffc9cc;
-      --light: #fbe8fc;
-      --paper: #fff9fd;
-      --ink: #54233f;
-      --muted: #80556f;
-      --line: #f2a6cc;
+      --hot: #d979a5;
+      --rose: #d99abd;
+      --pink: #f5d6e5;
+      --lilac: #e9dcf4;
+      --peach: #f4d9d8;
+      --light: #f5edf7;
+      --paper: #fffafd;
+      --ink: #594554;
+      --muted: #8a7487;
+      --line: #e7bfd2;
       --shadow: 0 12px 30px #9e286319;
       --radius: 24px;
     }
@@ -32,7 +32,7 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 100px;
+      scroll-padding-top: 115px;
     }
 
     body {
@@ -45,9 +45,9 @@
       line-height: 1.65;
       color: var(--ink);
       background:
-        radial-gradient(ellipse at 8% 8%, #eb267e 0%, transparent 36%),
-        radial-gradient(ellipse at 90% 20%, #ffc9ff 0%, transparent 38%),
-        linear-gradient(115deg, #e655a7 0%, #ffc9e2 48%, #ffc9cc 75%, #ffc9ff 100%);
+        radial-gradient(ellipse at 8% 8%, #d979a5 0%, transparent 36%),
+        radial-gradient(ellipse at 90% 20%, #e9dcf4 0%, transparent 38%),
+        linear-gradient(115deg, #d99abd 0%, #f5d6e5 48%, #f4d9d8 75%, #e9dcf4 100%);
       background-attachment: fixed;
     }
 
@@ -83,9 +83,9 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: #fff9f0e8;
+      background: #fffaf7e8;
       backdrop-filter: blur(16px);
-      border-bottom: 1px dashed #e655a7;
+      border-bottom: 1px dashed #d99abd;
     }
 
     .nav-inner {
@@ -100,7 +100,7 @@
 
     .brand {
       flex-shrink: 0;
-      color: #a51f61;
+      color: #9a5578;
       font-size: 19px;
       font-weight: 800;
       text-decoration: none;
@@ -125,8 +125,22 @@
     }
 
     .nav-links a:hover {
-      background: #ffc9e2;
+      background: linear-gradient(110deg, #f5d6e5, #e9dcf4);
       transform: translateY(-1px);
+      box-shadow: 0 3px 10px #9a55781a;
+    }
+
+    .nav-links a[href="#music"],
+    .nav-links a[href="#movies"],
+    .nav-links a[href="#food"] {
+      background: #fbf0f6;
+      border: 1px solid #e7bfd2;
+    }
+
+    .nav-links a[href="#music"]:hover,
+    .nav-links a[href="#movies"]:hover,
+    .nav-links a[href="#food"]:hover {
+      background: linear-gradient(110deg, #f5d6e5, #e9dcf4);
     }
 
     .hero {
@@ -143,10 +157,10 @@
       z-index: -1;
       background: linear-gradient(
         110deg,
-        #eb267e 0%,
-        #e655a7 38%,
-        #ffc9e2 78%,
-        #ffc9ff 100%
+        #d979a5 0%,
+        #d99abd 38%,
+        #f5d6e5 78%,
+        #e9dcf4 100%
       );
       border-radius: 0 0 42px 42px;
     }
@@ -172,7 +186,7 @@
 
     .hero h1 {
       margin-bottom: 14px;
-      color: #fbe8fc;
+      color: #f5edf7;
       text-shadow: 0 3px 18px #8b174e36;
     }
 
@@ -207,7 +221,7 @@
       width: min(100%, 310px);
       padding: 28px 24px;
       background: #fff9f3;
-      color: #54233f;
+      color: #594554;
       border: 2px solid #fff;
       border-radius: 8px 28px 12px 24px;
       box-shadow: 12px 14px 0 #9e286344;
@@ -219,8 +233,8 @@
       justify-content: space-between;
       align-items: center;
       padding-bottom: 12px;
-      border-bottom: 1px dashed #e655a7;
-      color: #a51f61;
+      border-bottom: 1px dashed #d99abd;
+      color: #9a5578;
       font-size: 13px;
       font-weight: 700;
     }
@@ -268,7 +282,7 @@
 
     .section-no {
       margin-bottom: 8px;
-      color: #a51f61;
+      color: #9a5578;
       font-size: 13px;
       font-weight: 800;
       letter-spacing: .12em;
@@ -277,20 +291,20 @@
 
     .section-head h2 {
       margin-bottom: 10px;
-      color: #67234a;
+      color: #704b62;
     }
 
     .section-intro {
       max-width: 700px;
       margin-bottom: 0;
-      color: #754d65;
+      color: #806a7b;
       font-size: 18px;
     }
 
     .paper {
       position: relative;
       padding: 28px;
-      background: #fff9fdf0;
+      background: #fffafdf0;
       border: 1px solid #fff;
       border-radius: var(--radius);
       box-shadow: var(--shadow);
@@ -301,7 +315,7 @@
       position: absolute;
       top: -18px;
       right: 22px;
-      color: #eb267e;
+      color: #d979a5;
       font-size: 32px;
       transform: rotate(12deg);
     }
@@ -333,20 +347,20 @@
       align-items: center;
       gap: 6px;
       padding: 8px 13px;
-      border: 1px dashed #e655a7;
+      border: 1px dashed #d99abd;
       border-radius: 999px;
-      background: #fff0f8;
-      color: #75254e;
+      background: #fbf0f6;
+      color: #79566b;
       font-size: 13px;
       font-weight: 700;
     }
 
     .tiny-confession {
       padding: 20px;
-      border-left: 4px solid #e655a7;
+      border-left: 4px solid #d99abd;
       border-radius: 0 16px 16px 0;
-      background: linear-gradient(110deg, #ffc9e2, #ffc9ff);
-      color: #54233f;
+      background: linear-gradient(110deg, #f5d6e5, #e9dcf4);
+      color: #594554;
       font-size: 17px;
       line-height: 1.8;
     }
@@ -354,13 +368,13 @@
     .tiny-confession strong {
       display: block;
       margin-bottom: 7px;
-      color: #a51f61;
+      color: #9a5578;
     }
 
     .sticker-board {
       position: relative;
       padding: 24px;
-      background: linear-gradient(145deg, #fff9fd, #ffc9e2);
+      background: linear-gradient(145deg, #fffafd, #f5d6e5);
       border: 2px solid #fff;
       border-radius: 18px 28px 20px 30px;
       box-shadow: 8px 9px 0 #b52b7030;
@@ -369,11 +383,11 @@
 
     .sticker-board h3 {
       margin-bottom: 10px;
-      color: #a51f61;
+      color: #9a5578;
     }
 
     .sticker-board p {
-      color: #54233f;
+      color: #594554;
       font-size: 17px;
     }
 
@@ -385,9 +399,9 @@
 
     .sticker-list div {
       padding: 10px 12px;
-      background: #fff9f0d9;
+      background: #fffaf7d9;
       border-radius: 12px;
-      color: #67234a;
+      color: #704b62;
       font-size: 15px;
       font-weight: 600;
     }
@@ -398,7 +412,7 @@
       gap: 12px;
       justify-content: center;
       margin: 8px auto;
-      color: #a51f61;
+      color: #9a5578;
       font-size: 16px;
       letter-spacing: .16em;
     }
@@ -407,7 +421,7 @@
       content: "";
       width: 80px;
       height: 1px;
-      background: #e655a7;
+      background: #d99abd;
       opacity: .6;
     }
 
@@ -418,7 +432,7 @@
 
     .subsection-title {
       margin-bottom: 8px;
-      color: #67234a;
+      color: #704b62;
       font-size: 27px;
     }
 
@@ -434,7 +448,7 @@
       gap: 22px;
       align-items: center;
       padding: 24px;
-      background: linear-gradient(120deg, #fff9fd, #ffc9e2, #ffc9ff);
+      background: linear-gradient(120deg, #fffafd, #f5d6e5, #e9dcf4);
       border: 1px solid #fff;
       border-radius: var(--radius);
       box-shadow: var(--shadow);
@@ -445,15 +459,15 @@
       place-items: center;
       aspect-ratio: 1;
       border-radius: 18px;
-      background: linear-gradient(135deg, #eb267e, #e655a7, #ffc9ff);
-      color: #fbe8fc;
+      background: linear-gradient(135deg, #d979a5, #d99abd, #e9dcf4);
+      color: #f5edf7;
       font-size: 58px;
-      box-shadow: 5px 6px 0 #a51f6133;
+      box-shadow: 5px 6px 0 #9a557833;
     }
 
     .music-label {
       margin-bottom: 8px;
-      color: #a51f61;
+      color: #9a5578;
       font-size: 12px;
       font-weight: 800;
       letter-spacing: .12em;
@@ -462,13 +476,13 @@
 
     .music-title {
       margin-bottom: 7px;
-      color: #67234a;
+      color: #704b62;
       font-size: 25px;
     }
 
     .music-artist {
       margin-bottom: 16px;
-      color: #754d65;
+      color: #806a7b;
       font-size: 16px;
     }
 
@@ -485,10 +499,10 @@
       gap: 7px;
       min-height: 43px;
       padding: 10px 16px;
-      border: 1px solid #e655a7;
+      border: 1px solid #d99abd;
       border-radius: 999px;
-      background: #fff9fd;
-      color: #75254e;
+      background: #fffafd;
+      color: #79566b;
       font-size: 14px;
       font-weight: 700;
       text-decoration: none;
@@ -497,34 +511,34 @@
 
     .btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 5px 12px #a51f6120;
+      box-shadow: 0 5px 12px #9a557820;
     }
 
     .btn.primary {
-      background: linear-gradient(110deg, #eb267e, #e655a7);
-      color: #fff9fd;
-      border-color: #eb267e;
+      background: linear-gradient(110deg, #d979a5, #d99abd);
+      color: #fffafd;
+      border-color: #d979a5;
     }
 
     .music-note {
       margin-top: 14px;
       margin-bottom: 0;
-      color: #754d65;
+      color: #806a7b;
       font-size: 13px;
       line-height: 1.7;
     }
 
     .music-side {
       padding: 24px;
-      background: #fff9fdf0;
+      background: #fffafdf0;
       border: 1px solid #fff;
       border-radius: var(--radius);
       box-shadow: var(--shadow);
     }
 
-    .music-side h3 { color: #a51f61; }
+    .music-side h3 { color: #9a5578; }
     .music-side p {
-      color: #754d65;
+      color: #806a7b;
       font-size: 16px;
     }
 
@@ -538,15 +552,15 @@
     .mini-stat {
       padding: 13px;
       border-radius: 15px;
-      background: #fff0f8;
-      color: #75254e;
+      background: #fbf0f6;
+      color: #79566b;
       font-size: 13px;
     }
 
     .mini-stat strong {
       display: block;
       font-size: 21px;
-      color: #a51f61;
+      color: #9a5578;
     }
 
     .tabs {
@@ -558,18 +572,18 @@
 
     .tab {
       padding: 10px 18px;
-      border: 1px solid #e655a7;
+      border: 1px solid #d99abd;
       border-radius: 999px;
-      background: #fff9fd;
-      color: #75254e;
+      background: #fffafd;
+      color: #79566b;
       font-size: 14px;
       font-weight: 700;
     }
 
     .tab.active {
-      background: linear-gradient(110deg, #eb267e, #e655a7);
-      color: #fff9fd;
-      border-color: #eb267e;
+      background: linear-gradient(110deg, #d979a5, #d99abd);
+      color: #fffafd;
+      border-color: #d979a5;
     }
 
     .media-grid {
@@ -585,17 +599,17 @@
       padding: 0;
       overflow: hidden;
       text-align: left;
-      background: #fff9fd;
-      color: #54233f;
-      border: 1px solid #f2a6cc;
+      background: #fffafd;
+      color: #594554;
+      border: 1px solid #e7bfd2;
       border-radius: 17px;
-      box-shadow: 0 5px 0 #e655a72c;
+      box-shadow: 0 5px 0 #d99abd2c;
       transition: transform .2s, box-shadow .2s;
     }
 
     .media-card:hover {
       transform: translateY(-4px) rotate(-.5deg);
-      box-shadow: 0 9px 0 #e655a72c;
+      box-shadow: 0 9px 0 #d99abd2c;
     }
 
     .poster {
@@ -605,8 +619,8 @@
       width: 100%;
       aspect-ratio: 3 / 4;
       overflow: hidden;
-      background: linear-gradient(145deg, #eb267e, #e655a7, #ffc9ff);
-      color: #fff9fd;
+      background: linear-gradient(145deg, #d979a5, #d99abd, #e9dcf4);
+      color: #fffafd;
     }
 
     .poster img {
@@ -630,7 +644,7 @@
       height: 100%;
       padding: 15px;
       text-align: center;
-      background: linear-gradient(145deg, #eb267e, #e655a7, #ffc9ff);
+      background: linear-gradient(145deg, #d979a5, #d99abd, #e9dcf4);
     }
 
     .poster-placeholder span { font-size: 31px; }
@@ -649,17 +663,17 @@
     .genre {
       display: inline-block;
       padding: 4px 7px;
-      border: 1px solid #f2a6cc;
+      border: 1px solid #e7bfd2;
       border-radius: 999px;
-      background: #fff0f8;
-      color: #75254e;
+      background: #fbf0f6;
+      color: #79566b;
       font-size: 10px;
       line-height: 1.4;
     }
 
     .media-hint {
       margin: 14px 0 0;
-      color: #754d65;
+      color: #806a7b;
       font-size: 13px;
     }
 
@@ -667,7 +681,7 @@
       position: relative;
       overflow: hidden;
       padding: 30px;
-      background: linear-gradient(120deg, #fff9fd, #ffc9e2 60%, #ffc9ff);
+      background: linear-gradient(120deg, #fffafd, #f5d6e5 60%, #e9dcf4);
       border: 1px solid #fff;
       border-radius: 28px;
       box-shadow: var(--shadow);
@@ -686,13 +700,13 @@
     .food-panel h3 {
       max-width: 750px;
       margin-bottom: 8px;
-      color: #a51f61;
+      color: #9a5578;
       font-size: 29px;
     }
 
     .food-panel > p {
       max-width: 700px;
-      color: #754d65;
+      color: #806a7b;
       font-size: 16px;
     }
 
@@ -705,10 +719,10 @@
       gap: 7px;
       margin: 22px 0;
       padding: 23px;
-      background: #fff9f0ed;
-      border: 2px dashed #e655a7;
+      background: #fffaf7ed;
+      border: 2px dashed #d99abd;
       border-radius: 19px;
-      color: #67234a;
+      color: #704b62;
     }
 
     .food-result .food-emoji { font-size: 34px; }
@@ -719,7 +733,7 @@
 
     .food-result span:last-child {
       font-size: 15px;
-      color: #754d65;
+      color: #806a7b;
     }
 
     .food-bottom {
@@ -730,7 +744,7 @@
     }
 
     .food-count {
-      color: #754d65;
+      color: #806a7b;
       font-size: 13px;
     }
 
@@ -744,7 +758,7 @@
     .fact-card {
       position: relative;
       padding: 25px;
-      background: #fff9fdf2;
+      background: #fffafdf2;
       border: 1px solid #fff;
       border-radius: 20px;
       box-shadow: 5px 6px 0 #b52b7030;
@@ -765,27 +779,27 @@
       width: 58px;
       height: 58px;
       margin-bottom: 18px;
-      background: linear-gradient(135deg, #ffc9e2, #ffc9ff);
+      background: linear-gradient(135deg, #f5d6e5, #e9dcf4);
       border-radius: 18px;
       font-size: 29px;
     }
 
     .fact-card h3 {
       margin-bottom: 8px;
-      color: #a51f61;
+      color: #9a5578;
       font-size: 23px;
     }
 
     .fact-sub {
       margin-bottom: 16px;
-      color: #80556f;
+      color: #8a7487;
       font-size: 14px;
       font-weight: 700;
     }
 
     .fact-card p:last-child {
       margin-bottom: 0;
-      color: #54233f;
+      color: #594554;
       font-size: 16px;
       line-height: 1.85;
     }
@@ -793,11 +807,11 @@
     .footer {
       padding: 35px 16px 45px;
       text-align: center;
-      color: #754d65;
+      color: #806a7b;
       font-size: 14px;
     }
 
-    .footer strong { color: #a51f61; }
+    .footer strong { color: #9a5578; }
     .footer .footer-heart {
       display: block;
       margin-bottom: 8px;
@@ -825,9 +839,9 @@
       max-height: 88vh;
       overflow-y: auto;
       padding: 25px;
-      background: #fff9fd;
-      color: #54233f;
-      border: 2px solid #ffc9e2;
+      background: #fffafd;
+      color: #594554;
+      border: 2px solid #f5d6e5;
       border-radius: 24px;
       box-shadow: 0 20px 70px #35132950;
     }
@@ -841,8 +855,8 @@
       height: 42px;
       border: 0;
       border-radius: 50%;
-      background: #ffc9e2;
-      color: #75254e;
+      background: #f5d6e5;
+      color: #79566b;
       font-size: 22px;
       font-weight: 800;
     }
@@ -859,7 +873,7 @@
       aspect-ratio: 3 / 4;
       overflow: hidden;
       border-radius: 14px;
-      background: linear-gradient(145deg, #eb267e, #e655a7, #ffc9ff);
+      background: linear-gradient(145deg, #d979a5, #d99abd, #e9dcf4);
     }
 
     .modal-poster img {
@@ -870,18 +884,18 @@
 
     .modal-copy h3 {
       margin: 12px 0;
-      color: #a51f61;
+      color: #9a5578;
       font-size: 25px;
     }
 
     .modal-copy p {
-      color: #54233f;
+      color: #594554;
       font-size: 16px;
       line-height: 1.8;
     }
 
     .modal-copy .modal-genre {
-      color: #80556f;
+      color: #8a7487;
       font-size: 13px;
       font-weight: 700;
     }
@@ -954,7 +968,7 @@
 :root {
   --fairy-cream: #fff7fc;
   --fairy-pink: #ffb9dc;
-  --fairy-rose: #e655a7;
+  --fairy-rose: #d99abd;
   --fairy-lilac: #e7caff;
   --fairy-ink: #78345f;
 }
@@ -964,7 +978,7 @@ body {
     radial-gradient(ellipse at 8% 12%, rgba(230,85,167,.22), transparent 34%),
     radial-gradient(ellipse at 92% 22%, rgba(255,201,255,.58), transparent 32%),
     radial-gradient(ellipse at 80% 78%, rgba(255,201,226,.48), transparent 35%),
-    linear-gradient(115deg, #e655a7 0%, #eb267e 24%, #ffc9e2 63%, #ffc9ff 100%);
+    linear-gradient(115deg, #d99abd 0%, #d979a5 24%, #f5d6e5 63%, #e9dcf4 100%);
   background-attachment: fixed;
   position: relative;
 }
@@ -1062,7 +1076,7 @@ img:hover, .poster:hover, .movie-poster:hover, .anime-poster:hover {
   transform: rotate(var(--tilt, -4deg));
   animation: sticker-float 5s ease-in-out infinite;
 }
-::selection { background: #e655a7; color: #fff8ff; }
+::selection { background: #d99abd; color: #fff8ff; }
 a:focus-visible, button:focus-visible {
   outline: 3px dashed #fff8ff;
   outline-offset: 4px;
@@ -1090,6 +1104,9 @@ a:focus-visible, button:focus-visible {
       <div class="nav-links">
         <a href="#about">01 · me</a>
         <a href="#world">02 · my world</a>
+        <a href="#music">🎧 music</a>
+        <a href="#movies">🍿 watchlist</a>
+        <a href="#food">🍓 food</a>
         <a href="#facts">03 · little facts</a>
       </div>
     </nav>
