@@ -154,7 +154,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      z-index: -2;
+      z-index: -1;
       background: linear-gradient(
         110deg,
         #d979a5 0%,
@@ -167,6 +167,7 @@
 
     /* Section 1 reveal: a soft, self-contained visual layer (no missing image asset). */
     .hero-media-backdrop {
+      display: none !important;
       position: absolute;
       inset: -10px;
       z-index: -1;
@@ -1067,6 +1068,7 @@ body > .fairy-dust {
   position: fixed !important;
   inset: 0;
   z-index: 9999;
+  opacity: 1 !important;
   pointer-events: none;
   overflow: hidden;
   contain: layout paint;
