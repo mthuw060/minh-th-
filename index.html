@@ -1238,7 +1238,10 @@ body.section-transitioning { overflow-x: hidden; }
   color: #80556f;
   box-shadow: 0 7px 22px rgba(126,72,111,.16);
   backdrop-filter: blur(12px);
-  font: 700 13px/1.2 inherit;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
   cursor: pointer;
   transition: transform .2s ease, box-shadow .2s ease;
 }
@@ -1305,6 +1308,7 @@ body.section-transitioning { overflow-x: hidden; }
   18% { opacity: 1; }
   100% { opacity: 0; transform: translateY(-105px) scale(1.35) rotate(20deg); }
 }
+.footer-heart { cursor: pointer; user-select: none; }
 .play-toast {
   position: fixed;
   z-index: 10005;
