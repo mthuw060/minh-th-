@@ -2050,6 +2050,7 @@ body.section-transitioning { overflow-x: hidden; }
     const navLinks = [...document.querySelectorAll('.nav-links a, .brand[href^="#"]')];
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let activeSection = document.getElementById("home");
+    let currentDestinationId = window.location.hash.slice(1) || "home";
     let moving = false;
 
     function mainSectionFor(target) {
@@ -2109,6 +2110,8 @@ body.section-transitioning { overflow-x: hidden; }
       const info = targetForLink(link);
       if (!info || moving) return;
       const { target, section, id } = info;
+      currentDestinationId = id;
+      history.replaceState(null, "", "#" + id);
       if (section === activeSection && !["music", "movies", "food"].includes(id)) {
         target.scrollIntoView({ behavior: reduceMotion.matches ? "auto" : "smooth", block: "start" });
         return;
@@ -2184,8 +2187,8 @@ body.section-transitioning { overflow-x: hidden; }
       if (event.altKey || event.ctrlKey || event.metaKey) return;
       const focused = document.activeElement;
       if (focused && (focused.matches("input, textarea, select, button, a, [contenteditable='true']") || focused.closest(".modal.open"))) return;
-      const sequence = ["home", "about", "world", "facts"];
-      const currentId = activeSection?.id || "home";
+      const sequence = ["home", "about", "world", "music", "movies", "food", "facts"];
+      const currentId = currentDestinationId || activeSection?.id || "home";
       const index = sequence.indexOf(currentId);
       const nextIndex = index + (event.key === "ArrowRight" ? 1 : -1);
       if (nextIndex < 0 || nextIndex >= sequence.length) return;
@@ -2197,6 +2200,8 @@ body.section-transitioning { overflow-x: hidden; }
     // Direct URL hashes and browser back/forward are respected.
     const initialId = window.location.hash.slice(1);
     const initialTarget = document.getElementById(initialId) || document.getElementById("home");
+    currentDestinationId = initialTarget.id;
+    history.replaceState(null, "", "#" + initialTarget.id);
     setInteractiveSection(mainSectionFor(initialTarget));
     window.addEventListener("hashchange", () => {
       const target = document.getElementById(window.location.hash.slice(1));
