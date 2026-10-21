@@ -1217,6 +1217,124 @@ body.section-transitioning { overflow-x: hidden; }
   .section-content-ready > .hero-grid { animation: none !important; }
 }
 
+  
+/* ===== playful interactive extras: stickers, mood picker, easter eggs ===== */
+.play-zone {
+  position: fixed;
+  z-index: 10003;
+  right: 18px;
+  bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 9px;
+  font-family: inherit;
+}
+.play-btn {
+  border: 1px solid rgba(255,255,255,.82);
+  border-radius: 999px;
+  padding: 11px 15px;
+  background: rgba(255,250,253,.92);
+  color: #80556f;
+  box-shadow: 0 7px 22px rgba(126,72,111,.16);
+  backdrop-filter: blur(12px);
+  font: 700 13px/1.2 inherit;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.play-btn:hover { transform: translateY(-3px) rotate(-2deg); box-shadow: 0 10px 26px rgba(126,72,111,.23); }
+.play-panel {
+  display: none;
+  width: min(290px, calc(100vw - 36px));
+  padding: 15px;
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 22px;
+  background: rgba(255,250,253,.96);
+  color: #694e64;
+  box-shadow: 0 14px 38px rgba(126,72,111,.2);
+  backdrop-filter: blur(16px);
+}
+.play-panel.is-open { display: block; animation: play-pop .22s ease-out both; }
+@keyframes play-pop { from { opacity: 0; transform: translateY(8px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.play-panel h3 { margin: 0 0 5px; font-size: 16px; }
+.play-panel p { margin: 0 0 12px; font-size: 12px; line-height: 1.5; }
+.play-actions { display: flex; flex-wrap: wrap; gap: 7px; }
+.play-actions button {
+  border: 1px solid #efd5e5;
+  border-radius: 13px;
+  background: #fff;
+  padding: 8px 10px;
+  color: #79516c;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+}
+.play-actions button:hover, .play-actions button:focus-visible { background: #f8e8f2; outline: 2px solid #e9c7dc; }
+.play-status { min-height: 16px; margin-top: 10px !important; color: #9b6485; }
+.sticker-mode-cursor { cursor: crosshair !important; }
+.user-sticker {
+  position: fixed;
+  z-index: 10002;
+  display: grid;
+  place-items: center;
+  min-width: 35px;
+  min-height: 35px;
+  padding: 3px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  font-size: 31px;
+  line-height: 1;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  filter: drop-shadow(0 3px 4px rgba(115,65,98,.16));
+  animation: sticker-pop .28s cubic-bezier(.2,1.7,.4,1) both;
+}
+.user-sticker:active { cursor: grabbing; }
+@keyframes sticker-pop { from { opacity: 0; transform: scale(.2) rotate(-24deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
+.mood-burst {
+  position: fixed;
+  z-index: 10004;
+  pointer-events: none;
+  font-size: 25px;
+  animation: mood-burst 1.6s ease-out forwards;
+}
+@keyframes mood-burst {
+  0% { opacity: 0; transform: translateY(12px) scale(.5) rotate(-12deg); }
+  18% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-105px) scale(1.35) rotate(20deg); }
+}
+.play-toast {
+  position: fixed;
+  z-index: 10005;
+  left: 50%;
+  bottom: 26px;
+  transform: translateX(-50%);
+  max-width: calc(100vw - 32px);
+  padding: 11px 17px;
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 999px;
+  background: rgba(255,250,253,.96);
+  color: #79516c;
+  box-shadow: 0 8px 26px rgba(126,72,111,.2);
+  font-size: 13px;
+  text-align: center;
+  pointer-events: none;
+  animation: toast-in .25s ease-out both;
+}
+@keyframes toast-in { from { opacity: 0; margin-bottom: -8px; } to { opacity: 1; margin-bottom: 0; } }
+body.sticker-mode-active main { cursor: crosshair; }
+@media (max-width: 600px) {
+  .play-zone { right: 10px; bottom: 10px; gap: 7px; }
+  .play-btn { padding: 10px 12px; font-size: 12px; }
+  .play-panel { width: min(280px, calc(100vw - 20px)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .play-panel.is-open, .user-sticker, .mood-burst, .play-toast { animation: none !important; }
+  .play-btn { transition: none !important; }
+}
+
   </style>
 </head>
 
@@ -1485,6 +1603,46 @@ body.section-transitioning { overflow-x: hidden; }
       </div>
     </section>
   </main>
+
+  
+  <!-- Interactive scrapbook corner -->
+  <div class="play-zone" id="play-zone">
+    <div class="play-panel" id="sticker-panel" aria-label="Sticker toolbox">
+      <h3>decorate my page 🎀</h3>
+      <p>Chọn sticker rồi bấm vào chỗ bà muốn đặt. Kéo sticker để di chuyển nha.</p>
+      <div class="play-actions" id="sticker-palette">
+        <button type="button" data-sticker="🎀">🎀</button>
+        <button type="button" data-sticker="♡">♡</button>
+        <button type="button" data-sticker="⭐">⭐</button>
+        <button type="button" data-sticker="🧸">🧸</button>
+        <button type="button" data-sticker="🍓">🍓</button>
+        <button type="button" data-sticker="🦋">🦋</button>
+        <button type="button" data-sticker="🍒">🍒</button>
+        <button type="button" data-sticker="☁️">☁️</button>
+        <button type="button" data-sticker="✧">✧</button>
+        <button type="button" data-sticker="💿">💿</button>
+      </div>
+      <div class="play-actions" style="margin-top:10px">
+        <button type="button" id="cancel-sticker">xong rồi nè</button>
+        <button type="button" id="clear-stickers">dọn sticker</button>
+      </div>
+      <p class="play-status" id="sticker-status" aria-live="polite">Chọn một món để bắt đầu ✨</p>
+    </div>
+    <div class="play-panel" id="mood-panel" aria-label="Mood picker">
+      <h3>mood check ☁️</h3>
+      <p>Hôm nay bà đang ở chế độ nào?</p>
+      <div class="play-actions" id="mood-options">
+        <button type="button" data-mood="happy" data-burst="💖,✨,🎀">hehe vui vẻ 💖</button>
+        <button type="button" data-mood="chill" data-burst="☁️,🦋,✧">đang chill ☁️</button>
+        <button type="button" data-mood="chaos" data-burst="🍒,⭐,💿">hơi báo 🪩</button>
+        <button type="button" data-mood="soft" data-burst="🌷,♡,🫧">soft hours 🌷</button>
+        <button type="button" data-mood="sleepy" data-burst="💤,🌙,☁️">buồn ngủ 💤</button>
+      </div>
+      <p class="play-status" id="mood-status" aria-live="polite">Mood nào cũng được cưng chiều ♡</p>
+    </div>
+    <button class="play-btn" type="button" id="sticker-toggle" aria-expanded="false">🎀 decorate</button>
+    <button class="play-btn" type="button" id="mood-toggle" aria-expanded="false">☁️ mood check</button>
+  </div>
 
   <footer class="footer">
     <span class="footer-heart" aria-hidden="true">🎀 ♡ ✧</span>
@@ -2404,6 +2562,178 @@ body.section-transitioning { overflow-x: hidden; }
       }
     })();
   </script>
+
+
+<script>
+(() => {
+  const zone = document.getElementById("play-zone");
+  const stickerToggle = document.getElementById("sticker-toggle");
+  const moodToggle = document.getElementById("mood-toggle");
+  const stickerPanel = document.getElementById("sticker-panel");
+  const moodPanel = document.getElementById("mood-panel");
+  const stickerStatus = document.getElementById("sticker-status");
+  const moodStatus = document.getElementById("mood-status");
+  if (!zone || !stickerToggle || !moodToggle) return;
+
+  let chosenSticker = "";
+  let placing = false;
+  let logoClicks = 0;
+  let footerClicks = 0;
+  let logoReset;
+  let footerReset;
+  let typed = "";
+
+  function toast(message) {
+    document.querySelector(".play-toast")?.remove();
+    const el = document.createElement("div");
+    el.className = "play-toast";
+    el.setAttribute("role", "status");
+    el.textContent = message;
+    document.body.appendChild(el);
+    window.setTimeout(() => el.remove(), 2600);
+  }
+
+  function closePanels(except) {
+    if (except !== stickerPanel) stickerPanel.classList.remove("is-open");
+    if (except !== moodPanel) moodPanel.classList.remove("is-open");
+    stickerToggle.setAttribute("aria-expanded", String(except === stickerPanel));
+    moodToggle.setAttribute("aria-expanded", String(except === moodPanel));
+  }
+
+  stickerToggle.addEventListener("click", () => {
+    const open = !stickerPanel.classList.contains("is-open");
+    closePanels(open ? stickerPanel : null);
+    if (open) stickerPanel.classList.add("is-open");
+    if (!open) stopStickerMode();
+  });
+
+  moodToggle.addEventListener("click", () => {
+    const open = !moodPanel.classList.contains("is-open");
+    closePanels(open ? moodPanel : null);
+    if (open) moodPanel.classList.add("is-open");
+  });
+
+  document.getElementById("sticker-palette").addEventListener("click", (event) => {
+    const button = event.target.closest("[data-sticker]");
+    if (!button) return;
+    chosenSticker = button.dataset.sticker;
+    placing = true;
+    document.body.classList.add("sticker-mode-active");
+    stickerStatus.textContent = "Đang cầm " + chosenSticker + " — bấm lên trang để đặt nha!";
+    stickerToggle.textContent = "✧ đang trang trí…";
+  });
+
+  function stopStickerMode() {
+    placing = false;
+    chosenSticker = "";
+    document.body.classList.remove("sticker-mode-active");
+    stickerToggle.textContent = "🎀 decorate";
+  }
+  document.getElementById("cancel-sticker").addEventListener("click", stopStickerMode);
+  document.getElementById("clear-stickers").addEventListener("click", () => {
+    document.querySelectorAll(".user-sticker").forEach(el => el.remove());
+    stickerStatus.textContent = "Trang sạch xinh lại rồi nè ♡";
+    stopStickerMode();
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!placing || !chosenSticker) return;
+    if (zone.contains(event.target) || event.target.closest(".play-toast") || event.target.closest(".user-sticker")) return;
+    event.preventDefault();
+    event.stopPropagation();
+    const sticker = document.createElement("button");
+    sticker.type = "button";
+    sticker.className = "user-sticker";
+    sticker.textContent = chosenSticker;
+    sticker.setAttribute("aria-label", "Kéo để di chuyển sticker " + chosenSticker);
+    sticker.style.left = Math.max(4, Math.min(window.innerWidth - 46, event.clientX - 17)) + "px";
+    sticker.style.top = Math.max(4, Math.min(window.innerHeight - 46, event.clientY - 17)) + "px";
+    document.body.appendChild(sticker);
+    let dragging = false, startX = 0, startY = 0, startLeft = 0, startTop = 0;
+    sticker.addEventListener("pointerdown", e => {
+      dragging = true;
+      startX = e.clientX; startY = e.clientY;
+      startLeft = sticker.offsetLeft; startTop = sticker.offsetTop;
+      sticker.setPointerCapture(e.pointerId);
+    });
+    sticker.addEventListener("pointermove", e => {
+      if (!dragging) return;
+      sticker.style.left = Math.max(0, Math.min(window.innerWidth - 38, startLeft + e.clientX - startX)) + "px";
+      sticker.style.top = Math.max(0, Math.min(window.innerHeight - 38, startTop + e.clientY - startY)) + "px";
+    });
+    sticker.addEventListener("pointerup", () => { dragging = false; });
+    sticker.addEventListener("dblclick", () => sticker.remove());
+    stickerStatus.textContent = "Đã đặt sticker! Kéo để di chuyển, bấm đúp để bỏ ♡";
+  }, true);
+
+  document.getElementById("mood-options").addEventListener("click", event => {
+    const button = event.target.closest("[data-mood]");
+    if (!button) return;
+    const moods = {
+      happy: "Mood vui vẻ đã được ghi nhận, phát tim lấp lánh nè 💖",
+      chill: "Chill thôi, không cần vội vàng gì hết ☁️",
+      chaos: "Bật chế độ hơi báo: hôm nay mình là nhân vật chính 🪩",
+      soft: "Soft hours activated, nhẹ nhàng với bản thân nha 🌷",
+      sleepy: "Chúc chiếc mood buồn ngủ có một ngày thật êm 💤"
+    };
+    moodStatus.textContent = moods[button.dataset.mood] || "Mood đã được chọn ♡";
+    const symbols = (button.dataset.burst || "♡,✧").split(",");
+    for (let i = 0; i < 12; i++) {
+      const burst = document.createElement("span");
+      burst.className = "mood-burst";
+      burst.textContent = symbols[i % symbols.length];
+      burst.style.left = (8 + Math.random() * 84) + "vw";
+      burst.style.top = (45 + Math.random() * 42) + "vh";
+      burst.style.animationDelay = (Math.random() * .28) + "s";
+      document.body.appendChild(burst);
+      window.setTimeout(() => burst.remove(), 1900);
+    }
+  });
+
+  const brand = document.querySelector(".brand");
+  brand?.addEventListener("click", event => {
+    logoClicks++;
+    window.clearTimeout(logoReset);
+    logoReset = window.setTimeout(() => { logoClicks = 0; }, 1800);
+    if (logoClicks >= 5) {
+      logoClicks = 0;
+      toast("secret unlocked: welcome to mthuw's tiny universe ♡ ✧");
+    }
+  });
+  const footerHeart = document.querySelector(".footer-heart");
+  footerHeart?.addEventListener("click", () => {
+    footerClicks++;
+    window.clearTimeout(footerReset);
+    footerReset = window.setTimeout(() => { footerClicks = 0; }, 1800);
+    if (footerClicks >= 3) {
+      footerClicks = 0;
+      toast("you found the tiny secret!! you have excellent curiosity 🐇");
+      for (let i = 0; i < 18; i++) {
+        const spark = document.createElement("span");
+        spark.className = "mood-burst";
+        spark.textContent = ["♡", "✧", "🎀", "⭐"][i % 4];
+        spark.style.left = (10 + Math.random() * 80) + "vw";
+        spark.style.top = (35 + Math.random() * 45) + "vh";
+        document.body.appendChild(spark);
+        window.setTimeout(() => spark.remove(), 1900);
+      }
+    }
+  });
+  document.addEventListener("keydown", event => {
+    if (event.key.length === 1 && !event.ctrlKey && !event.metaKey && !event.altKey) {
+      typed = (typed + event.key.toLowerCase()).slice(-5);
+      if (typed === "mthuw") {
+        typed = "";
+        toast("✨ mthuw mode unlocked. you're officially in the inner circle ♡");
+      }
+    }
+    if (event.key === "Escape") {
+      closePanels(null);
+      stopStickerMode();
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
