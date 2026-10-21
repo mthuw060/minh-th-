@@ -1219,6 +1219,71 @@ body.section-transitioning { overflow-x: hidden; }
 
   
 /* ===== playful interactive extras: stickers, mood picker, easter eggs ===== */
+
+/* Bigger scrapbook controls repeated inside each section */
+.section-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 30px 0 0;
+  padding: 18px;
+  border: 1px dashed rgba(190,112,159,.65);
+  border-radius: 24px;
+  background: linear-gradient(115deg, rgba(255,250,253,.92), rgba(245,214,229,.88), rgba(233,220,244,.9));
+  box-shadow: 0 8px 24px rgba(126,72,111,.10);
+}
+.section-tools-label {
+  flex: 1 1 100%;
+  margin: 0;
+  color: #80556f;
+  font-size: 15px;
+  font-weight: 800;
+}
+.section-tool-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 52px;
+  padding: 12px 20px;
+  border: 1px solid rgba(255,255,255,.95);
+  border-radius: 17px;
+  background: rgba(255,255,255,.9);
+  color: #79516c;
+  box-shadow: 0 4px 0 rgba(174,66,128,.12), 0 7px 16px rgba(143,41,103,.08);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 800;
+  transition: transform .2s, box-shadow .2s;
+}
+.section-tool-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 0 rgba(174,66,128,.10), 0 11px 20px rgba(143,41,103,.12);
+}
+.section-tool-btn:active { transform: translateY(0); }
+.section-tool-btn.secret { background: linear-gradient(120deg,#fffafd,#f5d6e5,#e9dcf4); }
+.play-zone { right: 14px; bottom: 14px; }
+.play-zone > .play-btn { display: none; }
+.play-panel {
+  width: min(390px, calc(100vw - 28px));
+  padding: 21px;
+  border-radius: 25px;
+}
+.play-panel h3 { font-size: 21px; }
+.play-panel p { font-size: 15px; line-height: 1.65; }
+.play-actions { gap: 9px; }
+.play-actions button { padding: 11px 14px; font-size: 15px; }
+.play-status { font-size: 14px !important; }
+.user-sticker { min-width: 46px; min-height: 46px; font-size: 40px; }
+@media (max-width: 600px) {
+  .section-tools { gap: 9px; padding: 14px; margin-top: 24px; }
+  .section-tools-label { font-size: 14px; }
+  .section-tool-btn { flex: 1 1 calc(50% - 9px); min-height: 48px; padding: 10px 12px; font-size: 14px; }
+  .play-panel { width: min(360px, calc(100vw - 20px)); padding: 17px; }
+  .play-actions button { font-size: 14px; }
+}
+
 .play-zone {
   position: fixed;
   z-index: 10003;
@@ -1403,6 +1468,13 @@ body.sticker-mode-active main { cursor: crosshair; }
           </div>
         </div>
       </div>
+    
+      <div class="section-tools" aria-label="Scrapbook mini tools">
+        <p class="section-tools-label">🎀 chơi với trang này nè — có mặt ở mọi section luôn!</p>
+        <button class="section-tool-btn" type="button" data-open-tool="sticker">🎀 Decorate trang</button>
+        <button class="section-tool-btn" type="button" data-open-tool="mood">☁️ Mood check</button>
+        <button class="section-tool-btn secret" type="button" data-secret-tool>✨ mở secret</button>
+      </div>
     </section>
 
     <section class="section" id="about">
@@ -1464,6 +1536,13 @@ body.sticker-mode-active main { cursor: crosshair; }
             </div>
           </aside>
         </div>
+      </div>
+    
+      <div class="section-tools" aria-label="Scrapbook mini tools">
+        <p class="section-tools-label">🎀 chơi với trang này nè — có mặt ở mọi section luôn!</p>
+        <button class="section-tool-btn" type="button" data-open-tool="sticker">🎀 Decorate trang</button>
+        <button class="section-tool-btn" type="button" data-open-tool="mood">☁️ Mood check</button>
+        <button class="section-tool-btn secret" type="button" data-secret-tool>✨ mở secret</button>
       </div>
     </section>
 
@@ -1564,6 +1643,13 @@ body.sticker-mode-active main { cursor: crosshair; }
           </div>
         </div>
       </div>
+    
+      <div class="section-tools" aria-label="Scrapbook mini tools">
+        <p class="section-tools-label">🎀 chơi với trang này nè — có mặt ở mọi section luôn!</p>
+        <button class="section-tool-btn" type="button" data-open-tool="sticker">🎀 Decorate trang</button>
+        <button class="section-tool-btn" type="button" data-open-tool="mood">☁️ Mood check</button>
+        <button class="section-tool-btn secret" type="button" data-secret-tool>✨ mở secret</button>
+      </div>
     </section>
 
     <div class="divider" aria-hidden="true">✧ ♡ ✧ ♡ ✧</div>
@@ -1604,6 +1690,13 @@ body.sticker-mode-active main { cursor: crosshair; }
             <p>“Niềm vui nho nhỏ của tui là được ngủ đủ giấc với ăn thật nhiều đồ ngon. Nghe thì đơn giản thiệt nhưng mà hai cái này kết hợp lại là thấy cuộc đời tươi đẹp hơn hẳn rồi đó =)))) Tui dễ buồn mà cũng dễ vui, mood thay đổi nhanh như thời tiết, nên đôi khi chỉ cần một món ngon với một giấc ngủ ngon là tui lại vui vẻ trở lại liền.”</p>
           </article>
         </div>
+      </div>
+    
+      <div class="section-tools" aria-label="Scrapbook mini tools">
+        <p class="section-tools-label">🎀 chơi với trang này nè — có mặt ở mọi section luôn!</p>
+        <button class="section-tool-btn" type="button" data-open-tool="sticker">🎀 Decorate trang</button>
+        <button class="section-tool-btn" type="button" data-open-tool="mood">☁️ Mood check</button>
+        <button class="section-tool-btn secret" type="button" data-secret-tool>✨ mở secret</button>
       </div>
     </section>
   </main>
@@ -2640,8 +2733,28 @@ body.sticker-mode-active main { cursor: crosshair; }
     stopStickerMode();
   });
 
+  document.addEventListener("click", event => {
+    const toolButton = event.target.closest("[data-open-tool]");
+    if (toolButton) {
+      const targetToggle = toolButton.dataset.openTool === "sticker" ? stickerToggle : moodToggle;
+      targetToggle.click();
+    }
+    if (event.target.closest("[data-secret-tool]")) {
+      toast("secret unlocked: welcome to mthuw's tiny universe ♡ ✧");
+      for (let i = 0; i < 10; i++) {
+        const spark = document.createElement("span");
+        spark.className = "mood-burst";
+        spark.textContent = ["♡", "✧", "🎀", "⭐"][i % 4];
+        spark.style.left = (10 + Math.random() * 80) + "vw";
+        spark.style.top = (35 + Math.random() * 45) + "vh";
+        document.body.appendChild(spark);
+        window.setTimeout(() => spark.remove(), 1900);
+      }
+    }
+  });
   document.addEventListener("click", (event) => {
     if (!placing || !chosenSticker) return;
+    if (event.target.closest(".section-tools")) return;
     if (zone.contains(event.target) || event.target.closest(".play-toast") || event.target.closest(".user-sticker")) return;
     event.preventDefault();
     event.stopPropagation();
