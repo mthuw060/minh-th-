@@ -1404,7 +1404,38 @@ body.sticker-mode-active main { cursor: crosshair; }
   .play-btn { transition: none !important; }
 }
 
-  </style>
+  
+/* Organized-chaos scrapbook decorations */
+.scrapbook-collage{position:absolute;z-index:3;top:105px;right:clamp(14px,3.8vw,58px);width:132px;height:174px;pointer-events:none;filter:drop-shadow(0 5px 7px rgba(130,75,111,.12))}
+.scrapbook-collage .collage-sticker{position:absolute;display:grid;place-items:center;line-height:1}
+.collage-sticker.bow{top:2px;right:10px;width:54px;height:51px;border:2px solid rgba(255,255,255,.9);border-radius:17px 12px 17px 12px;background:linear-gradient(145deg,#fffafd,#f5d6e5);font-size:32px;transform:rotate(10deg)}
+.collage-sticker.star{top:52px;left:5px;color:#fffafd;font-size:37px;text-shadow:0 1px 0 #d99abd,0 0 8px #d99abd;transform:rotate(-13deg)}
+.collage-sticker.mini-note{top:74px;right:0;min-width:83px;padding:9px 10px;border:1px solid #f0cadd;border-radius:4px 13px 5px 12px;background:#fffafd;color:#9d5b80;font-size:12px;font-weight:800;white-space:nowrap;transform:rotate(-7deg)}
+.collage-sticker.cherry,.collage-sticker.bear{left:18px;bottom:4px;width:49px;height:49px;border:2px solid rgba(255,255,255,.95);border-radius:50%;background:#fce8f1;font-size:29px;transform:rotate(8deg)}
+.collage-sticker.bear{background:#fff2e9;transform:rotate(-8deg)}
+.collage-sticker.heart{right:6px;bottom:12px;color:#d979a5;font-size:33px;text-shadow:0 2px 0 #fff;transform:rotate(13deg)}
+.collage-about{top:128px;right:clamp(14px,5vw,72px);transform:scale(.92) rotate(4deg)}
+.collage-world{top:145px;right:clamp(12px,4vw,58px);transform:scale(.88) rotate(-3deg)}
+.collage-facts{top:110px;right:clamp(14px,4vw,62px);transform:scale(.94) rotate(3deg)}
+#home .scrapbook-collage{top:28px;left:clamp(8px,2vw,28px);right:auto;transform:scale(.8) rotate(-4deg)}
+.section-tools{position:relative;overflow:visible;border-style:dashed;border-width:2px;background-image:radial-gradient(rgba(217,154,189,.12) 1px,transparent 1px),linear-gradient(115deg,rgba(255,250,253,.96),rgba(245,214,229,.91),rgba(233,220,244,.94));background-size:13px 13px,auto}
+.section-tools::before{content:"✂︎ little side quest";position:absolute;top:-13px;left:22px;padding:4px 11px;border:1px solid #f2d0e2;border-radius:6px 9px 5px 8px;background:#fffafd;color:#9b6081;font-size:11px;font-weight:800;letter-spacing:.04em;transform:rotate(-2deg)}
+.section-tool-btn{position:relative}
+.section-tool-btn::after{content:"✧";position:absolute;top:-11px;right:-5px;color:#c17da2;font-size:18px;transform:rotate(14deg)}
+.section-tool-btn.secret{background:linear-gradient(125deg,#fffafd,#f8e2f0 48%,#e9dcf4);border:1px dashed #d99abd}
+.section-tool-btn.secret::before{content:"psst!";position:absolute;top:-13px;left:8px;padding:2px 6px;border-radius:6px;background:#d99abd;color:white;font-size:10px;transform:rotate(-8deg)}
+.paper,.music-card,.food-panel,.fact-card,.diary{position:relative}
+.paper::before,.music-card::before,.food-panel::before,.fact-card::before,.diary::before{content:"";position:absolute;top:-8px;left:28px;width:54px;height:16px;border:1px solid rgba(255,255,255,.72);border-radius:3px;background:rgba(255,224,238,.78);transform:rotate(-5deg);pointer-events:none}
+.fact-card:nth-child(2)::before{left:auto;right:25px;transform:rotate(7deg);background:rgba(231,220,247,.86)}
+.fact-card:nth-child(3)::before{left:45%;transform:rotate(3deg);background:rgba(255,236,211,.86)}
+.music-card::after,.food-panel::after,.diary::after{content:"♡ ✧";position:absolute;right:16px;bottom:12px;padding:5px 9px;border-radius:5px 10px 5px 8px;background:rgba(255,250,253,.82);color:#c17da2;font-size:14px;transform:rotate(-5deg);pointer-events:none}
+.fact-card::after{content:"✦";position:absolute;right:16px;top:15px;color:#d99abd;font-size:23px;transform:rotate(12deg);pointer-events:none}
+.footer-heart{cursor:pointer}
+.footer-heart::after{content:"psst... bấm 3 lần thử xem 👀";display:block;margin-top:6px;color:#a76b8d;font-size:12px;font-weight:700}
+@media(max-width:760px){.scrapbook-collage{position:relative;top:auto!important;left:auto!important;right:auto!important;width:100%;height:66px;display:flex;align-items:center;justify-content:center;gap:12px;margin:0 auto 8px;transform:none!important}.scrapbook-collage .collage-sticker{position:relative;inset:auto}.collage-sticker.bow{width:43px;height:42px;font-size:27px}.collage-sticker.star{font-size:28px}.collage-sticker.mini-note{min-width:72px;font-size:11px}.collage-sticker.cherry,.collage-sticker.bear{width:40px;height:40px;font-size:24px}.collage-sticker.heart{font-size:28px}.paper::before,.music-card::before,.food-panel::before,.fact-card::before,.diary::before{width:42px;height:13px}}
+@media(max-width:420px){.scrapbook-collage{gap:7px;height:58px}.collage-sticker.mini-note{min-width:auto;padding:7px}.section-tool-btn{flex-basis:100%}}
+
+</style>
 </head>
 
 <body>
@@ -1425,6 +1456,7 @@ body.sticker-mode-active main { cursor: crosshair; }
   <main>
     <!-- SECTION 01 -->
     <section class="hero" id="home">
+      <div class="scrapbook-collage collage-home" aria-hidden="true"><span class="collage-sticker bow">🎀</span><span class="collage-sticker star">✦</span><span class="collage-sticker mini-note">hi hii! ♡</span><span class="collage-sticker cherry">🍒</span><span class="collage-sticker heart">♡</span></div>
       <div class="hero-media-backdrop" aria-hidden="true"></div>
       <div class="site-wrap hero-grid">
         <div>
@@ -1473,11 +1505,12 @@ body.sticker-mode-active main { cursor: crosshair; }
         <p class="section-tools-label">🎀 chơi với trang này nè — có mặt ở mọi section luôn!</p>
         <button class="section-tool-btn" type="button" data-open-tool="sticker">🎀 Decorate trang</button>
         <button class="section-tool-btn" type="button" data-open-tool="mood">☁️ Mood check</button>
-        <button class="section-tool-btn secret" type="button" data-secret-tool>✨ mở secret</button>
+        <button class="section-tool-btn secret" type="button" data-secret-tool>👀 bấm 3 lần để mở secret</button>
       </div>
     </section>
 
     <section class="section" id="about">
+      <div class="scrapbook-collage collage-about" aria-hidden="true"><span class="collage-sticker bow">୨୧</span><span class="collage-sticker star">✧</span><span class="collage-sticker mini-note">just me!</span><span class="collage-sticker bear">🧸</span><span class="collage-sticker heart">♡</span></div>
       <div class="site-wrap">
         <div class="section-head">
           <div>
@@ -1550,6 +1583,7 @@ body.sticker-mode-active main { cursor: crosshair; }
 
     <!-- SECTION 02 -->
     <section class="section" id="world">
+      <div class="scrapbook-collage collage-world" aria-hidden="true"><span class="collage-sticker bow">🎧</span><span class="collage-sticker star">✦</span><span class="collage-sticker mini-note">little things</span><span class="collage-sticker cherry">🍓</span><span class="collage-sticker heart">♡</span></div>
       <div class="site-wrap">
         <div class="section-head">
           <div>
@@ -1656,6 +1690,7 @@ body.sticker-mode-active main { cursor: crosshair; }
 
     <!-- SECTION 03 -->
     <section class="section" id="facts">
+      <div class="scrapbook-collage collage-facts" aria-hidden="true"><span class="collage-sticker bow">🍜</span><span class="collage-sticker star">✧</span><span class="collage-sticker mini-note">the lore!!</span><span class="collage-sticker bear">🧸</span><span class="collage-sticker heart">♡</span></div>
       <div class="site-wrap">
         <div class="section-head">
           <div>
