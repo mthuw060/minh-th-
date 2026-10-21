@@ -1434,7 +1434,7 @@ body.sticker-mode-active main { cursor: crosshair; }
 @media(max-width:760px){.scrapbook-collage{position:relative;top:auto!important;left:auto!important;right:auto!important;width:100%;height:66px;display:flex;align-items:center;justify-content:center;gap:12px;margin:0 auto 8px;transform:none!important}.scrapbook-collage .collage-sticker{position:relative;inset:auto}.collage-sticker.bow{width:43px;height:42px;font-size:27px}.collage-sticker.star{font-size:28px}.collage-sticker.mini-note{min-width:72px;font-size:11px}.collage-sticker.cherry,.collage-sticker.bear{width:40px;height:40px;font-size:24px}.collage-sticker.heart{font-size:28px}.paper::before,.music-card::before,.food-panel::before,.fact-card::before,.diary::before{width:42px;height:13px}}
 @media(max-width:420px){.scrapbook-collage{gap:7px;height:58px}.collage-sticker.mini-note{min-width:auto;padding:7px}.section-tool-btn{flex-basis:100%}}
 
-</style>
+\n/* Keep picker controls above decorative layers and explicitly clickable. */\n#random-song, #random-food { position: relative; z-index: 20; pointer-events: auto; cursor: pointer; }\n</style>
 </head>
 
 <body>
@@ -1610,7 +1610,7 @@ body.sticker-mode-active main { cursor: crosshair; }
                 <h3 class="music-title" id="song-title">Chọn một bài nè ♡</h3>
                 <p class="music-artist" id="song-artist">mthuw's mixed playlist</p>
                 <div class="music-actions">
-                  <button class="btn primary" id="random-song" type="button">🎲 pick a song</button>
+                  <button class="btn primary" id="random-song" type="button" onclick="window.pickRandomSongFallback()">🎲 pick a song</button>
                   <a class="btn" id="listen-song" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">▶ listen</a>
                 </div>
                 <p class="music-note">
@@ -1670,7 +1670,7 @@ body.sticker-mode-active main { cursor: crosshair; }
             </div>
 
             <div class="food-bottom">
-              <button class="btn primary" id="random-food" type="button">🎲 chọn món cho tui!</button>
+              <button class="btn primary" id="random-food" type="button" onclick="window.pickRandomFoodFallback()">🎲 chọn món cho tui!</button>
               <span class="food-count" id="food-count"></span>
             </div>
           </div>
@@ -2874,30 +2874,41 @@ body.sticker-mode-active main { cursor: crosshair; }
 
 
   <script>
-    // Fail-safe handlers for the music and food pickers.
-    // Delegation keeps these controls working even if another page script fails.
-    (() => {
+    // Standalone picker handlers exposed globally so they do not depend on
+    // the page's other scripts or navigation listeners.
+    window.pickRandomSongFallback = function () {
       const songs = [
-        ["Baby", "Justin Bieber"], ["Có em chờ", "Min"], ["Earrings", "Malcom"],
-        ["Die for You", "The Weeknd"], ["Best Part", "H.E.R."],
-        ["Boyfriend", "Ariana Grande"], ["Đánh đổi", "Obito"],
-        ["Exit Sign", "HIEUTHUHAI"], ["Tìm em", "Hngle"],
-        ["Không buông", "Hngle"], ["24h", "Lyly"], ["Nếu lúc đó", "tlinh"],
-        ["Thích quá rùi nà", "Trung Trần"], ["Thế giới thần tiên", "tlinh"],
-        ["Phong", "VSTRA"], ["Chạy ngay đi", "Sơn Tùng M-TP"],
-        ["Muộn rồi mà sao còn", "Sơn Tùng M-TP"], ["Đã lỡ yêu em nhiều", "JustaTee"],
-        ["Vì anh đâu có biết", "Madihu"], ["Có em", "Madihu"],
-        ["Bình yên", "Vũ."], ["Love Is", "Đăngrangto"], ["Ai ngoài anh", "VSTRA"],
-        ["GPS", "Pixel Neko"], ["Bạc phận", "J97"], ["In Love", "Low G"],
-        ["vaicaunoicokhiennguoithaydoi", "GREY D"], ["See You Again", "Tyler, the Creator"],
-        ["love.", "wave to earth"]
+        ["Baby","Justin Bieber"],["Có em chờ","Min"],["Earrings","Malcom"],
+        ["Die for You","The Weeknd"],["Best Part","H.E.R."],["Boyfriend","Ariana Grande"],
+        ["Đánh đổi","Obito"],["Exit Sign","HIEUTHUHAI"],["Tìm em","Hngle"],
+        ["Không buông","Hngle"],["24h","Lyly"],["Nếu lúc đó","tlinh"],
+        ["Thích quá rùi nà","Trung Trần"],["Thế giới thần tiên","tlinh"],["Phong","VSTRA"],
+        ["Chạy ngay đi","Sơn Tùng M-TP"],["Muộn rồi mà sao còn","Sơn Tùng M-TP"],
+        ["Đã lỡ yêu em nhiều","JustaTee"],["Vì anh đâu có biết","Madihu"],["Có em","Madihu"],
+        ["Bình yên","Vũ."],["Love Is","Đăngrangto"],["Ai ngoài anh","VSTRA"],
+        ["GPS","Pixel Neko"],["Bạc phận","J97"],["In Love","Low G"],
+        ["vaicaunoicokhiennguoithaydoi","GREY D"],["See You Again","Tyler, the Creator"],
+        ["love.","wave to earth"]
       ];
+      const button = document.getElementById("random-song");
+      let index = Math.floor(Math.random() * songs.length);
+      if (button.dataset.lastPick !== undefined && songs.length > 1 && String(index) === button.dataset.lastPick) index = (index + 1) % songs.length;
+      button.dataset.lastPick = String(index);
+      const [title, artist] = songs[index];
+      const titleEl = document.getElementById("song-title");
+      const artistEl = document.getElementById("song-artist");
+      const link = document.getElementById("listen-song");
+      if (titleEl) titleEl.textContent = title;
+      if (artistEl) artistEl.textContent = artist;
+      if (link) link.href = "https://www.youtube.com/results?search_query=" + encodeURIComponent(title + " " + artist + " official audio");
+    };
+    window.pickRandomFoodFallback = function () {
       const foods = [
         ["Bánh snack Oishi","🍟","Giòn rụm, mở gói ra là tự nhiên hết buồn miệng."],
-        ["Kẹo dẻo cầu vồng Chupa Chups","🍬","Một chiếc cầu vồng dẻo dẻo cho ngày hơi nhạt."],
+        ["Kẹo dẻo cầu vồng","🍬","Một chiếc cầu vồng dẻo dẻo cho ngày hơi nhạt."],
         ["Bánh gấu","🐻","Bé gấu vô tội nhưng có thể biến mất khỏi túi bánh rất nhanh."],
         ["Bánh Pillow","🥐","Nhỏ xinh, giòn thơm, hợp để nhâm nhi lúc tám chuyện."],
-        ["Bánh mì thập cẩm đầy ú ụ","🥖","Chiếc bánh mì có tâm, ăn xong no tới tận chân trời."],
+        ["Bánh mì thập cẩm","🥖","Chiếc bánh mì có tâm, ăn xong no tới tận chân trời."],
         ["Phở","🍜","Nước dùng thơm nóng, lựa chọn kinh điển khó sai."],
         ["Bún bò","🍲","Một tô đậm đà cho chiếc bụng đang biểu tình."],
         ["Mì trộn","🍝","Trộn đều lên là mood cũng có thể vui theo."],
@@ -2918,41 +2929,16 @@ body.sticker-mode-active main { cursor: crosshair; }
         ["Nho","🍇","Từng quả nhỏ xinh, rửa sạch là có thể ăn ngay."],
         ["Sữa chua trái cây","🍓","Vị chua ngọt mát lành với những miếng trái cây."]
       ];
-      let lastSong = -1, lastFood = -1;
-      document.addEventListener("click", event => {
-        const button = event.target.closest("#random-song, #random-food");
-        if (!button) return;
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        if (button.id === "random-song") {
-          let i = Math.floor(Math.random() * songs.length);
-          if (songs.length > 1 && i === lastSong) i = (i + 1) % songs.length;
-          lastSong = i;
-          const [title, artist] = songs[i];
-          const titleEl = document.getElementById("song-title");
-          const artistEl = document.getElementById("song-artist");
-          const listen = document.getElementById("listen-song");
-          if (titleEl) titleEl.textContent = title;
-          if (artistEl) artistEl.textContent = artist;
-          if (listen) {
-            listen.href = "https://www.youtube.com/results?search_query=" + encodeURIComponent(title + " " + artist + " official audio");
-            listen.setAttribute("aria-label", "Search YouTube for " + title + " by " + artist);
-          }
-        } else {
-          let i = Math.floor(Math.random() * foods.length);
-          if (foods.length > 1 && i === lastFood) i = (i + 1) % foods.length;
-          lastFood = i;
-          const [name, emoji, line] = foods[i];
-          const emojiEl = document.getElementById("food-emoji");
-          const nameEl = document.getElementById("food-name");
-          const descEl = document.getElementById("food-description");
-          if (emojiEl) emojiEl.textContent = emoji;
-          if (nameEl) nameEl.textContent = name;
-          if (descEl) descEl.textContent = line;
-        }
-      }, true);
-    })();
-  </script>
+      const button = document.getElementById("random-food");
+      let index = Math.floor(Math.random() * foods.length);
+      if (button.dataset.lastPick !== undefined && foods.length > 1 && String(index) === button.dataset.lastPick) index = (index + 1) % foods.length;
+      button.dataset.lastPick = String(index);
+      const [name, emoji, line] = foods[index];
+      document.getElementById("food-emoji").textContent = emoji;
+      document.getElementById("food-name").textContent = name;
+      document.getElementById("food-description").textContent = line;
+    };
+  </script>t>
 
 </body>
 </html>
