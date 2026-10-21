@@ -2409,28 +2409,14 @@ body.sticker-mode-active main { cursor: crosshair; }
       return match ? match[1] : "✧";
     }
     function setInteractiveSection(section) {
+      // Keep every section interactive even when the visitor scrolls manually.
+      // The old inert/aria-hidden toggling made music and food buttons unclickable
+      // unless navigation had activated the exact subsection first.
       activeSection = section;
-      document.querySelectorAll("#home, #about, #world, #facts").forEach(panel => {
-        const isActive = panel === section;
-        panel.inert = !isActive;
-        panel.setAttribute("aria-hidden", String(!isActive));
+      document.querySelectorAll("#home, #about, #world, #facts, #music, #movies, #food").forEach(panel => {
+        panel.inert = false;
+        panel.removeAttribute("aria-hidden");
       });
-      // Within the world panel, only the selected appendix is interactive.
-      const world = document.getElementById("world");
-      if (section === world) {
-        const subTargets = ["music", "movies", "food"].map(id => document.getElementById(id)).filter(Boolean);
-        const selected = window.location.hash.slice(1);
-        subTargets.forEach(sub => {
-          const isActive = !["music", "movies", "food"].includes(selected) || sub.id === selected;
-          sub.inert = !isActive;
-          sub.setAttribute("aria-hidden", String(!isActive));
-        });
-      } else {
-        ["music", "movies", "food"].forEach(id => {
-          const sub = document.getElementById(id);
-          if (sub) { sub.inert = true; sub.setAttribute("aria-hidden", "true"); }
-        });
-      }
     }
     function stopMedia(section) {
       if (!section) return;
