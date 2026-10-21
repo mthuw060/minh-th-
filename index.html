@@ -1028,7 +1028,6 @@
   to { opacity: 1; transform: translateY(0); }
 }
 body.section-transitioning { overflow-x: hidden; }
-body.section-transitioning main { pointer-events: none; }
 body.section-transitioning .topbar { pointer-events: auto; }
 @media (prefers-reduced-motion: reduce) {
   .shared-flight, .section-arrive > .site-wrap { animation: none !important; transition: none !important; }
@@ -2872,6 +2871,88 @@ body.sticker-mode-active main { cursor: crosshair; }
   });
 })();
 </script>
+
+
+  <script>
+    // Fail-safe handlers for the music and food pickers.
+    // Delegation keeps these controls working even if another page script fails.
+    (() => {
+      const songs = [
+        ["Baby", "Justin Bieber"], ["Có em chờ", "Min"], ["Earrings", "Malcom"],
+        ["Die for You", "The Weeknd"], ["Best Part", "H.E.R."],
+        ["Boyfriend", "Ariana Grande"], ["Đánh đổi", "Obito"],
+        ["Exit Sign", "HIEUTHUHAI"], ["Tìm em", "Hngle"],
+        ["Không buông", "Hngle"], ["24h", "Lyly"], ["Nếu lúc đó", "tlinh"],
+        ["Thích quá rùi nà", "Trung Trần"], ["Thế giới thần tiên", "tlinh"],
+        ["Phong", "VSTRA"], ["Chạy ngay đi", "Sơn Tùng M-TP"],
+        ["Muộn rồi mà sao còn", "Sơn Tùng M-TP"], ["Đã lỡ yêu em nhiều", "JustaTee"],
+        ["Vì anh đâu có biết", "Madihu"], ["Có em", "Madihu"],
+        ["Bình yên", "Vũ."], ["Love Is", "Đăngrangto"], ["Ai ngoài anh", "VSTRA"],
+        ["GPS", "Pixel Neko"], ["Bạc phận", "J97"], ["In Love", "Low G"],
+        ["vaicaunoicokhiennguoithaydoi", "GREY D"], ["See You Again", "Tyler, the Creator"],
+        ["love.", "wave to earth"]
+      ];
+      const foods = [
+        ["Bánh snack Oishi","🍟","Giòn rụm, mở gói ra là tự nhiên hết buồn miệng."],
+        ["Kẹo dẻo cầu vồng Chupa Chups","🍬","Một chiếc cầu vồng dẻo dẻo cho ngày hơi nhạt."],
+        ["Bánh gấu","🐻","Bé gấu vô tội nhưng có thể biến mất khỏi túi bánh rất nhanh."],
+        ["Bánh Pillow","🥐","Nhỏ xinh, giòn thơm, hợp để nhâm nhi lúc tám chuyện."],
+        ["Bánh mì thập cẩm đầy ú ụ","🥖","Chiếc bánh mì có tâm, ăn xong no tới tận chân trời."],
+        ["Phở","🍜","Nước dùng thơm nóng, lựa chọn kinh điển khó sai."],
+        ["Bún bò","🍲","Một tô đậm đà cho chiếc bụng đang biểu tình."],
+        ["Mì trộn","🍝","Trộn đều lên là mood cũng có thể vui theo."],
+        ["Cơm trộn","🍚","Nhiều màu sắc, nhiều topping, nhiều niềm vui."],
+        ["Kimbap","🍙","Cuộn nhỏ xinh, tiện ăn và dễ chia sẻ."],
+        ["Xôi gà","🍗","Xôi dẻo kết hợp thịt gà, hợp hôm cần bữa ăn no."],
+        ["Cháo sườn","🥣","Ấm bụng, mềm thơm, hợp những hôm muốn ăn nhẹ."],
+        ["Bánh giò","🫔","Món bánh mềm nóng với phần nhân đậm đà."],
+        ["Bánh khọt","🥞","Nhỏ xinh, viền giòn, ăn cùng rau và nước chấm."],
+        ["Gỏi cuốn tôm thịt","🥬","Cuốn đầy đặn, thanh mát, chấm sốt là vừa ngon."],
+        ["Bánh tráng phơi sương","🌯","Cuốn cùng rau và thịt, một món ăn chơi hấp dẫn."],
+        ["Bánh quy","🍪","Giòn thơm, hợp để ăn nhẹ cùng một ly sữa."],
+        ["Chocolate","🍫","Một miếng socola nhỏ cho ngày cần chút ngọt ngào."],
+        ["Táo","🍎","Giòn ngọt, dễ mang theo và ăn lúc nào cũng tiện."],
+        ["Xoài chấm muối ớt","🥭","Chua chua cay cay, dành cho hội thích ăn vặt mạnh vị."],
+        ["Dâu tây","🍓","Những quả dâu đỏ xinh xắn cho một chiếc snack tươi mát."],
+        ["Dưa hấu","🍉","Mọng nước, ngọt mát, rất hợp ngày nắng."],
+        ["Nho","🍇","Từng quả nhỏ xinh, rửa sạch là có thể ăn ngay."],
+        ["Sữa chua trái cây","🍓","Vị chua ngọt mát lành với những miếng trái cây."]
+      ];
+      let lastSong = -1, lastFood = -1;
+      document.addEventListener("click", event => {
+        const button = event.target.closest("#random-song, #random-food");
+        if (!button) return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        if (button.id === "random-song") {
+          let i = Math.floor(Math.random() * songs.length);
+          if (songs.length > 1 && i === lastSong) i = (i + 1) % songs.length;
+          lastSong = i;
+          const [title, artist] = songs[i];
+          const titleEl = document.getElementById("song-title");
+          const artistEl = document.getElementById("song-artist");
+          const listen = document.getElementById("listen-song");
+          if (titleEl) titleEl.textContent = title;
+          if (artistEl) artistEl.textContent = artist;
+          if (listen) {
+            listen.href = "https://www.youtube.com/results?search_query=" + encodeURIComponent(title + " " + artist + " official audio");
+            listen.setAttribute("aria-label", "Search YouTube for " + title + " by " + artist);
+          }
+        } else {
+          let i = Math.floor(Math.random() * foods.length);
+          if (foods.length > 1 && i === lastFood) i = (i + 1) % foods.length;
+          lastFood = i;
+          const [name, emoji, line] = foods[i];
+          const emojiEl = document.getElementById("food-emoji");
+          const nameEl = document.getElementById("food-name");
+          const descEl = document.getElementById("food-description");
+          if (emojiEl) emojiEl.textContent = emoji;
+          if (nameEl) nameEl.textContent = name;
+          if (descEl) descEl.textContent = line;
+        }
+      }, true);
+    })();
+  </script>
 
 </body>
 </html>
