@@ -2,218 +2,1822 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mthuw ♡ - Một chút về tui</title>
-<style>
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  font-family: "Trebuchet MS", Arial, sans-serif;
-  background: #fff6fb;
-  color: #352844;
-  transition: .3s;
-}
-body.dark { background: #201b2d; color: #fff0fa; }
-nav {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 18px 8%; background: #292238; color: white;
-  position: sticky; top: 0; z-index: 10;
-}
-.logo { font-size: 23px; font-weight: bold; color: #f5b9dc; }
-nav a { color: white; text-decoration: none; margin-left: 16px; }
-nav button {
-  border: 0; border-radius: 50%; padding: 10px;
-  cursor: pointer; background: #f5b9dc;
-}
-.hero {
-  min-height: 480px; padding: 75px 10%;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 30px; color: white;
-  background: linear-gradient(135deg, #292238, #745276, #d5a3c8);
-}
-.hero h1 { font-size: clamp(42px, 7vw, 76px); margin: 10px 0; }
-.hero h1 span { color: #ffc9e8; }
-.hero p { font-size: 18px; line-height: 1.8; max-width: 550px; }
-.avatar {
-  font-size: 125px; background: #fce5f3;
-  border-radius: 50%; padding: 25px;
-  box-shadow: 0 10px 35px #21182c66;
-}
-.btn {
-  display: inline-block; margin: 10px 8px 0 0;
-  padding: 12px 22px; border-radius: 30px;
-  text-decoration: none; background: #ffc9e8;
-  color: #352844; font-weight: bold;
-}
-section { padding: 65px 9%; }
-h2 { text-align: center; font-size: 34px; }
-.subtitle { text-align: center; color: #a678a1; margin-bottom: 35px; }
-.about {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 25px; max-width: 1000px; margin: auto;
-}
-.card {
-  padding: 28px; border-radius: 22px;
-  background: white; box-shadow: 0 8px 28px #4b315014;
-}
-.dark .card { background: #302740; }
-.card p { line-height: 1.9; }
-.facts { display: grid; gap: 12px; }
-.fact {
-  padding: 15px; border-radius: 15px;
-  background: #f5e6f5;
-}
-.dark .fact { background: #45364f; }
-.hobbies { background: #f4e8f5; }
-.dark .hobbies { background: #292236; }
-.grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 18px; max-width: 1050px; margin: auto;
-}
-.hobby {
-  text-align: center; padding: 25px 15px;
-  border-radius: 20px; background: white;
-  transition: transform .2s;
-}
-.hobby:hover { transform: translateY(-5px); }
-.dark .hobby { background: #302740; }
-.emoji { font-size: 42px; }
-.quote {
-  text-align: center; color: white;
-  background: linear-gradient(120deg, #292238, #745276);
-  padding: 60px 20px; font-size: 22px;
-}
-footer { text-align: center; padding: 25px; color: #9b7d9e; }
-@media(max-width:700px) {
-  nav { flex-wrap: wrap; gap: 12px; }
-  nav a { margin-left: 5px; font-size: 13px; }
-  .hero { flex-direction: column-reverse; text-align: center; padding: 45px 7%; }
-  .avatar { font-size: 85px; }
-  .about { grid-template-columns: 1fr; }
-  .grid { grid-template-columns: 1fr 1fr; }
-}
-@media(max-width:420px) {
-  .grid { grid-template-columns: 1fr; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#eb267e">
+  <meta name="description" content="A tiny scrapbook about mthuw — music, movies, food and little things about me.">
+  <title>mthuw's little corner ♡</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --hot: #eb267e;
+      --rose: #e655a7;
+      --pink: #ffc9e2;
+      --lilac: #ffc9ff;
+      --peach: #ffc9cc;
+      --light: #fbe8fc;
+      --paper: #fff9fd;
+      --ink: #54233f;
+      --muted: #80556f;
+      --line: #f2a6cc;
+      --shadow: 0 12px 30px #9e286319;
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: hidden;
+      font-family: "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 8% 8%, #eb267e 0%, transparent 36%),
+        radial-gradient(ellipse at 90% 20%, #ffc9ff 0%, transparent 38%),
+        linear-gradient(115deg, #e655a7 0%, #ffc9e2 48%, #ffc9cc 75%, #ffc9ff 100%);
+      background-attachment: fixed;
+    }
+
+    a { color: inherit; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    button:focus-visible, a:focus-visible {
+      outline: 3px solid #9d1d61;
+      outline-offset: 4px;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 {
+      font-family: "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
+      font-weight: 700;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+
+    h1, h2 { letter-spacing: -0.035em; }
+    h1 { font-size: clamp(36px, 5vw, 54px); }
+    h2 { font-size: 36px; }
+    h3 { font-size: 27px; }
+    p { overflow-wrap: anywhere; }
+    img { display: block; max-width: 100%; }
+
+    .site-wrap {
+      width: min(1120px, calc(100% - 36px));
+      margin-inline: auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #fff9f0e8;
+      backdrop-filter: blur(16px);
+      border-bottom: 1px dashed #e655a7;
+    }
+
+    .nav-inner {
+      width: min(1120px, calc(100% - 28px));
+      min-height: 68px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      flex-shrink: 0;
+      color: #a51f61;
+      font-size: 19px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #75405f;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 999px;
+      transition: background .2s, transform .2s;
+    }
+
+    .nav-links a:hover {
+      background: #ffc9e2;
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      padding: 70px 0 60px;
+      color: var(--light);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(
+        110deg,
+        #eb267e 0%,
+        #e655a7 38%,
+        #ffc9e2 78%,
+        #ffc9ff 100%
+      );
+      border-radius: 0 0 42px 42px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(240px, .7fr);
+      align-items: center;
+      gap: 38px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: #fff4fc;
+    }
+
+    .hero h1 {
+      margin-bottom: 14px;
+      color: #fbe8fc;
+      text-shadow: 0 3px 18px #8b174e36;
+    }
+
+    .hero-subtitle {
+      margin-bottom: 16px;
+      font-size: 23px;
+      font-weight: 700;
+      color: #fff4fc;
+    }
+
+    .hero-copy {
+      max-width: 680px;
+      color: #fff8fc;
+      font-size: 20px;
+      line-height: 1.8;
+    }
+
+    .hero-note {
+      color: #fff8fc;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .hero-stickers {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 300px;
+    }
+
+    .diary {
+      width: min(100%, 310px);
+      padding: 28px 24px;
+      background: #fff9f3;
+      color: #54233f;
+      border: 2px solid #fff;
+      border-radius: 8px 28px 12px 24px;
+      box-shadow: 12px 14px 0 #9e286344;
+      transform: rotate(3deg);
+    }
+
+    .diary-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed #e655a7;
+      color: #a51f61;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .diary-big {
+      margin: 20px 0 8px;
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .diary p {
+      margin-bottom: 0;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .float-sticker {
+      position: absolute;
+      font-size: 34px;
+      filter: drop-shadow(0 4px 4px #9e286320);
+      animation: bob 4s ease-in-out infinite;
+    }
+
+    .sticker-one { top: 12px; right: 10px; }
+    .sticker-two { bottom: 20px; left: 0; animation-delay: -1.5s; }
+    .sticker-three { top: 28px; left: 0; animation-delay: -2s; }
+
+    @keyframes bob {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-9px) rotate(5deg); }
+    }
+
+    .section {
+      padding: 68px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+
+    .section-no {
+      margin-bottom: 8px;
+      color: #a51f61;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .section-head h2 {
+      margin-bottom: 10px;
+      color: #67234a;
+    }
+
+    .section-intro {
+      max-width: 700px;
+      margin-bottom: 0;
+      color: #754d65;
+      font-size: 18px;
+    }
+
+    .paper {
+      position: relative;
+      padding: 28px;
+      background: #fff9fdf0;
+      border: 1px solid #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .paper::before {
+      content: "✧";
+      position: absolute;
+      top: -18px;
+      right: 22px;
+      color: #eb267e;
+      font-size: 32px;
+      transform: rotate(12deg);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(250px, .8fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .about-copy p {
+      margin-bottom: 18px;
+      font-size: 19px;
+      line-height: 1.85;
+    }
+
+    .about-copy p:last-child { margin-bottom: 0; }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: 22px 0;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 13px;
+      border: 1px dashed #e655a7;
+      border-radius: 999px;
+      background: #fff0f8;
+      color: #75254e;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .tiny-confession {
+      padding: 20px;
+      border-left: 4px solid #e655a7;
+      border-radius: 0 16px 16px 0;
+      background: linear-gradient(110deg, #ffc9e2, #ffc9ff);
+      color: #54233f;
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .tiny-confession strong {
+      display: block;
+      margin-bottom: 7px;
+      color: #a51f61;
+    }
+
+    .sticker-board {
+      position: relative;
+      padding: 24px;
+      background: linear-gradient(145deg, #fff9fd, #ffc9e2);
+      border: 2px solid #fff;
+      border-radius: 18px 28px 20px 30px;
+      box-shadow: 8px 9px 0 #b52b7030;
+      transform: rotate(1deg);
+    }
+
+    .sticker-board h3 {
+      margin-bottom: 10px;
+      color: #a51f61;
+    }
+
+    .sticker-board p {
+      color: #54233f;
+      font-size: 17px;
+    }
+
+    .sticker-list {
+      display: grid;
+      gap: 11px;
+      margin-top: 18px;
+    }
+
+    .sticker-list div {
+      padding: 10px 12px;
+      background: #fff9f0d9;
+      border-radius: 12px;
+      color: #67234a;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+      margin: 8px auto;
+      color: #a51f61;
+      font-size: 16px;
+      letter-spacing: .16em;
+    }
+
+    .divider::before, .divider::after {
+      content: "";
+      width: 80px;
+      height: 1px;
+      background: #e655a7;
+      opacity: .6;
+    }
+
+    /* Section 2: music, movies, anime, food */
+    .subsection {
+      margin-top: 40px;
+    }
+
+    .subsection-title {
+      margin-bottom: 8px;
+      color: #67234a;
+      font-size: 27px;
+    }
+
+    .music-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, .8fr);
+      gap: 22px;
+    }
+
+    .music-card {
+      display: grid;
+      grid-template-columns: 155px minmax(0, 1fr);
+      gap: 22px;
+      align-items: center;
+      padding: 24px;
+      background: linear-gradient(120deg, #fff9fd, #ffc9e2, #ffc9ff);
+      border: 1px solid #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .album-art {
+      display: grid;
+      place-items: center;
+      aspect-ratio: 1;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #eb267e, #e655a7, #ffc9ff);
+      color: #fbe8fc;
+      font-size: 58px;
+      box-shadow: 5px 6px 0 #a51f6133;
+    }
+
+    .music-label {
+      margin-bottom: 8px;
+      color: #a51f61;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .music-title {
+      margin-bottom: 7px;
+      color: #67234a;
+      font-size: 25px;
+    }
+
+    .music-artist {
+      margin-bottom: 16px;
+      color: #754d65;
+      font-size: 16px;
+    }
+
+    .music-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+      min-height: 43px;
+      padding: 10px 16px;
+      border: 1px solid #e655a7;
+      border-radius: 999px;
+      background: #fff9fd;
+      color: #75254e;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s, background .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 12px #a51f6120;
+    }
+
+    .btn.primary {
+      background: linear-gradient(110deg, #eb267e, #e655a7);
+      color: #fff9fd;
+      border-color: #eb267e;
+    }
+
+    .music-note {
+      margin-top: 14px;
+      margin-bottom: 0;
+      color: #754d65;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .music-side {
+      padding: 24px;
+      background: #fff9fdf0;
+      border: 1px solid #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .music-side h3 { color: #a51f61; }
+    .music-side p {
+      color: #754d65;
+      font-size: 16px;
+    }
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .mini-stat {
+      padding: 13px;
+      border-radius: 15px;
+      background: #fff0f8;
+      color: #75254e;
+      font-size: 13px;
+    }
+
+    .mini-stat strong {
+      display: block;
+      font-size: 21px;
+      color: #a51f61;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: 18px 0 20px;
+    }
+
+    .tab {
+      padding: 10px 18px;
+      border: 1px solid #e655a7;
+      border-radius: 999px;
+      background: #fff9fd;
+      color: #75254e;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .tab.active {
+      background: linear-gradient(110deg, #eb267e, #e655a7);
+      color: #fff9fd;
+      border-color: #eb267e;
+    }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .media-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      padding: 0;
+      overflow: hidden;
+      text-align: left;
+      background: #fff9fd;
+      color: #54233f;
+      border: 1px solid #f2a6cc;
+      border-radius: 17px;
+      box-shadow: 0 5px 0 #e655a72c;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .media-card:hover {
+      transform: translateY(-4px) rotate(-.5deg);
+      box-shadow: 0 9px 0 #e655a72c;
+    }
+
+    .poster {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: linear-gradient(145deg, #eb267e, #e655a7, #ffc9ff);
+      color: #fff9fd;
+    }
+
+    .poster img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .35s;
+    }
+
+    .media-card:hover .poster img { transform: scale(1.04); }
+
+    .poster-placeholder {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      width: 100%;
+      height: 100%;
+      padding: 15px;
+      text-align: center;
+      background: linear-gradient(145deg, #eb267e, #e655a7, #ffc9ff);
+    }
+
+    .poster-placeholder span { font-size: 31px; }
+    .poster-placeholder strong {
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .media-info { padding: 12px; }
+    .media-info h3 {
+      margin-bottom: 7px;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .genre {
+      display: inline-block;
+      padding: 4px 7px;
+      border: 1px solid #f2a6cc;
+      border-radius: 999px;
+      background: #fff0f8;
+      color: #75254e;
+      font-size: 10px;
+      line-height: 1.4;
+    }
+
+    .media-hint {
+      margin: 14px 0 0;
+      color: #754d65;
+      font-size: 13px;
+    }
+
+    .food-panel {
+      position: relative;
+      overflow: hidden;
+      padding: 30px;
+      background: linear-gradient(120deg, #fff9fd, #ffc9e2 60%, #ffc9ff);
+      border: 1px solid #fff;
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .food-panel::after {
+      content: "🍓";
+      position: absolute;
+      right: 18px;
+      top: 4px;
+      font-size: 62px;
+      transform: rotate(14deg);
+      opacity: .8;
+    }
+
+    .food-panel h3 {
+      max-width: 750px;
+      margin-bottom: 8px;
+      color: #a51f61;
+      font-size: 29px;
+    }
+
+    .food-panel > p {
+      max-width: 700px;
+      color: #754d65;
+      font-size: 16px;
+    }
+
+    .food-result {
+      min-height: 155px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 7px;
+      margin: 22px 0;
+      padding: 23px;
+      background: #fff9f0ed;
+      border: 2px dashed #e655a7;
+      border-radius: 19px;
+      color: #67234a;
+    }
+
+    .food-result .food-emoji { font-size: 34px; }
+    .food-result strong {
+      font-size: 26px;
+      line-height: 1.3;
+    }
+
+    .food-result span:last-child {
+      font-size: 15px;
+      color: #754d65;
+    }
+
+    .food-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .food-count {
+      color: #754d65;
+      font-size: 13px;
+    }
+
+    /* Section 3 */
+    .fact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .fact-card {
+      position: relative;
+      padding: 25px;
+      background: #fff9fdf2;
+      border: 1px solid #fff;
+      border-radius: 20px;
+      box-shadow: 5px 6px 0 #b52b7030;
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .fact-card:nth-child(2) { transform: rotate(1deg); }
+    .fact-card:nth-child(3) { transform: rotate(-1deg); }
+
+    .fact-card:hover {
+      transform: translateY(-4px) rotate(0);
+      box-shadow: 8px 10px 0 #b52b7030;
+    }
+
+    .fact-icon {
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, #ffc9e2, #ffc9ff);
+      border-radius: 18px;
+      font-size: 29px;
+    }
+
+    .fact-card h3 {
+      margin-bottom: 8px;
+      color: #a51f61;
+      font-size: 23px;
+    }
+
+    .fact-sub {
+      margin-bottom: 16px;
+      color: #80556f;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .fact-card p:last-child {
+      margin-bottom: 0;
+      color: #54233f;
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    .footer {
+      padding: 35px 16px 45px;
+      text-align: center;
+      color: #754d65;
+      font-size: 14px;
+    }
+
+    .footer strong { color: #a51f61; }
+    .footer .footer-heart {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 26px;
+    }
+
+    /* Popup thông tin phim/anime */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: #351329a8;
+      backdrop-filter: blur(6px);
+    }
+
+    .modal.open { display: flex; }
+
+    .modal-box {
+      position: relative;
+      width: min(700px, 100%);
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 25px;
+      background: #fff9fd;
+      color: #54233f;
+      border: 2px solid #ffc9e2;
+      border-radius: 24px;
+      box-shadow: 0 20px 70px #35132950;
+    }
+
+    .modal-close {
+      position: sticky;
+      top: 0;
+      float: right;
+      z-index: 2;
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      background: #ffc9e2;
+      color: #75254e;
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .modal-content {
+      display: grid;
+      grid-template-columns: 170px minmax(0, 1fr);
+      gap: 24px;
+      clear: both;
+    }
+
+    .modal-poster {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #eb267e, #e655a7, #ffc9ff);
+    }
+
+    .modal-poster img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-copy h3 {
+      margin: 12px 0;
+      color: #a51f61;
+      font-size: 25px;
+    }
+
+    .modal-copy p {
+      color: #54233f;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .modal-copy .modal-genre {
+      color: #80556f;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      .media-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .fact-grid { grid-template-columns: 1fr 1fr; }
+      .hero-grid { gap: 24px; }
+    }
+
+    @media (max-width: 700px) {
+      body { font-size: 20px; }
+      .site-wrap { width: min(100% - 28px, 560px); }
+      .nav-inner {
+        padding: 10px 0;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .nav-links { justify-content: flex-start; }
+      .nav-links a { padding: 6px 9px; font-size: 12px; }
+      .hero { padding: 42px 0 38px; }
+      .hero-grid, .about-grid, .music-layout { grid-template-columns: 1fr; }
+      .hero-stickers { min-height: 250px; }
+      .diary { width: min(82%, 310px); }
+      .section { padding: 46px 0; }
+      .section-head { display: block; }
+      .section-head h2 { font-size: 32px; }
+      .section-intro { font-size: 16px; }
+      .paper { padding: 20px; }
+      .about-copy p { font-size: 17px; }
+      .tiny-confession { font-size: 15px; }
+      .sticker-board { transform: none; }
+      .music-card { grid-template-columns: 95px minmax(0, 1fr); padding: 16px; gap: 15px; }
+      .album-art { font-size: 38px; }
+      .music-title { font-size: 20px; }
+      .media-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+      .media-info { padding: 9px; }
+      .media-info h3 { font-size: 13px; }
+      .food-panel { padding: 22px; }
+      .food-panel h3 { font-size: 25px; }
+      .food-result strong { font-size: 23px; }
+      .fact-grid { grid-template-columns: 1fr; }
+      .fact-card:nth-child(2), .fact-card:nth-child(3) { transform: none; }
+      .fact-card p:last-child { font-size: 16px; }
+      .modal-content { grid-template-columns: 105px minmax(0, 1fr); gap: 15px; }
+      .modal-box { padding: 17px; }
+      .modal-copy h3 { font-size: 21px; }
+    }
+
+    @media (max-width: 390px) {
+      .media-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .music-card { grid-template-columns: 1fr; }
+      .album-art { width: 90px; }
+      .modal-content { grid-template-columns: 1fr; }
+      .modal-poster { width: 120px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<nav>
-  <div class="logo">Mthuw ♡</div>
-  <div>
-    <a href="#home">Home</a>
-    <a href="#about">Về tui</a>
-    <a href="#hobby">Sở thích</a>
+  <header class="topbar">
+    <nav class="nav-inner" aria-label="Main navigation">
+      <a class="brand" href="#home">mthuw's corner ♡</a>
+      <div class="nav-links">
+        <a href="#about">01 · me</a>
+        <a href="#world">02 · my world</a>
+        <a href="#facts">03 · little facts</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- SECTION 01 -->
+    <section class="hero" id="home">
+      <div class="site-wrap hero-grid">
+        <div>
+          <div class="eyebrow">✧ a tiny diary of mine ✧</div>
+          <h1>heyy, you found me!! ♡</h1>
+          <p class="hero-subtitle">hiii, i'm mthuw! 🎀</p>
+          <p class="hero-copy">
+            professional yapper, part-time overthinker, full-time cutie (trust me) =))))
+          </p>
+          <p class="hero-copy">
+            Tui là mthuw nèee!! Tui hơi hướng nội một xíu, nên đôi khi mới gặp sẽ hơi im im,
+            nhưng mà nếu gặp đúng người cùng tần số thì coi chừng nha =))))
+            Tui có thể nói chuyện 2–3 tiếng đồng hồ về đủ thứ trên đời mà vẫn chưa hết chuyện.
+            Tui thích kể chuyện linh tinh, nghe người khác kể chuyện và cùng nhau bàn đủ thứ
+            trên trời dưới đất theo kiểu vui vẻ, thoải mái, lâu lâu chọc nhau một xíu.
+          </p>
+          <p class="hero-note">
+            warning: may talk for 3 hours straight once we click ♡
+          </p>
+        </div>
+
+        <div class="hero-stickers" aria-label="Scrapbook decorations">
+          <span class="float-sticker sticker-one" aria-hidden="true">🎀</span>
+          <span class="float-sticker sticker-two" aria-hidden="true">💗</span>
+          <span class="float-sticker sticker-three" aria-hidden="true">✧</span>
+          <div class="diary">
+            <div class="diary-top">
+              <span>MY LITTLE DIARY</span>
+              <span>♡ 01</span>
+            </div>
+            <div class="diary-big">that's me!</div>
+            <p>
+              a little shy, a little silly, a lot of stories to tell.
+              come say hiiii!! ♡
+            </p>
+            <div class="tag-row">
+              <span class="tag">🎤 yapper</span>
+              <span class="tag">🫣 shy at first</span>
+              <span class="tag">♡ soft-hearted</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="site-wrap">
+        <div class="section-head">
+          <div>
+            <div class="section-no">01 — a little about me</div>
+            <h2>get to know me! 🎀</h2>
+            <p class="section-intro">
+              Một chiếc giới thiệu nho nhỏ về người đứng sau cái góc màu hồng này.
+            </p>
+          </div>
+        </div>
+
+        <div class="about-grid">
+          <article class="paper about-copy">
+            <p>
+              Tui có thể hơi ngại khi mới gặp, đôi lúc không biết bắt chuyện thế nào
+              nên nhìn có vẻ ít nói. Nhưng khi đã thân rồi thì tui nói nhiều lắm,
+              thích chia sẻ những chuyện nhỏ nhặt trong ngày và nghe người khác kể
+              những điều của họ nữa.
+            </p>
+            <p>
+              Tui cũng là người khá nhạy cảm, dễ xúc động khi nghe những câu chuyện
+              cảm động. Nhiều khi chỉ một điều bé xíu thôi cũng đủ khiến tui suy nghĩ
+              mãi. Nhưng mà tui vẫn thích cảm giác được kết nối với mọi người và
+              có thể thoải mái là chính mình.
+            </p>
+
+            <div class="tag-row">
+              <span class="tag">professional yapper 🎤</span>
+              <span class="tag">shy at first 🫣</span>
+              <span class="tag">soft-hearted ♡</span>
+            </div>
+
+            <div class="tiny-confession">
+              <strong>a tiny confession… ♡</strong>
+              đôi khi tui im lặng không phải vì hết chuyện để nói đâu, mà là vì hơi ngại,
+              sợ mình nói nhiều quá rồi người ta thấy phiền 🥹 nhưng thật ra tui thích
+              được lắng nghe, được kể đủ thứ chuyện linh tinh và có ai đó chịu ngồi tám
+              chuyện với tui thật lâu. nên nếu bà muốn bắt chuyện với tui thì cứ tự nhiên
+              nhaaa!! đừng sợ hết chuyện để nói, vì tui có thể biến một câu chuyện bình
+              thường thành buổi tám xuyên đêm luôn á =))))
+              <br><br>
+              <em>you don't have to be interesting all the time to be worth talking to. ♡</em>
+            </div>
+          </article>
+
+          <aside class="sticker-board">
+            <h3>little things about me ✧</h3>
+            <p>một vài chiếc nhãn dán nói lên con người tui =))))</p>
+            <div class="sticker-list">
+              <div>🎤 professional yapper when we click</div>
+              <div>🫣 quiet mode: activated at first</div>
+              <div>💗 soft heart, easily touched</div>
+              <div>🍜 food can fix many bad moods</div>
+              <div>💤 sleep is a very serious hobby</div>
+              <div>🎧 music is always a good idea</div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true">♡ ✧ ♡ ✧ ♡</div>
+
+    <!-- SECTION 02 -->
+    <section class="section" id="world">
+      <div class="site-wrap">
+        <div class="section-head">
+          <div>
+            <div class="section-no">02 — my little world</div>
+            <h2>things i love lately ♡</h2>
+            <p class="section-intro">
+              Nhạc nghe thập cẩm, phim xem đủ thể loại, đồ ăn thì khỏi phải bàn.
+              Welcome to my little world!!
+            </p>
+          </div>
+        </div>
+
+        <div class="subsection" id="music">
+          <h3 class="subsection-title">🎧 a song for your mood</h3>
+          <p class="section-intro">
+            Tui nghe đủ thứ nhạc, miễn bài nào hay là tui nghe thui.
+            Bấm nút để tui chọn ngẫu nhiên một bài cho bà nha.
+          </p>
+
+          <div class="music-layout" style="margin-top:20px">
+            <div class="music-card">
+              <div class="album-art" aria-hidden="true">♫</div>
+              <div>
+                <div class="music-label">now playing · random pick</div>
+                <h3 class="music-title" id="song-title">Chọn một bài nè ♡</h3>
+                <p class="music-artist" id="song-artist">mthuw's mixed playlist</p>
+                <div class="music-actions">
+                  <button class="btn primary" id="random-song" type="button">🎲 pick a song</button>
+                  <a class="btn" id="listen-song" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">▶ listen</a>
+                </div>
+                <p class="music-note">
+                  Nút listen sẽ mở kết quả tìm kiếm bài hát trên YouTube để bà chọn bản muốn nghe.
+                </p>
+              </div>
+            </div>
+
+            <aside class="music-side">
+              <h3>a little bit of everything ✨</h3>
+              <p>
+                Không chia playlist theo thể loại đâu nha, vì tui thích bài nào hay
+                thì cho vào chung một chiếc playlist hỗn hợp luôn =))))
+              </p>
+              <div class="mini-stats">
+                <div class="mini-stat"><strong id="song-count">28</strong>songs in the mix</div>
+                <div class="mini-stat"><strong>♡</strong>just press shuffle</div>
+              </div>
+            </aside>
+          </div>
+        </div>
+
+        <div class="subsection" id="movies">
+          <h3 class="subsection-title">🍿 my watchlist corner</h3>
+          <p class="section-intro">
+            Phim Hàn trước nha, anime ở tab kế bên. Bấm vào poster để đọc giới thiệu
+            và thể loại; kéo xuống để xem hết danh sách nè.
+          </p>
+
+          <div class="tabs" role="tablist" aria-label="Choose media category">
+            <button class="tab active" id="tab-kdrama" type="button" role="tab"
+              aria-selected="true" aria-controls="media-grid">🇰🇷 K-drama & movies</button>
+            <button class="tab" id="tab-anime" type="button" role="tab"
+              aria-selected="false" aria-controls="media-grid">🌸 Anime</button>
+          </div>
+
+          <div class="media-grid" id="media-grid" aria-live="polite"></div>
+          <p class="media-hint">
+            ✧ Poster có thể tải từ Wikipedia khi có kết nối mạng. Nếu không có ảnh phù hợp,
+            thẻ sẽ hiển thị hình scrapbook thay thế.
+          </p>
+        </div>
+
+        <div class="subsection" id="food">
+          <h3 class="subsection-title">🍓 the food emergency station</h3>
+          <div class="food-panel">
+            <h3>ăn gì bây giờ taaa, để tui chọn dùm nha</h3>
+            <p>
+              Đói nhưng không biết ăn gì? Đưa quyền quyết định cho tui.
+              Từ món no bụng, đồ ăn vặt đến nước uống đều có hết á =))))
+            </p>
+
+            <div class="food-result" id="food-result" aria-live="polite">
+              <span class="food-emoji" id="food-emoji">🍜</span>
+              <strong id="food-name">Bấm nút để tìm chân ái hôm nay!</strong>
+              <span id="food-description">Biết đâu món tiếp theo là đúng thứ bà đang thèm đó.</span>
+            </div>
+
+            <div class="food-bottom">
+              <button class="btn primary" id="random-food" type="button">🎲 chọn món cho tui!</button>
+              <span class="food-count" id="food-count"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true">✧ ♡ ✧ ♡ ✧</div>
+
+    <!-- SECTION 03 -->
+    <section class="section" id="facts">
+      <div class="site-wrap">
+        <div class="section-head">
+          <div>
+            <div class="section-no">03 — things i yap about 💬</div>
+            <h2>the lore of mthuw =))))</h2>
+            <p class="section-intro">
+              Ba chiếc fact siêu quan trọng mà bà cần biết về tui.
+              Đọc xong nhớ đừng bất ngờ nha.
+            </p>
+          </div>
+        </div>
+
+        <div class="fact-grid">
+          <article class="fact-card">
+            <div class="fact-icon" aria-hidden="true">🍜</div>
+            <h3>my stomach is my soulmate 🍜</h3>
+            <p class="fact-sub">Tâm hồn ăn uống chính hiệu</p>
+            <p>“Tui là người có tâm hồn ăn uống đó, tui ăn quá trời ăn luôn. Buồn cũng ăn, vui cũng ăn, ai làm gì làm còn tui vẫn cứ ăn thuii =)))) Mỗi lần ăn là mood tự nhiên lên lại, cảm giác stress cũng dịu xuống hẳn. Nói chung đồ ăn chính là một trong những niềm vui đơn giản mà hiệu quả nhất của tui á trời.”</p>
+          </article>
+
+          <article class="fact-card">
+            <div class="fact-icon" aria-hidden="true">💤</div>
+            <h3>professional sleeper™ 💤</h3>
+            <p class="fact-sub">Nghề nghiệp: ngủ bất cứ khi nào có thể</p>
+            <p>“Sở thích của tui đơn giản lắm: ngủ 24 tiếng một ngày AHAHAHA. Không có gì làm là buồn ngủ, đang học cũng buồn ngủ, tập trung lâu quá là não tự nhiên đơ ra như bị cúp điện. Tui còn có skill ngủ mở mắt nữa cơ — mắt thì mở thao láo mà não đã offline từ đời nào rồi =)))) Kỷ lục ngủ của tui là 13 tiếng nha, ai vượt được thì lên tiếng!”</p>
+          </article>
+
+          <article class="fact-card">
+            <div class="fact-icon" aria-hidden="true">♡</div>
+            <h3>the little things ♡</h3>
+            <p class="fact-sub">Hạnh phúc đôi khi đơn giản lắm</p>
+            <p>“Niềm vui nho nhỏ của tui là được ngủ đủ giấc với ăn thật nhiều đồ ngon. Nghe thì đơn giản thiệt nhưng mà hai cái này kết hợp lại là thấy cuộc đời tươi đẹp hơn hẳn rồi đó =)))) Tui dễ buồn mà cũng dễ vui, mood thay đổi nhanh như thời tiết, nên đôi khi chỉ cần một món ngon với một giấc ngủ ngon là tui lại vui vẻ trở lại liền.”</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span class="footer-heart" aria-hidden="true">🎀 ♡ ✧</span>
+    <strong>made with love by mthuw</strong>
+    <div>a tiny corner of the internet, just for me and you.</div>
+    <div>thanks for stopping by!! ♡</div>
+  </footer>
+
+  <!-- Popup for movie/anime details -->
+  <div class="modal" id="media-modal" role="dialog" aria-modal="true"
+    aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close" id="modal-close" type="button" aria-label="Close dialog">×</button>
+      <div class="modal-content">
+        <div class="modal-poster" id="modal-poster"></div>
+        <div class="modal-copy">
+          <span class="genre" id="modal-category">watchlist</span>
+          <h3 id="modal-title">A little story</h3>
+          <p class="modal-genre" id="modal-genre"></p>
+          <p id="modal-description"></p>
+          <a class="btn primary" id="modal-search" href="#" target="_blank" rel="noopener noreferrer">🔎 tìm hiểu thêm</a>
+        </div>
+      </div>
+    </div>
   </div>
-  <button onclick="toggleTheme()" id="theme">☾</button>
-</nav>
 
-<header class="hero" id="home">
-  <div>
-    <p>♡ WELCOME TO MY LITTLE WORLD ♡</p>
-    <h1>Hi, I'm <span>Mthuw!</span></h1>
-    <p>
-      Một chút mơ mộng, một chút tò mò,
-      và luôn cố gắng trở thành phiên bản tốt hơn
-      của chính mình mỗi ngày.
-    </p>
-    <a class="btn" href="#about">♡ Khám phá tui</a>
-    <a class="btn" href="#hobby">✿ Sở thích</a>
-  </div>
-  <div class="avatar">🌙</div>
-</header>
+  <script>
+    // -----------------------------
+    // 1. RANDOM MUSIC PICKER
+    // -----------------------------
+    const songs = [
+      { title: "Baby", artist: "Justin Bieber" },
+      { title: "Có em chờ", artist: "Min" },
+      { title: "Earrings", artist: "Malcom" },
+      { title: "Die for You", artist: "The Weeknd" },
+      { title: "Best Part", artist: "H.E.R." },
+      { title: "Boyfriend", artist: "Ariana Grande" },
+      { title: "Đánh đổi", artist: "Obito" },
+      { title: "Exit Sign", artist: "HIEUTHUHAI" },
+      { title: "Tìm em", artist: "Hngle" },
+      { title: "Không buông", artist: "Hngle" },
+      { title: "24h", artist: "Lyly" },
+      { title: "Nếu lúc đó", artist: "tlinh" },
+      { title: "Thích quá rùi nà", artist: "Trung Trần" },
+      { title: "Thế giới thần tiên", artist: "tlinh" },
+      { title: "Phong", artist: "VSTRA" },
+      { title: "Chạy ngay đi", artist: "Sơn Tùng M-TP" },
+      { title: "Muộn rồi mà sao còn", artist: "Sơn Tùng M-TP" },
+      { title: "Đã lỡ yêu em nhiều", artist: "JustaTee" },
+      { title: "Vì anh đâu có biết", artist: "Madihu" },
+      { title: "Có em", artist: "Madihu" },
+      { title: "Bình yên", artist: "Vũ." },
+      { title: "Love Is", artist: "Đăngrangto" },
+      { title: "Ai ngoài anh", artist: "VSTRA" },
+      { title: "GPS", artist: "Pixel Neko" },
+      { title: "Bạc phận", artist: "J97" },
+      { title: "In Love", artist: "Low G" },
+      { title: "vaicaunoicokhiennguoithaydoi", artist: "GREY D" },
+      { title: "See You Again", artist: "Tyler, the Creator" },
+      { title: "love.", artist: "wave to earth" }
+    ];
 
-<section id="about">
-  <h2>✧ Một chút về tui ✧</h2>
-  <p class="subtitle">Welcome to my little corner of the internet ♡</p>
-  <div class="about">
-    <div class="card">
-      <h3>🌷 Xin chào, tui là Mthuw!</h3>
-      <p>
-        Tui là một người vẫn đang khám phá bản thân,
-        học thêm những điều mới và sưu tầm thật nhiều
-        kỷ niệm nhỏ.
-      </p>
-      <p>
-        Tui thích những thứ dễ thương, những buổi tối
-        yên bình và cảm giác được làm điều mình yêu thích.
-        Tui không hoàn hảo, nhưng vẫn đang lớn lên từng
-        ngày theo cách của riêng mình.
-      </p>
-      <p><i>“Từng chút một cũng là đang tiến về phía trước.” ♡</i></p>
-    </div>
-    <div class="facts">
-      <div class="fact">🎀 <b>Biệt danh:</b> Mthuw</div>
-      <div class="fact">🎂 <b>Sinh nhật:</b> Đang cập nhật...</div>
-      <div class="fact">🌏 <b>Đến từ:</b> Việt Nam 🇻🇳</div>
-      <div class="fact">💭 <b>Ước mơ:</b> Trải nghiệm nhiều điều mới mẻ.</div>
-    </div>
-  </div>
-</section>
+    let previousSongIndex = -1;
 
-<section class="hobbies" id="hobby">
-  <h2>♡ Những thứ tui thích ♡</h2>
-  <p class="subtitle">A few things that make me happy</p>
-  <div class="grid">
-    <div class="hobby">
-      <div class="emoji">🎮</div>
-      <h3>Chơi game</h3>
-      <p>Free Fire và những trận chơi vui cùng bạn bè.</p>
-    </div>
-    <div class="hobby">
-      <div class="emoji">🎧</div>
-      <h3>Nghe nhạc</h3>
-      <p>Bật playlist rồi chill theo tâm trạng.</p>
-    </div>
-    <div class="hobby">
-      <div class="emoji">📚</div>
-      <h3>Học hỏi</h3>
-      <p>Biết thêm một điều mới mỗi ngày.</p>
-    </div>
-    <div class="hobby">
-      <div class="emoji">📸</div>
-      <h3>Chụp ảnh</h3>
-      <p>Lưu giữ những khoảnh khắc đáng nhớ.</p>
-    </div>
-    <div class="hobby">
-      <div class="emoji">🐱</div>
-      <h3>Mèo và đồ cute</h3>
-      <p>Nhìn thấy là vui ngang luôn.</p>
-    </div>
-    <div class="hobby">
-      <div class="emoji">🌙</div>
-      <h3>Thời gian riêng</h3>
-      <p>Một chút yên tĩnh để nạp lại năng lượng.</p>
-    </div>
-  </div>
-</section>
+    const songTitle = document.getElementById("song-title");
+    const songArtist = document.getElementById("song-artist");
+    const listenSong = document.getElementById("listen-song");
+    document.getElementById("song-count").textContent = songs.length;
 
-<section>
-  <h2>💌 Một lời nhắn nhỏ</h2>
-  <p class="subtitle">
-    Không cần phải hoàn hảo mới xứng đáng được yêu thương.
-    Cứ là chính mình và tiến về phía trước nhé!
-  </p>
-</section>
+    function pickSong() {
+      let index;
+      do {
+        index = Math.floor(Math.random() * songs.length);
+      } while (songs.length > 1 && index === previousSongIndex);
 
-<div class="quote">
-  “Be yourself. Your story is still being written.” ♡
-  <p>— made with love by Mthuw —</p>
-</div>
+      previousSongIndex = index;
+      const song = songs[index];
 
-<footer>
-  © <span id="year"></span> Mthuw's little world · Made with ♡
-</footer>
+      songTitle.textContent = song.title;
+      songArtist.textContent = song.artist;
+      listenSong.href =
+        "https://www.youtube.com/results?search_query=" +
+        encodeURIComponent(song.title + " " + song.artist + " official audio");
+      listenSong.setAttribute(
+        "aria-label",
+        "Search YouTube for " + song.title + " by " + song.artist
+      );
+    }
 
-<script>
-function toggleTheme() {
-  document.body.classList.toggle("dark");
-  document.getElementById("theme").textContent =
-    document.body.classList.contains("dark") ? "☀" : "☾";
-}
-document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+    document.getElementById("random-song").addEventListener("click", pickSong);
+    pickSong();
+
+    // -----------------------------
+    // 2. K-DRAMA, K-MOVIE AND ANIME
+    // -----------------------------
+    // Wiki page names help retrieve available thumbnails.
+    // If an image is unavailable, the card uses a decorative fallback.
+    const koreanMedia = [
+      {
+        title: "Train to Busan",
+        wiki: "Train to Busan",
+        genre: "Horror · Thriller",
+        description: "Một chuyến tàu đi Seoul trở thành hành trình sinh tồn đầy căng thẳng khi dịch bệnh zombie bùng phát. Giữa hỗn loạn, tình thân và lòng dũng cảm được đặt trước những lựa chọn khó khăn."
+      },
+      {
+        title: "The Colony",
+        wiki: "The Colony (2021 film)",
+        genre: "Sci-fi · Thriller",
+        description: "Một câu chuyện khoa học viễn tưởng u tối về tương lai của nhân loại và những quyết định sinh tồn trong một thế giới đã thay đổi."
+      },
+      {
+        title: "Kingdom",
+        wiki: "Kingdom (South Korean TV series)",
+        genre: "Historical · Zombie",
+        description: "Trong triều đại Joseon, một vị thái tử điều tra căn bệnh bí ẩn đang lan rộng và dần phát hiện những bí mật nguy hiểm trong hoàng cung."
+      },
+      {
+        title: "Can This Love Be Translated?",
+        wiki: "Can This Love Be Translated?",
+        genre: "Romance · Comedy",
+        description: "Một câu chuyện tình cảm xoay quanh những khác biệt trong ngôn ngữ, cách thể hiện cảm xúc và hành trình học cách hiểu nhau."
+      },
+      {
+        title: "The Penthouse",
+        wiki: "The Penthouse: War in Life",
+        genre: "Drama · Mystery",
+        description: "Những gia đình giàu có trong một khu căn hộ sang trọng bị cuốn vào vòng xoáy tham vọng, bí mật, cạnh tranh và những mối quan hệ phức tạp."
+      },
+      {
+        title: "Queen of Tears",
+        wiki: "Queen of Tears",
+        genre: "Romance · Drama",
+        description: "Cuộc hôn nhân tưởng như đã nguội lạnh của một cặp đôi trải qua biến cố, buộc họ nhìn lại tình yêu và tìm cách hiểu nhau một lần nữa."
+      },
+      {
+        title: "Twenty-Five Twenty-One",
+        wiki: "Twenty-Five Twenty-One",
+        genre: "Coming-of-age · Romance",
+        description: "Một câu chuyện tuổi trẻ về ước mơ, tình bạn, tình yêu và những lần trưởng thành giữa một giai đoạn nhiều biến động."
+      },
+      {
+        title: "A Shop for Killers",
+        wiki: "A Shop for Killers",
+        genre: "Action · Thriller",
+        description: "Sau một biến cố bất ngờ, một cô gái trẻ phải đối mặt với những bí mật liên quan đến người thân và tìm cách sống sót trước các mối đe dọa."
+      },
+      {
+        title: "Taxi Driver",
+        wiki: "Taxi Driver (South Korean TV series)",
+        genre: "Action · Crime",
+        description: "Một dịch vụ taxi bí mật giúp những người bị tổn thương tìm kiếm công lý khi họ không thể nhận được sự bảo vệ mà mình cần."
+      },
+      {
+        title: "The Glory",
+        wiki: "The Glory (TV series)",
+        genre: "Revenge · Drama",
+        description: "Nhiều năm sau những tổn thương thời đi học, một người phụ nữ kiên trì thực hiện kế hoạch đối diện với những người từng làm hại mình."
+      },
+      {
+        title: "Hospital Playlist",
+        wiki: "Hospital Playlist",
+        genre: "Medical · Friendship",
+        description: "Năm người bạn làm bác sĩ cùng chia sẻ công việc, tình bạn, âm nhạc và những câu chuyện đời thường ấm áp trong bệnh viện."
+      },
+      {
+        title: "Miracle in Cell No. 7",
+        wiki: "Miracle in Cell No. 7",
+        genre: "Comedy · Drama",
+        description: "Một bộ phim cảm động về tình cha con, những hiểu lầm đau lòng và lòng tốt vẫn có thể xuất hiện giữa hoàn cảnh khó khăn."
+      },
+      {
+        title: "Prison Playbook",
+        wiki: "Prison Playbook",
+        genre: "Comedy · Drama",
+        description: "Một vận động viên bóng chày nổi tiếng phải thích nghi với cuộc sống trong trại giam và gặp những con người có hoàn cảnh rất khác nhau."
+      },
+      {
+        title: "Marry My Husband",
+        wiki: "Marry My Husband",
+        genre: "Romance · Fantasy",
+        description: "Sau khi có cơ hội quay lại quá khứ, một người phụ nữ cố gắng thay đổi số phận và đối diện với những mối quan hệ từng khiến mình tổn thương."
+      },
+      {
+        title: "Reply 1988",
+        wiki: "Reply 1988",
+        genre: "Family · Friendship",
+        description: "Những gia đình sống trong cùng một khu phố chia sẻ tình bạn, tình thân và những ký ức bình dị của tuổi trẻ vào cuối thập niên 1980."
+      },
+      {
+        title: "Lovely Runner",
+        wiki: "Lovely Runner",
+        genre: "Romance · Fantasy",
+        description: "Một người hâm mộ có cơ hội quay về quá khứ và tìm cách thay đổi số phận của người mà cô trân quý."
+      },
+      {
+        title: "True Beauty",
+        wiki: "True Beauty (South Korean TV series)",
+        genre: "Romance · Comedy",
+        description: "Một nữ sinh học cách trang điểm để tự tin hơn, đồng thời tìm kiếm sự chấp nhận bản thân và xây dựng những mối quan hệ chân thành."
+      }
+    ];
+
+    const animeMedia = [
+      {
+        title: "Frieren: Beyond Journey's End",
+        wiki: "Frieren",
+        genre: "Fantasy · Adventure",
+        description: "Sau khi cuộc phiêu lưu của nhóm anh hùng kết thúc, pháp sư Frieren bắt đầu hành trình hiểu hơn về con người, thời gian và những kỷ niệm đã qua."
+      },
+      {
+        title: "Attack on Titan",
+        wiki: "Attack on Titan",
+        genre: "Action · Dark fantasy",
+        description: "Trong một thế giới bị đe dọa bởi những Titan khổng lồ, con người chiến đấu để tồn tại và dần khám phá những bí mật phía sau bức tường."
+      },
+      {
+        title: "Demon Slayer",
+        wiki: "Demon Slayer: Kimetsu no Yaiba",
+        genre: "Action · Fantasy",
+        description: "Tanjiro lên đường tìm cách cứu em gái và chiến đấu với quỷ dữ, trong hành trình gặp gỡ những đồng đội đáng tin cậy."
+      },
+      {
+        title: "Hell's Paradise",
+        wiki: "Hell's Paradise: Jigokuraku",
+        genre: "Action · Dark fantasy",
+        description: "Một nhóm tử tù được đưa đến hòn đảo bí ẩn để tìm kiếm phương thuốc trường sinh, nơi những hiểm nguy liên tục thử thách họ."
+      },
+      {
+        title: "The Ramparts of Ice",
+        wiki: "Koori no Jouheki",
+        genre: "School · Drama",
+        description: "Một câu chuyện học đường về những khoảng cách vô hình, cảm xúc khó nói thành lời và cách các bạn trẻ dần mở lòng với nhau."
+      },
+      {
+        title: "Kamisama Kiss",
+        wiki: "Kamisama Hajimemashita",
+        genre: "Romance · Supernatural",
+        description: "Một cô gái bất ngờ trở thành thổ thần và bắt đầu cuộc sống mới bên một hồ ly quen thuộc với thế giới linh giới."
+      },
+      {
+        title: "Horimiya",
+        wiki: "Horimiya",
+        genre: "Romance · Slice of life",
+        description: "Hai học sinh có những mặt khác biệt ngoài lớp học dần hiểu nhau và xây dựng mối quan hệ gần gũi, ấm áp."
+      },
+      {
+        title: "Kaguya-sama: Love Is War",
+        wiki: "Kaguya-sama: Love Is War",
+        genre: "Romance · Comedy",
+        description: "Hai học sinh thông minh đều thích đối phương nhưng quyết không tỏ tình trước, biến chuyện tình cảm thành cuộc đấu trí hài hước."
+      },
+      {
+        title: "Your Name",
+        wiki: "Your Name",
+        genre: "Fantasy · Romance",
+        description: "Hai thiếu niên xa lạ bất ngờ hoán đổi cơ thể và tìm cách kết nối với nhau giữa những bí ẩn về ký ức và thời gian."
+      },
+      {
+        title: "My Dress-Up Darling",
+        wiki: "My Dress-Up Darling",
+        genre: "Romance · Comedy",
+        description: "Một học sinh yêu thích làm búp bê và một cô bạn đam mê cosplay cùng hợp tác, từ đó khám phá sở thích và hiểu nhau hơn."
+      },
+      {
+        title: "Ao Haru Ride",
+        wiki: "Blue Spring Ride",
+        genre: "Romance · School",
+        description: "Một cô gái gặp lại mối tình đầu khi lên trung học và phải đối diện với những thay đổi của cả hai sau nhiều năm."
+      },
+      {
+        title: "My Little Monster",
+        wiki: "My Little Monster",
+        genre: "Romance · Comedy",
+        description: "Một nữ sinh chỉ quan tâm đến việc học bất ngờ trở nên thân thiết với một cậu bạn bốc đồng và khó đoán."
+      },
+      {
+        title: "Kimi ni Todoke",
+        wiki: "Kimi ni Todoke",
+        genre: "Romance · Coming-of-age",
+        description: "Một cô gái nhút nhát dần kết bạn, mở lòng và trải nghiệm tình yêu đầu đời nhờ những người thật lòng muốn hiểu cô."
+      },
+      {
+        title: "Naruto",
+        wiki: "Naruto",
+        genre: "Action · Adventure",
+        description: "Naruto, một ninja trẻ luôn muốn được công nhận, không ngừng luyện tập để theo đuổi ước mơ trở thành Hokage."
+      },
+      {
+        title: "The Apothecary Diaries",
+        wiki: "The Apothecary Diaries",
+        genre: "Mystery · Historical",
+        description: "Maomao, một cô gái am hiểu dược liệu, dùng kiến thức và óc quan sát để giải quyết những bí ẩn trong hoàng cung."
+      },
+      {
+        title: "That Time I Got Reincarnated as a Slime",
+        wiki: "That Time I Got Reincarnated as a Slime",
+        genre: "Fantasy · Adventure",
+        description: "Một người được tái sinh thành slime trong thế giới kỳ ảo và bắt đầu xây dựng cộng đồng của riêng mình."
+      },
+      {
+        title: "Re:Zero",
+        wiki: "Re:Zero − Starting Life in Another World",
+        genre: "Fantasy · Thriller",
+        description: "Subaru bị đưa đến một thế giới khác và phát hiện mình có khả năng quay lại sau những biến cố, nhưng mỗi lần đều phải đối mặt với thử thách."
+      },
+      {
+        title: "Bleach",
+        wiki: "Bleach (manga)",
+        genre: "Action · Supernatural",
+        description: "Ichigo Kurosaki có được sức mạnh của Soul Reaper và bước vào thế giới đầy những trận chiến giữa linh hồn và các thế lực siêu nhiên."
+      },
+      {
+        title: "Gintama",
+        wiki: "Gintama",
+        genre: "Comedy · Action",
+        description: "Trong một Edo giả tưởng, Gintoki cùng những người bạn nhận đủ loại công việc, tạo nên các cuộc phiêu lưu vừa hài hước vừa cảm động."
+      },
+      {
+        title: "Assassination Classroom",
+        wiki: "Assassination Classroom",
+        genre: "Comedy · Action",
+        description: "Một lớp học đặc biệt được giao nhiệm vụ ám sát chính giáo viên của mình, nhưng thầy Koro-sensei lại giúp họ trưởng thành theo cách bất ngờ."
+      },
+      {
+        title: "Perfect Blue",
+        wiki: "Perfect Blue",
+        genre: "Psychological · Thriller",
+        description: "Một cựu thần tượng chuyển hướng sự nghiệp diễn xuất nhưng dần bị cuốn vào những trải nghiệm khiến cô nghi ngờ ranh giới giữa thực tế và nhận thức."
+      }
+    ];
+
+    const mediaGrid = document.getElementById("media-grid");
+    const tabKdrama = document.getElementById("tab-kdrama");
+    const tabAnime = document.getElementById("tab-anime");
+    let currentMedia = koreanMedia;
+    const loadedImages = new Map();
+
+    function wikiSummaryUrl(page) {
+      return "https://en.wikipedia.org/api/rest_v1/page/summary/" +
+        encodeURIComponent(page.replaceAll(" ", "_"));
+    }
+
+    async function getWikiImage(item) {
+      if (loadedImages.has(item.wiki)) return loadedImages.get(item.wiki);
+
+      const promise = fetch(wikiSummaryUrl(item.wiki))
+        .then(response => {
+          if (!response.ok) throw new Error("No wiki summary");
+          return response.json();
+        })
+        .then(data => data.thumbnail?.source || data.originalimage?.source || null)
+        .catch(() => null);
+
+      loadedImages.set(item.wiki, promise);
+      return promise;
+    }
+
+    function makePosterPlaceholder(item, emoji) {
+      const placeholder = document.createElement("div");
+      placeholder.className = "poster-placeholder";
+
+      const icon = document.createElement("span");
+      icon.textContent = emoji;
+
+      const title = document.createElement("strong");
+      title.textContent = item.title;
+
+      placeholder.append(icon, title);
+      return placeholder;
+    }
+
+    async function loadPoster(item, poster, emoji) {
+      const imageUrl = await getWikiImage(item);
+      if (!imageUrl || !poster.isConnected) return;
+
+      const image = new Image();
+      image.alt = "Poster or thumbnail for " + item.title;
+      image.loading = "lazy";
+      image.referrerPolicy = "no-referrer";
+      image.src = imageUrl;
+
+      image.addEventListener("load", () => {
+        if (!poster.isConnected) return;
+        poster.replaceChildren(image);
+      }, { once: true });
+
+      image.addEventListener("error", () => {
+        if (poster.isConnected) {
+          poster.replaceChildren(makePosterPlaceholder(item, emoji));
+        }
+      }, { once: true });
+    }
+
+    function openMediaModal(item, type, emoji, poster) {
+      const modal = document.getElementById("media-modal");
+      const modalPoster = document.getElementById("modal-poster");
+      modalPoster.replaceChildren();
+
+      if (poster.querySelector("img")) {
+        const copy = poster.querySelector("img").cloneNode();
+        copy.loading = "eager";
+        modalPoster.appendChild(copy);
+      } else {
+        modalPoster.appendChild(makePosterPlaceholder(item, emoji));
+      }
+
+      document.getElementById("modal-category").textContent =
+        type === "anime" ? "🌸 anime" : "🇰🇷 Korean watchlist";
+      document.getElementById("modal-title").textContent = item.title;
+      document.getElementById("modal-genre").textContent = item.genre;
+      document.getElementById("modal-description").textContent = item.description;
+      document.getElementById("modal-search").href =
+        "https://www.google.com/search?q=" +
+        encodeURIComponent(item.title + " " + (type === "anime" ? "anime" : "Korean drama movie"));
+
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      document.getElementById("modal-close").focus();
+    }
+
+    function renderMedia(items, type) {
+      currentMedia = items;
+      mediaGrid.replaceChildren();
+
+      items.forEach(item => {
+        const card = document.createElement("button");
+        card.className = "media-card";
+        card.type = "button";
+        card.setAttribute("aria-label", "Read about " + item.title);
+
+        const poster = document.createElement("div");
+        poster.className = "poster";
+        const emoji = type === "anime" ? "🌸" : "🎬";
+        poster.appendChild(makePosterPlaceholder(item, emoji));
+
+        const info = document.createElement("div");
+        info.className = "media-info";
+
+        const title = document.createElement("h3");
+        title.textContent = item.title;
+
+        const genre = document.createElement("span");
+        genre.className = "genre";
+        genre.textContent = item.genre;
+
+        info.append(title, genre);
+        card.append(poster, info);
+        card.addEventListener("click", () => openMediaModal(item, type, emoji, poster));
+        mediaGrid.appendChild(card);
+
+        loadPoster(item, poster, emoji);
+      });
+    }
+
+    function setMediaTab(type) {
+      const isAnime = type === "anime";
+      tabAnime.classList.toggle("active", isAnime);
+      tabKdrama.classList.toggle("active", !isAnime);
+      tabAnime.setAttribute("aria-selected", String(isAnime));
+      tabKdrama.setAttribute("aria-selected", String(!isAnime));
+      renderMedia(isAnime ? animeMedia : koreanMedia, type);
+    }
+
+    tabKdrama.addEventListener("click", () => setMediaTab("kdrama"));
+    tabAnime.addEventListener("click", () => setMediaTab("anime"));
+
+    const modal = document.getElementById("media-modal");
+    const modalClose = document.getElementById("modal-close");
+
+    function closeMediaModal() {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    modalClose.addEventListener("click", closeMediaModal);
+    modal.addEventListener("click", event => {
+      if (event.target === modal) closeMediaModal();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && modal.classList.contains("open")) {
+        closeMediaModal();
+      }
+    });
+
+    renderMedia(koreanMedia, "kdrama");
+
+    // -----------------------------
+    // 3. FOOD RANDOMIZER
+    // -----------------------------
+    const foods = [
+      { name: "Bánh snack Oishi", emoji: "🍟", line: "Giòn rụm, mở gói ra là tự nhiên hết buồn miệng." },
+      { name: "Kẹo dẻo cầu vồng Chupa Chups", emoji: "🍬", line: "Một chiếc cầu vồng dẻo dẻo cho ngày hơi nhạt." },
+      { name: "Bánh gấu", emoji: "🐻", line: "Bé gấu vô tội nhưng có thể biến mất khỏi túi bánh rất nhanh." },
+      { name: "Bánh Pillow", emoji: "🥐", line: "Nhỏ xinh, giòn thơm, hợp để nhâm nhi lúc tám chuyện." },
+      { name: "Bánh mì thập cẩm đầy ú ụ", emoji: "🥖", line: "Chiếc bánh mì có tâm, ăn xong no tới tận chân trời." },
+      { name: "Phở", emoji: "🍜", line: "Nước dùng thơm nóng, lựa chọn kinh điển khó sai." },
+      { name: "Bún bò", emoji: "🍲", line: "Một tô đậm đà cho chiếc bụng đang biểu tình." },
+      { name: "Mì trộn", emoji: "🍝", line: "Trộn đều lên là mood cũng có thể vui theo." },
+      { name: "Cơm trộn", emoji: "🍚", line: "Nhiều màu sắc, nhiều topping, nhiều niềm vui." },
+      { name: "Kimbap", emoji: "🍙", line: "Cuộn nhỏ xinh, tiện tay ăn một miếng rồi thêm miếng nữa." },
+      { name: "Bánh tiramisu", emoji: "🍰", line: "Mềm, thơm, một chút vị cà phê cho ngày ngọt ngào." },
+      { name: "Bánh tart trứng", emoji: "🥧", line: "Vỏ giòn, nhân mềm, vừa nhìn đã thấy muốn ăn." },
+      { name: "Khoai tây chiên", emoji: "🍟", line: "Món ăn vặt mà bàn nào có cũng dễ hết đầu tiên." },
+      { name: "Gà rán", emoji: "🍗", line: "Lớp vỏ giòn rụm gọi tên một bữa ăn vui vẻ." },
+      { name: "Tokbokki", emoji: "🌶️", line: "Dẻo dẻo cay cay, hợp hôm muốn đổi vị." },
+      { name: "Hải sản cua ghẹ", emoji: "🦀", line: "Bữa ăn hơi cầu kỳ nhưng thành quả thì đáng mong chờ." },
+      { name: "Thịt kho", emoji: "🍖", line: "Vị cơm nhà thân quen, ăn cùng cơm nóng là hết ý." },
+      { name: "Trứng chiên", emoji: "🍳", line: "Đơn giản mà đáng tin, chiếc trứng vàng cứu đói." },
+      { name: "Bánh bao", emoji: "🥟", line: "Cầm trên tay một chiếc bánh bao ấm nóng là thấy ổn." },
+      { name: "Cơm cháy", emoji: "🍘", line: "Giòn giòn đậm vị, ăn vui miệng lúc rảnh rỗi." },
+      { name: "Bánh tráng trộn", emoji: "🥗", line: "Chua cay mặn ngọt, mỗi miếng đều có chuyện để kể." },
+      { name: "Bánh tráng nướng", emoji: "🫓", line: "Chiếc pizza phiên bản đường phố thơm nức mũi." },
+      { name: "Nước ngọt", emoji: "🥤", line: "Một ly mát lạnh để đổi gió cho buổi chiều." },
+      { name: "Nước lọc", emoji: "💧", line: "Đơn giản nhưng cơ thể chắc chắn sẽ cảm ơn bà." },
+      { name: "Matcha latte", emoji: "🍵", line: "Xanh xanh thơm thơm, dành cho hôm muốn chill." },
+      { name: "Cacao mint", emoji: "🍫", line: "Socola gặp bạc hà, vị mát mát lạ miệng." },
+      { name: "Trà sữa", emoji: "🧋", line: "Một chiếc topping party cho chiếc mood đang cần vui." },
+      { name: "Trái cây", emoji: "🍉", line: "Tươi mát và mọng nước, ăn nhẹ cũng rất hợp." },
+      { name: "Thạch dừa", emoji: "🥥", line: "Dai dai mát mát, một món nhỏ cho ngày nóng." },
+      { name: "Kẹo mút Chupa Chups", emoji: "🍭", line: "Một chiếc kẹo sắc màu cho tâm hồn trẻ con." },
+      { name: "Bánh tráng cuốn", emoji: "🌯", line: "Cuốn đầy rau và topping, chấm một phát là cuốn." },
+      { name: "Bánh cuốn", emoji: "🥢", line: "Mềm mịn, thơm hành phi, ăn sáng rất vừa vặn." },
+      { name: "Bún thịt nướng", emoji: "🍜", line: "Thịt nướng thơm, rau tươi và nước mắm hợp vị." },
+      { name: "Bún riêu", emoji: "🍲", line: "Một tô nóng hổi có vị chua dịu rất riêng." },
+      { name: "Hủ tiếu", emoji: "🥣", line: "Đổi món một hôm với tô hủ tiếu đầy đặn." },
+      { name: "Mì cay", emoji: "🌶️", line: "Dành cho ngày muốn thử thách vị giác một chút." },
+      { name: "Cơm tấm sườn bì chả", emoji: "🍚", line: "Một chiếc đĩa cơm no bụng với đủ món thân quen." },
+      { name: "Cơm gà", emoji: "🍗", line: "Gọn gàng, dễ ăn và hợp cho bữa trưa." },
+      { name: "Bánh xèo", emoji: "🥞", line: "Vỏ vàng giòn, cuốn rau rồi chấm nước mắm." },
+      { name: "Gỏi cuốn", emoji: "🥬", line: "Thanh mát, nhiều rau, ăn cùng nước chấm yêu thích." },
+      { name: "Nem nướng", emoji: "🍢", line: "Cuốn bánh tráng cùng rau và nước sốt thơm ngon." },
+      { name: "Há cảo", emoji: "🥟", line: "Nhỏ xinh, nhân đầy đặn, ăn vài viên là vui." },
+      { name: "Sủi cảo", emoji: "🥟", line: "Một phần nóng hổi cho ngày trời mát mẻ." },
+      { name: "Pizza", emoji: "🍕", line: "Chọn topping yêu thích rồi chia sẻ cùng hội bạn." },
+      { name: "Hamburger", emoji: "🍔", line: "Một chiếc burger đầy đặn cho ngày cần nạp năng lượng." },
+      { name: "Sandwich", emoji: "🥪", line: "Nhanh gọn, tiện lợi, dễ biến tấu theo sở thích." },
+      { name: "Mì Ý sốt bò bằm", emoji: "🍝", line: "Sợi mì dai cùng sốt cà chua đậm đà." },
+      { name: "Xúc xích nướng", emoji: "🌭", line: "Món ăn vặt quen thuộc thơm phức khi vừa nướng xong." },
+      { name: "Bắp xào", emoji: "🌽", line: "Hạt bắp ngọt, thơm bơ và ăn hoài không chán." },
+      { name: "Bắp rang bơ", emoji: "🍿", line: "Món phải có khi bật phim lên xem." },
+      { name: "Chân gà sốt", emoji: "🍗", line: "Một món nhâm nhi đậm vị cho hội thích ăn vặt." },
+      { name: "Cá viên chiên", emoji: "🍢", line: "Xiên nóng hổi, chấm tương rồi ăn cùng bạn bè." },
+      { name: "Phô mai que", emoji: "🧀", line: "Lớp vỏ giòn với phần phô mai kéo sợi bên trong." },
+      { name: "Bánh chuối", emoji: "🍌", line: "Thơm mùi chuối chín, ngọt dịu và dễ ăn." },
+      { name: "Bánh flan", emoji: "🍮", line: "Mềm mịn, béo thơm, thêm chút cà phê càng ngon." },
+      { name: "Rau câu", emoji: "🍮", line: "Mát lạnh, nhiều màu sắc, ăn tráng miệng rất vui." },
+      { name: "Chè đậu xanh", emoji: "🥣", line: "Một món chè ngọt dịu cho ngày muốn ăn đồ mát." },
+      { name: "Chè khúc bạch", emoji: "🍨", line: "Thạch mềm, vải ngọt và nước dùng thơm nhẹ." },
+      { name: "Kem ốc quế", emoji: "🍦", line: "Một chiếc kem mát lạnh để ngày nóng bớt nóng." },
+      { name: "Sữa chua", emoji: "🥛", line: "Chua ngọt nhẹ nhàng, có thể thêm trái cây yêu thích." },
+      { name: "Waffle", emoji: "🧇", line: "Bánh thơm mềm, ăn cùng mật ong hay kem đều hợp." },
+      { name: "Pancake", emoji: "🥞", line: "Những lớp bánh mềm xốp cho bữa sáng ngọt ngào." },
+      { name: "Donut", emoji: "🍩", line: "Chiếc bánh vòng phủ đường đủ sức làm ngày vui hơn." },
+      { name: "Bánh su kem", emoji: "🧁", line: "Vỏ bánh nhẹ và nhân kem ngọt ngào bên trong." },
+      { name: "Bánh bông lan trứng muối", emoji: "🍰", line: "Bông lan mềm, sốt béo và vị mặn ngọt hấp dẫn." },
+      { name: "Bánh crepe", emoji: "🥞", line: "Mỏng mềm, cuộn nhân ngọt hoặc mặn đều ngon." },
+      { name: "Trà đào", emoji: "🍑", line: "Thơm mùi đào, mát lạnh và rất hợp buổi chiều." },
+      { name: "Trà chanh", emoji: "🍋", line: "Chua dịu, thơm nhẹ, một lựa chọn giải khát thân quen." },
+      { name: "Sữa tươi trân châu đường đen", emoji: "🧋", line: "Trân châu dai dai đi cùng vị sữa béo thơm." },
+      { name: "Nước cam", emoji: "🍊", line: "Vị cam tươi mát cho một chiếc ngày rực rỡ." },
+      { name: "Sinh tố bơ", emoji: "🥑", line: "Béo mịn, thơm ngậy, hợp với người thích vị bơ." },
+      { name: "Sinh tố dâu", emoji: "🍓", line: "Hồng hồng xinh xinh, ngọt dịu và mát lạnh." },
+      { name: "Nước dừa", emoji: "🥥", line: "Mát lành, nhẹ nhàng, gợi cảm giác đi chơi biển." },
+      { name: "Sữa đậu nành", emoji: "🥛", line: "Một thức uống giản dị, thơm nhẹ và quen thuộc." },
+      { name: "Bánh mì chảo", emoji: "🍳", line: "Một chiếc chảo nóng với trứng, pate và bánh mì." },
+      { name: "Xôi mặn", emoji: "🍚", line: "Dẻo thơm và đủ topping cho bữa sáng chắc bụng." },
+      { name: "Xôi gà", emoji: "🍗", line: "Xôi dẻo kết hợp thịt gà, hợp hôm cần bữa ăn no." },
+      { name: "Cháo sườn", emoji: "🥣", line: "Ấm bụng, mềm thơm, hợp những hôm muốn ăn nhẹ." },
+      { name: "Bánh giò", emoji: "🫔", line: "Món bánh mềm nóng với phần nhân đậm đà." },
+      { name: "Bánh khọt", emoji: "🥞", line: "Nhỏ xinh, viền giòn, ăn cùng rau và nước chấm." },
+      { name: "Gỏi cuốn tôm thịt", emoji: "🥬", line: "Cuốn đầy đặn, thanh mát, chấm sốt là vừa ngon." },
+      { name: "Bánh tráng phơi sương", emoji: "🌯", line: "Cuốn cùng rau và thịt, một món ăn chơi hấp dẫn." },
+      { name: "Bánh quy", emoji: "🍪", line: "Giòn thơm, hợp để ăn nhẹ cùng một ly sữa." },
+      { name: "Chocolate", emoji: "🍫", line: "Một miếng socola nhỏ cho ngày cần chút ngọt ngào." },
+      { name: "Táo", emoji: "🍎", line: "Giòn ngọt, dễ mang theo và ăn lúc nào cũng tiện." },
+      { name: "Xoài chấm muối ớt", emoji: "🥭", line: "Chua chua cay cay, dành cho hội thích ăn vặt mạnh vị." },
+      { name: "Dâu tây", emoji: "🍓", line: "Những quả dâu đỏ xinh xắn cho một chiếc snack tươi mát." },
+      { name: "Dưa hấu", emoji: "🍉", line: "Mọng nước, ngọt mát, rất hợp ngày nắng." },
+      { name: "Nho", emoji: "🍇", line: "Từng quả nhỏ xinh, rửa sạch là có thể ăn ngay." },
+      { name: "Sữa chua trái cây", emoji: "🍓", line: "Vị chua ngọt mát lành với những miếng trái cây." }
+    ];
+
+    let previousFoodIndex = -1;
+
+    function pickFood() {
+      let index;
+      do {
+        index = Math.floor(Math.random() * foods.length);
+      } while (foods.length > 1 && index === previousFoodIndex);
+
+      previousFoodIndex = index;
+      const food = foods[index];
+
+      document.getElementById("food-emoji").textContent = food.emoji;
+      document.getElementById("food-name").textContent = food.name;
+      document.getElementById("food-description").textContent = food.line;
+    }
+
+    document.getElementById("food-count").textContent =
+      foods.length + " món trong chiếc hộp lựa chọn ♡";
+
+    document.getElementById("random-food").addEventListener("click", pickFood);
+
+    // Footer date is intentionally omitted to keep the page timeless.
+  </script>
 </body>
 </html>
