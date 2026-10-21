@@ -987,16 +987,49 @@ body > .fairy-dust { position: fixed; inset: 0; z-index: 99; pointer-events: non
   top: var(--y);
   width: var(--size);
   height: var(--size);
-  color: #fff8ff;
+  color: #fffaff;
   opacity: 0;
   font-size: var(--size);
   line-height: 1;
-  text-shadow: 0 0 7px #fff, 0 0 15px #ffb6e0, 0 0 24px #f7a8db;
+  will-change: transform, opacity, filter;
+  text-shadow:
+    0 0 4px #fff,
+    0 0 10px #fff,
+    0 0 19px #ffb6e0,
+    0 0 31px #f7a8db;
   animation: fairy-twinkle var(--duration) ease-in-out var(--delay) infinite;
 }
 @keyframes fairy-twinkle {
-  0%, 100% { opacity: 0; transform: translate3d(0, 8px, 0) rotate(-12deg) scale(.55); }
-  45%, 60% { opacity: .95; transform: translate3d(5px, -12px, 0) rotate(18deg) scale(1.12); }
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0) rotate(-28deg) scale(.35);
+    filter: brightness(.8);
+  }
+  18% {
+    opacity: .95;
+    transform: translate3d(8px, 8px, 0) rotate(8deg) scale(1.05);
+    filter: brightness(1.7);
+  }
+  42% {
+    opacity: .4;
+    transform: translate3d(-5px, -15px, 0) rotate(55deg) scale(.78);
+    filter: brightness(1.1);
+  }
+  62% {
+    opacity: 1;
+    transform: translate3d(13px, -33px, 0) rotate(110deg) scale(1.28);
+    filter: brightness(1.9);
+  }
+  82% {
+    opacity: .55;
+    transform: translate3d(5px, -50px, 0) rotate(165deg) scale(.9);
+    filter: brightness(1.4);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(-8px, -72px, 0) rotate(220deg) scale(.25);
+    filter: brightness(.8);
+  }
 }
 @keyframes sticker-float {
   0%, 100% { transform: translateY(0) rotate(var(--tilt, -7deg)); }
@@ -1947,16 +1980,16 @@ a:focus-visible, button:focus-visible {
     (() => {
       const layer = document.querySelector(".fairy-dust");
       if (!layer || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      const glyphs = ["✧", "✦", "⋆", "♡", "✴"];
-      for (let i = 0; i < 28; i++) {
+      const glyphs = ["✧", "✦", "⋆", "♡", "✴", "✳", "✵", "୨୧"];
+      for (let i = 0; i < 52; i++) {
         const star = document.createElement("span");
         star.className = "fairy-sparkle";
         star.textContent = glyphs[i % glyphs.length];
         star.style.setProperty("--x", (Math.random() * 98) + "%");
         star.style.setProperty("--y", (Math.random() * 96) + "%");
-        star.style.setProperty("--size", (10 + Math.random() * 12) + "px");
+        star.style.setProperty("--size", (11 + Math.random() * 17) + "px");
         star.style.setProperty("--delay", (-Math.random() * 8) + "s");
-        star.style.setProperty("--duration", (4.5 + Math.random() * 5) + "s");
+        star.style.setProperty("--duration", (5 + Math.random() * 6) + "s");
         layer.appendChild(star);
       }
     })();
