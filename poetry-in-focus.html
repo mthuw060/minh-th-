@@ -6,10 +6,10 @@
 <title>POETRY IN FOCUS — Art Journal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800;900&family=Permanent+Marker&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Caveat:wght@400;700&family=Playfair+Display:wght@700;800;900&family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--paper:#f2e9d9;--yellow:#f2c94c;--blue:#3979b9;--sage:#8ba58b;--ink:#292929;--coral:#e58b78;--lav:#c9b4d9;--white:#fffdf7}
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#202426;color:var(--ink);font-family:"DM Sans",sans-serif}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#202426;color:var(--ink);font-family:"Be Vietnam Pro",sans-serif}
 .deck{height:100%;display:grid;place-items:center;padding:24px 24px 42px;perspective:1800px;position:relative}
 .slide{display:none;position:relative;width:min(calc(100vw - 48px),calc((100vh - 90px)*16/9));aspect-ratio:16/9;overflow:hidden;padding:4.2% 5%;box-shadow:0 18px 70px #0007;isolation:isolate}
 .slide.active{display:block;cursor:pointer}
@@ -20,22 +20,22 @@
 @keyframes pageTurnPrev{from{transform:translate(-50%,-50%) rotateY(0);filter:brightness(1)}to{transform:translate(-50%,-50%) rotateY(100deg);filter:brightness(.72)}}
 
 .paper{background:var(--paper)}.sage{background:#dce6d9}.sky{background:#dce7f0}.lav{background:#e8dff0}.peach{background:#f0d8c6}.blue{background:#3979b9;color:#fffdf7}
-.kicker{font:500 clamp(9px,1vw,14px) "DM Mono";letter-spacing:.12em;text-transform:uppercase;opacity:.8}
-h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "DM Sans";letter-spacing:-.075em}h2{font:900 clamp(30px,4.5vw,68px)/.95 "DM Sans";letter-spacing:-.06em}h3{font:800 clamp(18px,2.3vw,34px)/1 "DM Sans";letter-spacing:-.04em}
-.serif{font-family:"Playfair Display",serif}.marker{font-family:"Permanent Marker",cursive;font-weight:400}
+.kicker{font:500 clamp(9px,1vw,14px) "Roboto Mono";letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "Be Vietnam Pro";letter-spacing:-.075em}h2{font:900 clamp(30px,4.5vw,68px)/.95 "Be Vietnam Pro";letter-spacing:-.06em}h3{font:800 clamp(18px,2.3vw,34px)/1 "Be Vietnam Pro";letter-spacing:-.04em}
+.serif{font-family:"Playfair Display",serif}.marker{font-family:"Caveat",cursive;font-weight:400}
 .small{font-size:clamp(11px,1.15vw,17px);line-height:1.5}.body{font-size:clamp(13px,1.45vw,21px);line-height:1.5}.muted{opacity:.7}
 .row{display:flex;align-items:center;gap:14px}.between{justify-content:space-between}.stack{display:flex;flex-direction:column;gap:14px}
 .tape{position:absolute;width:18%;height:25px;background:var(--yellow);opacity:.9;transform:rotate(-8deg);z-index:5;box-shadow:0 2px 5px #0001}
-.sticker{display:inline-block;padding:8px 13px;background:var(--yellow);font:700 clamp(10px,1.15vw,16px) "DM Mono";text-transform:uppercase;box-shadow:2px 3px 0 #29292922;transform:rotate(-3deg)}
+.sticker{display:inline-block;padding:8px 13px;background:var(--yellow);font:700 clamp(10px,1.15vw,16px) "Roboto Mono";text-transform:uppercase;box-shadow:2px 3px 0 #29292922;transform:rotate(-3deg)}
 .sticker.blueTag{background:var(--blue);color:white;transform:rotate(3deg)}.sticker.coralTag{background:var(--coral);transform:rotate(2deg)}.sticker.paperTag{background:var(--white);border:1px solid #29292955}
-.doodle{position:absolute;font-family:"Permanent Marker";font-size:clamp(28px,4vw,58px);color:var(--blue);line-height:1;pointer-events:none}
+.doodle{position:absolute;font-family:"Caveat";font-size:clamp(28px,4vw,58px);color:var(--blue);line-height:1;pointer-events:none}
 .photo{position:relative;background:linear-gradient(135deg,#9eb8bd,#e9d7b9 48%,#7897a1);overflow:hidden;min-height:120px}
 .photo:before{content:"";position:absolute;inset:0;background:linear-gradient(145deg,transparent 35%,#ffffff55 36%,transparent 37%),linear-gradient(0deg,#243d4a55,transparent 60%)}
-.photo:after{content:"YOUR PHOTO HERE";position:absolute;bottom:10px;left:12px;color:#fff;font:500 10px "DM Mono";letter-spacing:.12em}
+.photo:after{content:"YOUR PHOTO HERE";position:absolute;bottom:10px;left:12px;color:#fff;font:500 10px "Roboto Mono";letter-spacing:.12em}
 .photo .sun{position:absolute;width:28%;aspect-ratio:1;border-radius:50%;background:#f2c94c;right:12%;top:12%;filter:blur(1px)}
 .photo .hill{position:absolute;bottom:-25%;width:110%;height:70%;left:-5%;background:#718b7c;border-radius:50% 50% 0 0;transform:rotate(-8deg)}
 .photo .hill.two{background:#456f83;left:25%;bottom:-38%;transform:rotate(12deg)}
-.photoLabel{position:absolute;z-index:2;bottom:8px;left:10px;color:white;font:500 9px "DM Mono";letter-spacing:.1em}
+.photoLabel{position:absolute;z-index:2;bottom:8px;left:10px;color:white;font:500 9px "Roboto Mono";letter-spacing:.1em}
 .paperNote{background:var(--white);padding:16px 18px;box-shadow:3px 5px 0 #29292916;transform:rotate(-1.5deg)}
 .highlight{background:var(--yellow);padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .circle{border:2px solid var(--blue);border-radius:50%;padding:9px 15px;display:inline-block;transform:rotate(-9deg);font-weight:800}
@@ -44,14 +44,14 @@ h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "DM Sans";letter-spa
 .rule{height:2px;background:var(--ink);opacity:.2}
 .twoCol{display:grid;grid-template-columns:1.1fr .9fr;gap:4%;height:100%;align-items:center}
 .three{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.tag{font:700 clamp(10px,1vw,14px) "DM Mono";padding:8px 11px;background:var(--yellow);display:inline-block;transform:rotate(-2deg)}
+.tag{font:700 clamp(10px,1vw,14px) "Roboto Mono";padding:8px 11px;background:var(--yellow);display:inline-block;transform:rotate(-2deg)}
 .note{font-size:clamp(11px,1.1vw,16px);line-height:1.45;background:#fffdf7;padding:12px 14px;box-shadow:2px 3px 0 #29292916}
-.bullet{display:flex;gap:10px;align-items:flex-start}.bullet:before{content:"✳";font-size:1.1em;color:var(--blue);font-family:"Permanent Marker"}
+.bullet{display:flex;gap:10px;align-items:flex-start}.bullet:before{content:"✳";font-size:1.1em;color:var(--blue);font-family:"Caveat"}
 .progress{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);width:min(340px,40vw);height:3px;background:#ffffff35;border-radius:5px;z-index:20}.progress span{display:block;height:100%;width:10%;background:var(--yellow);transition:width .35s}
 .controls{position:fixed;bottom:26px;right:26px;display:flex;gap:8px;z-index:30}
-.controls button{border:1px solid #ffffff55;background:#15191bd9;color:white;border-radius:30px;padding:9px 13px;font:500 12px "DM Mono";cursor:pointer}
+.controls button{border:1px solid #ffffff55;background:#15191bd9;color:white;border-radius:30px;padding:9px 13px;font:500 12px "Roboto Mono";cursor:pointer}
 .controls button:hover{background:var(--blue)}
-.hint{position:fixed;bottom:24px;left:25px;color:#ffffff99;font:11px "DM Mono";z-index:30}
+.hint{position:fixed;bottom:24px;left:25px;color:#ffffff99;font:11px "Roboto Mono";z-index:30}
 @media(max-width:650px){.deck{padding:8px 6px 40px}.slide{width:calc(100vw - 12px);padding:5%}.controls{right:8px;bottom:8px}.hint{left:8px;bottom:14px}.twoCol{gap:2%}.paperNote{padding:8px}.sticker{padding:5px 8px}}
 </style>
 </head>
@@ -60,7 +60,7 @@ h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "DM Sans";letter-spa
 <section class="slide paper active">
   <div class="kicker">A visual journey through literature <span style="float:right">student art journal ✳</span></div>
   <div style="position:absolute;left:5%;top:19%;z-index:3">
-    <h1>POETRY</h1><div class="row" style="margin-top:8px"><span style="background:var(--yellow);padding:5px 13px;transform:rotate(-2deg);font:900 clamp(38px,6vw,88px)/.95 'DM Sans';letter-spacing:-.07em">IN FOCUS</span><span class="doodle" style="position:static">✳</span></div>
+    <h1>POETRY</h1><div class="row" style="margin-top:8px"><span style="background:var(--yellow);padding:5px 13px;transform:rotate(-2deg);font:900 clamp(38px,6vw,88px)/.95 'Be Vietnam Pro';letter-spacing:-.07em">IN FOCUS</span><span class="doodle" style="position:static">✳</span></div>
     <p class="kicker" style="margin-top:18px">TRI THỨC NGỮ VĂN · THƠ</p>
   </div>
   <div class="photo" style="position:absolute;right:5%;top:12%;width:39%;height:68%;transform:rotate(3deg);border:8px solid var(--white);box-shadow:4px 7px 0 #29292922"><span class="sun"></span><span class="hill"></span><span class="hill two"></span></div>
@@ -106,7 +106,7 @@ h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "DM Sans";letter-spa
     <path d="M35 190 C110 185 110 75 220 105 S330 230 435 130 S570 45 670 85 S790 110 865 25" fill="none" stroke="#3979b9" stroke-width="8" stroke-linecap="round"/>
     <path d="M35 190 C110 185 110 75 220 105 S330 230 435 130 S570 45 670 85 S790 110 865 25" fill="none" stroke="#f2c94c" stroke-width="3" stroke-dasharray="4 15"/>
     <g fill="#f2c94c" stroke="#292929" stroke-width="3"><circle cx="35" cy="190" r="10"/><circle cx="220" cy="105" r="10"/><circle cx="435" cy="130" r="10"/><circle cx="670" cy="85" r="10"/><circle cx="865" cy="25" r="10"/></g>
-    <g fill="#292929" font-family="DM Mono" font-size="20"><text x="20" y="230">MỞ ĐẦU</text><text x="170" y="75">PHÁT TRIỂN</text><text x="390" y="175">CHUYỂN BIẾN</text><text x="635" y="53">CAO TRÀO</text><text x="770" y="70">KẾT THÚC</text></g>
+    <g fill="#292929" font-family="Roboto Mono" font-size="20"><text x="20" y="230">MỞ ĐẦU</text><text x="170" y="75">PHÁT TRIỂN</text><text x="390" y="175">CHUYỂN BIẾN</text><text x="635" y="53">CAO TRÀO</text><text x="770" y="70">KẾT THÚC</text></g>
   </svg>
   <div class="row" style="gap:3%;align-items:stretch">
     <div class="paperNote" style="flex:1"><span class="sticker">MẠCH CẢM XÚC</span><p class="small" style="margin-top:10px">Sự vận động, phát triển của cảm xúc từ đầu đến cuối bài thơ.</p></div>
@@ -173,7 +173,7 @@ h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "DM Sans";letter-spa
   <div class="twoCol" style="margin-top:3%">
     <div class="stack">
       <div class="paperNote"><span class="sticker blueTag">MINI QUIZ</span><h3 style="margin-top:14px">Thử tài quan sát!</h3><p class="body" style="margin-top:10px">Khi đọc một bài thơ, em sẽ dựa vào những dấu hiệu nào để nhận biết nhịp điệu và hình ảnh thơ?</p></div>
-      <button onclick="document.getElementById('answer').hidden=!document.getElementById('answer').hidden" style="border:0;background:var(--yellow);padding:12px 18px;font:700 14px 'DM Mono';cursor:pointer;transform:rotate(-2deg);width:max-content">REVEAL A NOTE ↗</button>
+      <button onclick="document.getElementById('answer').hidden=!document.getElementById('answer').hidden" style="border:0;background:var(--yellow);padding:12px 18px;font:700 14px 'Roboto Mono';cursor:pointer;transform:rotate(-2deg);width:max-content">REVEAL A NOTE ↗</button>
       <div id="answer" class="note" hidden>Gợi ý: chú ý cách ngắt nhịp, cách gieo vần, từ ngữ gợi hình và những liên tưởng mà bài thơ tạo ra.</div>
     </div>
     <div style="position:relative">
