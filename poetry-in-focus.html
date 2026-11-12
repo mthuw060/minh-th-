@@ -12,8 +12,15 @@
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#202426;color:var(--ink);font-family:"DM Sans",sans-serif}
 .deck{height:100%;display:grid;place-items:center;padding:24px 24px 42px}
 .slide{display:none;position:relative;width:min(calc(100vw - 48px),calc((100vh - 90px)*16/9));aspect-ratio:16/9;overflow:hidden;padding:4.2% 5%;box-shadow:0 18px 70px #0007;isolation:isolate}
-.slide.active{display:block;animation:slideIn .45s cubic-bezier(.2,.8,.2,1)}
-@keyframes slideIn{from{opacity:.5;transform:translateY(9px) scale(.99)}to{opacity:1;transform:none}}
+.slide.active{display:block;animation:slideIn .55s cubic-bezier(.22,.75,.22,1);cursor:pointer}
+@keyframes slideIn{from{opacity:.45;filter:blur(5px);transform:translateY(16px) scale(.975)}to{opacity:1;filter:blur(0);transform:translateY(0) scale(1)}}
+/* PowerPoint-like shared-frame morph transition where supported */
+::view-transition-old(deck-slide){animation:slideOut .42s cubic-bezier(.4,0,.2,1) both}
+::view-transition-new(deck-slide){animation:slideMorph .62s cubic-bezier(.2,.75,.2,1) both}
+@keyframes slideOut{to{opacity:0;filter:blur(5px);transform:scale(.975)}}
+@keyframes slideMorph{from{opacity:0;filter:blur(7px);transform:scale(1.035) translateY(8px)}to{opacity:1;filter:blur(0);transform:scale(1) translateY(0)}}
+.slide.active{view-transition-name:deck-slide}
+
 .paper{background:var(--paper)}.sage{background:#dce6d9}.sky{background:#dce7f0}.lav{background:#e8dff0}.peach{background:#f0d8c6}.blue{background:#3979b9;color:#fffdf7}
 .kicker{font:500 clamp(9px,1vw,14px) "DM Mono";letter-spacing:.12em;text-transform:uppercase;opacity:.8}
 h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "DM Sans";letter-spacing:-.075em}h2{font:900 clamp(30px,4.5vw,68px)/.95 "DM Sans";letter-spacing:-.06em}h3{font:800 clamp(18px,2.3vw,34px)/1 "DM Sans";letter-spacing:-.04em}
@@ -195,9 +202,11 @@ h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "DM Sans";letter-spa
 <div class="controls"><button id="prev" aria-label="Slide trước">←</button><button id="next" aria-label="Slide tiếp">→</button><button id="full">⛶</button></div>
 <script>
 const slides=[...document.querySelectorAll('.slide')];let current=0;
-function show(n){slides[current].classList.remove('active');current=Math.max(0,Math.min(slides.length-1,n));slides[current].classList.add('active');document.getElementById('bar').style.width=((current+1)/slides.length*100)+'%'}
+function renderSlide(n){slides[current].classList.remove('active');current=Math.max(0,Math.min(slides.length-1,n));slides[current].classList.add('active');document.getElementById('bar').style.width=((current+1)/slides.length*100)+'%'}
+function show(n){const target=Math.max(0,Math.min(slides.length-1,n));if(target===current)return;if(document.startViewTransition){document.startViewTransition(()=>renderSlide(target))}else{renderSlide(target)}}
 function next(){show(current+1)}function prev(){show(current-1)}
 document.getElementById('next').addEventListener('click',next);document.getElementById('prev').addEventListener('click',prev);
+slides.forEach(slide=>slide.addEventListener('click',e=>{if(e.target.closest('button,a,input,textarea,select,[role="button"]'))return;next()}));
 document.getElementById('full').addEventListener('click',()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.()});
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();next()}if(e.key==='ArrowLeft'){prev()}if(e.key.toLowerCase()==='f'){if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.()}});
 let startX=0;document.addEventListener('touchstart',e=>startX=e.changedTouches[0].screenX,{passive:true});document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].screenX-startX;if(Math.abs(dx)>55){dx<0?next():prev()}},{passive:true});
