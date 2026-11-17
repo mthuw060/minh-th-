@@ -208,7 +208,7 @@ h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "Be Vietnam Pro";let
 <script>
 const slides=[...document.querySelectorAll('.slide')];let current=0;
 let isTurning=false;
-function show(n){const target=Math.max(0,Math.min(slides.length-1,n));if(target===current||isTurning)return;isTurning=true;const oldSlide=slides[current];oldSlide.classList.remove('active');oldSlide.classList.add('turning',target>current?'turning-next':'turning-prev');current=target;slides[current].classList.add('active');document.getElementById('bar').style.width=((current+1)/slides.length*100)+'%';const finish=()=>{oldSlide.classList.remove('turning','turning-next','turning-prev');isTurning=false};oldSlide.addEventListener('animationend',finish,{once:true})}
+function show(n){const target=Math.max(0,Math.min(slides.length-1,n));if(target===current||isTurning)return;isTurning=true;const oldSlide=slides[current];oldSlide.classList.remove('active');oldSlide.classList.add('turning',target>current?'turning-next':'turning-prev');current=target;slides[current].classList.add('active');document.getElementById('bar').style.width=((current+1)/slides.length*100)+'%';const finish=(event)=>{if(event.target!==oldSlide||event.pseudoElement)return;oldSlide.removeEventListener('animationend',finish);oldSlide.classList.remove('turning','turning-next','turning-prev');isTurning=false};oldSlide.addEventListener('animationend',finish)}
 function next(){show(current+1)}function prev(){show(current-1)}
 document.getElementById('next').addEventListener('click',next);document.getElementById('prev').addEventListener('click',prev);
 slides.forEach(slide=>slide.addEventListener('click',e=>{if(e.target.closest('button,a,input,textarea,select,[role="button"]'))return;next()}));
