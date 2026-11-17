@@ -360,7 +360,29 @@ h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "Be Vietnam Pro";let
 
 <script>
 const slides=[...document.querySelectorAll('.slide')];let current=0,isTurning=false;
-function show(n){const target=Math.max(0,Math.min(slides.length-1,n));if(target===current||isTurning)return;isTurning=true;const oldSlide=slides[current],newSlide=slides[target];newSlide.classList.add('active','turning',target>current?'turning-next':'turning-prev');current=target;document.getElementById('bar').style.width=((current+1)/slides.length*100)+'%';const finish=e=>{if(e.target!==newSlide||(e.animationName!=='dropPage'&&e.animationName!=='dropPageReverse'))return;newSlide.removeEventListener('animationend',finish);oldSlide.classList.remove('active');newSlide.classList.remove('turning','turning-next','turning-prev');isTurning=false};newSlide.addEventListener('animationend',finish)}
+function show(n){
+ const target=Math.max(0,Math.min(slides.length-1,n));
+ if(target===current||isTurning)return;
+ isTurning=true;
+ const oldSlide=slides[current],newSlide=slides[target];
+ newSlide.classList.add('active','turning',target>current?'turning-next':'turning-prev');
+ current=target;
+ document.getElementById('bar').style.width=((current+1)/slides.length*100)+'%';
+ let finished=false;
+ const finish=()=>{
+  if(finished)return;
+  finished=true;
+  oldSlide.classList.remove('active');
+  newSlide.classList.remove('turning','turning-next','turning-prev');
+  isTurning=false;
+ };
+ // Animationend is the normal path; timeout is a safety net so navigation
+ // can never remain locked if a browser suppresses the animation event.
+ newSlide.addEventListener('animationend',e=>{
+  if(e.target===newSlide&&(e.animationName==='dropPage'||e.animationName==='dropPageReverse'))finish();
+ });
+ window.setTimeout(finish,1950);
+}
 function next(){show(current+1)}function prev(){show(current-1)}
 document.getElementById('next').addEventListener('click',next);document.getElementById('prev').addEventListener('click',prev);
 slides.forEach(slide=>slide.addEventListener('click',e=>{if(e.target.closest('button,a,input,textarea,select,[role="button"],.interact-backdrop'))return;next()}));
