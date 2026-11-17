@@ -10,14 +10,21 @@
 <style>
 :root{--paper:#f2e9d9;--yellow:#f2c94c;--blue:#3979b9;--sage:#8ba58b;--ink:#292929;--coral:#e58b78;--lav:#c9b4d9;--white:#fffdf7}
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#202426;color:var(--ink);font-family:"Be Vietnam Pro",sans-serif}
-.deck{height:100%;display:grid;place-items:center;padding:24px 24px 42px;perspective:1800px;position:relative}
+.deck{height:100%;display:grid;place-items:center;padding:24px 24px 42px;perspective:2400px;perspective-origin:50% 48%;position:relative}
 .slide{display:none;position:relative;width:min(calc(100vw - 48px),calc((100vh - 90px)*16/9));aspect-ratio:16/9;overflow:hidden;padding:4.2% 5%;box-shadow:0 18px 70px #0007;isolation:isolate}
 .slide.active{display:block;cursor:pointer}
-.slide.turning{display:block;position:absolute;left:50%;top:50%;z-index:10;backface-visibility:hidden;transform-style:preserve-3d;box-shadow:0 18px 70px #0007}
-.slide.turning-next{transform-origin:left center;animation:pageTurnNext 1s cubic-bezier(.58,.02,.35,1) forwards}
-.slide.turning-prev{transform-origin:right center;animation:pageTurnPrev 1s cubic-bezier(.58,.02,.35,1) forwards}
-@keyframes pageTurnNext{from{transform:translate(-50%,-50%) rotateY(0);filter:brightness(1)}to{transform:translate(-50%,-50%) rotateY(-100deg);filter:brightness(.72)}}
-@keyframes pageTurnPrev{from{transform:translate(-50%,-50%) rotateY(0);filter:brightness(1)}to{transform:translate(-50%,-50%) rotateY(100deg);filter:brightness(.72)}}
+.slide.turning{display:block;position:absolute;left:50%;top:50%;translate:-50% -50%;z-index:10;backface-visibility:hidden;transform-style:preserve-3d;will-change:transform,filter;box-shadow:0 22px 80px #0008}
+.slide.turning::before{content:"";position:absolute;inset:0;z-index:20;pointer-events:none;opacity:0;backface-visibility:hidden;background:linear-gradient(90deg,#17171755 0%,#17171722 3%,transparent 15%,transparent 84%,#fff4 100%);mix-blend-mode:multiply}
+.slide.turning::after{content:"";position:absolute;inset:0;z-index:19;pointer-events:none;backface-visibility:hidden;transform:rotateY(180deg);background:linear-gradient(90deg,#e6ddcc,#fffdf5 12%,#f2e9d9 55%,#e5dccb);box-shadow:inset 0 0 35px #6e625322}
+.slide.turning-next{transform-origin:left center;animation:pageTurnNext 1.15s cubic-bezier(.22,.72,.18,1) forwards}
+.slide.turning-prev{transform-origin:right center;animation:pageTurnPrev 1.15s cubic-bezier(.22,.72,.18,1) forwards}
+.slide.turning-next::before{animation:pageShade 1.15s ease-in-out forwards}
+.slide.turning-prev::before{animation:pageShadeReverse 1.15s ease-in-out forwards}
+@keyframes pageTurnNext{0%{transform:rotateY(0);filter:brightness(1);box-shadow:0 18px 55px #0005}18%{filter:brightness(.96)}48%{filter:brightness(.84);box-shadow:18px 20px 55px #0006}78%{filter:brightness(.78)}100%{transform:rotateY(-180deg);filter:brightness(.76);box-shadow:0 12px 35px #0003}}
+@keyframes pageTurnPrev{0%{transform:rotateY(0);filter:brightness(1);box-shadow:0 18px 55px #0005}18%{filter:brightness(.96)}48%{filter:brightness(.84);box-shadow:-18px 20px 55px #0006}78%{filter:brightness(.78)}100%{transform:rotateY(180deg);filter:brightness(.76);box-shadow:0 12px 35px #0003}}
+@keyframes pageShade{0%,100%{opacity:0}35%,65%{opacity:.8}}
+@keyframes pageShadeReverse{0%,100%{opacity:0}35%,65%{opacity:.8}}
+@media(prefers-reduced-motion:reduce){.slide.turning-next,.slide.turning-prev{animation-duration:.01ms}.slide.turning-next::before,.slide.turning-prev::before{animation-duration:.01ms}}
 
 .paper{background:var(--paper)}.sage{background:#dce6d9}.sky{background:#dce7f0}.lav{background:#e8dff0}.peach{background:#f0d8c6}.blue{background:#3979b9;color:#fffdf7}
 .kicker{font:500 clamp(9px,1vw,14px) "Roboto Mono";letter-spacing:.12em;text-transform:uppercase;opacity:.8}
@@ -201,7 +208,7 @@ h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "Be Vietnam Pro";let
 <script>
 const slides=[...document.querySelectorAll('.slide')];let current=0;
 let isTurning=false;
-function show(n){const target=Math.max(0,Math.min(slides.length-1,n));if(target===current||isTurning)return;isTurning=true;const oldSlide=slides[current];oldSlide.classList.remove('active');oldSlide.classList.add(target>current?'turning-next':'turning-prev','turning');current=target;slides[current].classList.add('active');document.getElementById('bar').style.width=((current+1)/slides.length*100)+'%';window.setTimeout(()=>{oldSlide.classList.remove('turning','turning-next','turning-prev');isTurning=false},1000)}
+function show(n){const target=Math.max(0,Math.min(slides.length-1,n));if(target===current||isTurning)return;isTurning=true;const oldSlide=slides[current];oldSlide.classList.remove('active');oldSlide.classList.add('turning',target>current?'turning-next':'turning-prev');current=target;slides[current].classList.add('active');document.getElementById('bar').style.width=((current+1)/slides.length*100)+'%';const finish=()=>{oldSlide.classList.remove('turning','turning-next','turning-prev');isTurning=false};oldSlide.addEventListener('animationend',finish,{once:true})}
 function next(){show(current+1)}function prev(){show(current-1)}
 document.getElementById('next').addEventListener('click',next);document.getElementById('prev').addEventListener('click',prev);
 slides.forEach(slide=>slide.addEventListener('click',e=>{if(e.target.closest('button,a,input,textarea,select,[role="button"]'))return;next()}));
