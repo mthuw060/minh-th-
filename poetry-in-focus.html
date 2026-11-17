@@ -26,6 +26,22 @@
 @keyframes pageShadeReverse{0%,100%{opacity:0}35%,65%{opacity:.8}}
 @media(prefers-reduced-motion:reduce){.slide.turning-next,.slide.turning-prev{animation-duration:.01ms}.slide.turning-next::before,.slide.turning-prev::before{animation-duration:.01ms}}
 
+/* tactile art-journal details */
+.slide{background-image:radial-gradient(#2929290c .65px,transparent .65px),linear-gradient(135deg,#ffffff18,transparent 48%);background-size:5px 5px,100% 100%}
+.slide:focus{outline:none}
+.paperNote{border:1px solid #29292922;box-shadow:2px 4px 0 #29292912,0 8px 18px #29292908;position:relative}
+.paperNote:after{content:"";position:absolute;inset:5px;border:1px dashed #29292912;pointer-events:none}
+.sticker,.tag{box-shadow:1px 2px 0 #29292920,0 2px 5px #2929290b}
+.tape{background:repeating-linear-gradient(135deg,#f2c94c 0 7px,#f7d978 7px 14px);opacity:.78;mix-blend-mode:multiply}
+.cutout{position:absolute;z-index:4;pointer-events:none;font-family:"Caveat",cursive;font-weight:700;line-height:1;color:var(--ink);filter:drop-shadow(1px 2px 0 #29292918);user-select:none}
+.cutout.big{font-size:clamp(42px,6vw,82px)}
+.cutout.mid{font-size:clamp(30px,4vw,56px)}
+.cutout.tiny{font-size:clamp(20px,2.4vw,34px)}
+.cutout.blueInk{color:var(--blue)}.cutout.redInk{color:#bd5548}.cutout.yellowInk{color:#bd8b18}.cutout.greenInk{color:#668467}
+.paper-scrap{position:absolute;z-index:1;pointer-events:none;background:#fffdf4;border:1px solid #29292918;box-shadow:2px 3px 0 #29292914}
+.paper-scrap:after{content:"";position:absolute;inset:5px;border:1px dashed #29292920}
+.halftone{position:absolute;z-index:0;pointer-events:none;width:110px;height:90px;opacity:.25;background-image:radial-gradient(var(--ink) 1px,transparent 1.4px);background-size:7px 7px;mask-image:radial-gradient(ellipse,black 35%,transparent 75%)}
+.handline{position:absolute;z-index:3;pointer-events:none;font:700 clamp(18px,2.5vw,34px) "Caveat";color:var(--blue);transform:rotate(-7deg)}
 .paper{background:var(--paper)}.sage{background:#dce6d9}.sky{background:#dce7f0}.lav{background:#e8dff0}.peach{background:#f0d8c6}.blue{background:#3979b9;color:#fffdf7}
 .kicker{font:500 clamp(9px,1vw,14px) "Roboto Mono";letter-spacing:.12em;text-transform:uppercase;opacity:.8}
 h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "Be Vietnam Pro";letter-spacing:-.075em}h2{font:900 clamp(30px,4.5vw,68px)/.95 "Be Vietnam Pro";letter-spacing:-.06em}h3{font:800 clamp(18px,2.3vw,34px)/1 "Be Vietnam Pro";letter-spacing:-.04em}
@@ -76,6 +92,7 @@ h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "Be Vietnam Pro";let
   <span class="doodle" style="left:3%;top:49%;transform:rotate(-18deg)">✳</span><span class="doodle" style="right:42%;bottom:12%;color:var(--coral);transform:rotate(14deg)">☆</span>
   <div class="tape" style="left:48%;top:9%;width:12%;transform:rotate(18deg)"></div>
   <p class="marker" style="position:absolute;left:39%;bottom:9%;font-size:clamp(15px,2vw,27px);transform:rotate(-8deg)">words, feelings & little things</p>
+<span class="cutout big yellowInk" style="right:4%;top:7%;transform:rotate(13deg)">✳</span><span class="cutout mid redInk" style="left:4%;bottom:8%;transform:rotate(-12deg)">♡</span><span class="halftone" style="right:3%;bottom:8%"></span>
 </section>
 <section class="slide sage">
   <div class="kicker">THE STARTING POINT · KEY IDEA</div>
@@ -92,6 +109,7 @@ h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "Be Vietnam Pro";let
     </div>
   </div>
   <span class="doodle" style="left:47%;bottom:8%">〰</span>
+<span class="cutout big greenInk" style="right:4%;top:12%;transform:rotate(12deg)">✿</span><span class="cutout mid blueInk" style="right:13%;bottom:10%;transform:rotate(-8deg)">✧</span><span class="handline" style="left:6%;bottom:7%">words have wings ↗</span>
 </section>
 <section class="slide sky">
   <div class="kicker">INSIDE THE POEM · VOICE & FEELING</div>
@@ -104,6 +122,7 @@ h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "Be Vietnam Pro";let
     </div>
   </div>
   <span class="doodle" style="right:4%;top:24%">♡</span><span class="doodle" style="left:5%;bottom:8%;color:var(--coral)">✳</span>
+<span class="cutout big blueInk" style="right:5%;bottom:8%;transform:rotate(12deg)">〰</span><span class="cutout mid redInk" style="left:4%;top:20%;transform:rotate(-12deg)">✿</span><span class="halftone" style="right:5%;top:8%"></span>
 </section>
 <section class="slide paper">
   <div class="kicker">FOLLOW THE LINE · EMOTIONAL JOURNEY</div>
@@ -120,6 +139,7 @@ h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "Be Vietnam Pro";let
     <div class="paperNote" style="flex:1;transform:rotate(2deg)"><span class="sticker blueTag">CẢM HỨNG CHỦ ĐẠO</span><p class="small" style="margin-top:10px">Cảm xúc, tư tưởng nổi bật chi phối toàn bộ tác phẩm.</p></div>
   </div>
   <span class="doodle" style="right:5%;top:15%">✳</span>
+<span class="cutout big yellowInk" style="right:5%;top:14%;transform:rotate(12deg)">✳</span><span class="cutout mid blueInk" style="left:4%;bottom:8%;transform:rotate(-10deg)">↝</span><span class="handline" style="right:8%;bottom:8%">follow the feeling</span>
 </section>
 <section class="slide lav">
   <div class="kicker">WORD PLAY · THE LANGUAGE OF POETRY</div>
@@ -134,6 +154,7 @@ h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "Be Vietnam Pro";let
       <span class="doodle" style="left:-8%;top:-12%">✳</span><span class="doodle" style="right:-5%;bottom:-10%;color:var(--coral)">〰</span>
     </div>
   </div>
+<span class="cutout big redInk" style="right:5%;top:8%;transform:rotate(10deg)">✿</span><span class="cutout mid blueInk" style="left:4%;bottom:8%;transform:rotate(-9deg)">〰</span><span class="halftone" style="right:4%;bottom:8%"></span>
 </section>
 <section class="slide sky">
   <div class="kicker">SEE IT · FEEL IT · IMAGINE IT</div>
@@ -147,6 +168,7 @@ h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "Be Vietnam Pro";let
     </div>
   </div>
   <span class="doodle" style="right:5%;top:12%">☼</span>
+<span class="cutout big blueInk" style="right:4%;top:12%;transform:rotate(10deg)">✧</span><span class="cutout mid greenInk" style="left:4%;bottom:8%;transform:rotate(-12deg)">❀</span><span class="handline" style="right:8%;bottom:8%">look closer!</span>
 </section>
 <section class="slide sage">
   <div class="kicker">FORMS & PATTERNS · POETIC STRUCTURE</div>
@@ -158,6 +180,7 @@ h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "Be Vietnam Pro";let
     <div class="paperNote" style="transform:rotate(-2deg)"><span class="sticker coralTag">ĐƯỜNG LUẬT</span><h3 style="margin:14px 0">Tứ tuyệt</h3><p class="small">Bát cú</p><div class="rule" style="margin:12px 0"></div><p class="marker" style="font-size:22px;color:var(--blue)">4 / 8 câu</p></div>
   </div>
   <span class="doodle" style="right:4%;bottom:8%">✳</span>
+<span class="cutout big yellowInk" style="right:4%;top:8%;transform:rotate(12deg)">✳</span><span class="cutout mid redInk" style="left:4%;bottom:8%;transform:rotate(-8deg)">✦</span><span class="halftone" style="right:4%;bottom:8%"></span>
 </section>
 <section class="slide paper">
   <div class="kicker">SOUND & FLOW · RHYME AND RHYTHM</div>
@@ -173,6 +196,7 @@ h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "Be Vietnam Pro";let
     </div>
   </div>
   <span class="doodle" style="right:5%;top:10%">〰</span>
+<span class="cutout big blueInk" style="right:4%;top:10%;transform:rotate(12deg)">〰</span><span class="cutout mid yellowInk" style="left:4%;bottom:8%;transform:rotate(-10deg)">✧</span><span class="handline" style="right:8%;bottom:8%">listen to the rhythm</span>
 </section>
 <section class="slide peach">
   <div class="kicker">A LITTLE CHALLENGE · THINK & PLAY</div>
@@ -188,6 +212,7 @@ h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "Be Vietnam Pro";let
       <span class="doodle" style="right:-6%;top:-10%;color:var(--coral)">???</span><span class="doodle" style="left:-5%;bottom:-10%">✳</span>
     </div>
   </div>
+<span class="cutout big redInk" style="right:4%;top:9%;transform:rotate(12deg)">✿</span><span class="cutout mid yellowInk" style="left:4%;bottom:8%;transform:rotate(-9deg)">✳</span><span class="halftone" style="right:5%;bottom:8%"></span>
 </section>
 <section class="slide blue">
   <div class="kicker">ONE LAST PAGE · KEEP THE FEELING</div>
@@ -200,6 +225,7 @@ h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "Be Vietnam Pro";let
     <div class="photo" style="height:300px;border:8px solid var(--white);transform:rotate(3deg)"><span class="sun"></span><span class="hill"></span><span class="hill two"></span></div>
   </div>
   <span class="doodle" style="right:5%;top:10%;color:var(--yellow)">✳</span><span class="doodle" style="left:4%;bottom:9%;color:var(--yellow)">☆</span>
+<span class="cutout big yellowInk" style="right:5%;top:9%;transform:rotate(13deg)">✦</span><span class="cutout mid redInk" style="left:4%;bottom:8%;transform:rotate(-10deg)">♡</span><span class="handline" style="right:9%;bottom:8%">keep a little poetry</span>
 </section>
 </main>
 <div class="progress"><span id="bar"></span></div>
