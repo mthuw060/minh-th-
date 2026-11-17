@@ -127,6 +127,30 @@ h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "Be Vietnam Pro";let
 .sound-dock button[aria-pressed="true"]{background:#f2c94c}
 @media(max-width:600px){.sound-dock{right:8px;top:8px}.slide .explore-btn{bottom:2%;left:3%;padding:7px 10px}}
 
+
+/* Tactile pop-up motion for secret panels and every little interactive piece */
+.interact-backdrop{animation:backdropFade .22s ease-out both}
+.interact-paper{transform-origin:50% 65%;animation:paperPop .48s cubic-bezier(.18,.85,.25,1.18) both}
+@keyframes backdropFade{from{opacity:0}to{opacity:1}}
+@keyframes paperPop{0%{opacity:0;transform:translateY(22px) scale(.91) rotate(-1.8deg)}68%{opacity:1;transform:translateY(-4px) scale(1.015) rotate(.25deg)}100%{opacity:1;transform:translateY(0) scale(1) rotate(-.4deg)}}
+.interact-paper .interact-actions > button,
+.interact-paper .choice,
+.interact-paper .drag-token,
+.interact-paper .drop-zone{
+  animation:tilePop .42s cubic-bezier(.2,.8,.25,1.2) both;
+  animation-delay:calc(var(--tile-i,0) * 55ms + 90ms);
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+}
+.interact-paper .interact-actions > button:hover,
+.interact-paper .choice:hover,
+.interact-paper .drag-token:hover,
+.interact-paper .drop-zone:hover{transform:translateY(-3px) scale(1.025);box-shadow:0 5px 0 #29292918}
+.interact-paper button:active{transform:translateY(1px) scale(.97)}
+@keyframes tilePop{0%{opacity:0;transform:translateY(10px) scale(.88)}72%{opacity:1;transform:translateY(-2px) scale(1.035)}100%{opacity:1;transform:translateY(0) scale(1)}}
+.slide .explore-btn{transition:transform .2s cubic-bezier(.2,.8,.25,1.2),box-shadow .2s ease}
+.slide .explore-btn:active{transform:translateY(2px) scale(.96);box-shadow:1px 2px 0 #29292922}
+@media(prefers-reduced-motion:reduce){.interact-backdrop,.interact-paper,.interact-paper .interact-actions > button,.interact-paper .choice,.interact-paper .drag-token,.interact-paper .drop-zone{animation:none!important}}
+
 </style>
 </head>
 <body>
@@ -294,6 +318,25 @@ h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "Be Vietnam Pro";let
 <span class="image-sticker" aria-hidden="true" style="position:absolute;right:1.2%;top:1.2%;left:auto;bottom:auto;transform:rotate(9deg)">📷</span><span class="image-sticker small" aria-hidden="true" style="position:absolute;left:1.2%;bottom:1.2%;right:auto;top:auto;transform:rotate(-9deg)">🐝</span>
 <button class="explore-btn" data-slide="9" type="button">START THE QUIZ</button>
 </section>
+
+<section class="slide sage">
+  <div class="sparkle-layer" aria-hidden="true"></div>
+  <div class="kicker">THE FINAL CHECK · RECAP YOUR KNOWLEDGE</div>
+  <div style="margin-top:4%;max-width:78%">
+    <span class="sticker coralTag">PAUSE & THINK ✎</span>
+    <h2 style="font-size:clamp(38px,6.1vw,88px);margin-top:18px">BẠN CÒN<br><span class="serif" style="font-style:italic;color:var(--blue)">nhớ gì?</span></h2>
+    <p class="body" style="margin-top:18px;max-width:680px">Trước khi khép lại hành trình, thử kết nối những mảnh kiến thức vừa khám phá nhé.</p>
+  </div>
+  <div class="three" style="position:absolute;left:7%;right:7%;bottom:17%;gap:14px">
+    <div class="paperNote" style="transform:rotate(-2deg)"><span class="kicker">01 · KHÁI NIỆM</span><h3 style="margin-top:9px">Thơ là gì?</h3><p class="small" style="margin-top:7px">Thi luật · nhịp điệu · cảm xúc</p></div>
+    <div class="paperNote" style="transform:rotate(1.5deg);background:#e8dff0"><span class="kicker">02 · ĐẶC TRƯNG</span><h3 style="margin-top:9px">Thơ có gì?</h3><p class="small" style="margin-top:7px">Ngôn ngữ · hình ảnh · vần · nhịp</p></div>
+    <div class="paperNote" style="transform:rotate(-1deg);background:#dce7f0"><span class="kicker">03 · CẢM NHẬN</span><h3 style="margin-top:9px">Đọc thế nào?</h3><p class="small" style="margin-top:7px">Mạch cảm xúc · chủ thể trữ tình</p></div>
+  </div>
+  <span class="cutout mid redInk" style="right:7%;top:12%;transform:rotate(10deg)">✳</span>
+  <span class="image-sticker" aria-hidden="true" style="position:absolute;right:1.2%;top:1.2%;left:auto;bottom:auto;transform:rotate(9deg)">📝</span>
+  <span class="image-sticker small" aria-hidden="true" style="position:absolute;left:1.2%;bottom:1.2%;right:auto;top:auto;transform:rotate(-9deg)">🌼</span>
+  <button class="explore-btn" data-slide="10" type="button">LET'S RECAP!</button>
+</section>
 <section class="slide blue">
   <div class="sparkle-layer" aria-hidden="true"></div>
   <div class="kicker">ONE LAST PAGE · KEEP THE FEELING</div>
@@ -308,7 +351,7 @@ h1,h2,h3,p{margin:0}h1{font:900 clamp(42px,7.5vw,112px)/.88 "Be Vietnam Pro";let
   <span class="doodle" style="right:5%;top:10%;color:var(--yellow)">✳</span><span class="doodle" style="left:4%;bottom:9%;color:var(--yellow)">☆</span>
 <span class="cutout big yellowInk" style="right:5%;top:9%;transform:rotate(13deg)">✦</span><span class="cutout mid redInk" style="left:4%;bottom:8%;transform:rotate(-10deg)">♡</span><span class="handline" style="right:9%;bottom:8%">keep a little poetry</span>
 <span class="image-sticker" aria-hidden="true" style="position:absolute;right:1.2%;top:1.2%;left:auto;bottom:auto;transform:rotate(9deg)">❤️</span><span class="image-sticker small" aria-hidden="true" style="position:absolute;left:1.2%;bottom:1.2%;right:auto;top:auto;transform:rotate(-9deg)">🌼</span>
-<button class="explore-btn" data-slide="10" type="button">OPEN THE LETTER</button>
+<button class="explore-btn" data-slide="11" type="button">OPEN THE LETTER</button>
 </section>
 </main>
 <div class="progress"><span id="bar"></span></div>
@@ -337,7 +380,7 @@ document.getElementById('musicToggle')?.addEventListener('click',toggleMusic);
 document.getElementById('sfxToggle')?.addEventListener('click',e=>{const on=e.currentTarget.getAttribute('aria-pressed')!=='true';e.currentTarget.setAttribute('aria-pressed',String(on));e.currentTarget.textContent=on?'✧ SFX ON':'✧ SFX OFF'});
 let sfxOn=false;document.getElementById('sfxToggle')?.addEventListener('click',e=>{sfxOn=e.currentTarget.getAttribute('aria-pressed')==='true';if(sfxOn)ping(760,.08)});
 function closePanel(){document.querySelector('.interact-backdrop')?.remove()}
-function openPanel(title,body){closePanel();const back=document.createElement('div');back.className='interact-backdrop';back.innerHTML='<div class="interact-paper" role="dialog" aria-modal="true"><button class="interact-close" aria-label="Đóng">×</button><h3>'+title+'</h3><div class="panel-content">'+body+'</div></div>';back.addEventListener('click',e=>{if(e.target===back)closePanel()});back.querySelector('.interact-close').addEventListener('click',closePanel);document.body.append(back);if(sfxOn)ping(560,.08);return back.querySelector('.panel-content')}
+function openPanel(title,body){closePanel();const back=document.createElement('div');back.className='interact-backdrop';back.innerHTML='<div class="interact-paper" role="dialog" aria-modal="true"><button class="interact-close" aria-label="Đóng">×</button><h3>'+title+'</h3><div class="panel-content">'+body+'</div></div>';back.addEventListener('click',e=>{if(e.target===back)closePanel()});back.querySelector('.interact-close').addEventListener('click',closePanel);document.body.append(back);back.querySelectorAll('.interact-actions > button,.choice,.drag-token,.drop-zone').forEach((node,i)=>node.style.setProperty('--tile-i',i));if(sfxOn)ping(560,.08);return back.querySelector('.panel-content')}
 const activities={
 1(){const el=openPanel('A LITTLE SECRET ✦','<p>Cuốn sổ này vừa được mở ra. Mỗi trang là một cách nhìn gần hơn vào thế giới thơ.</p><p><strong>Thông điệp bí mật:</strong> đôi khi chỉ một vài con chữ cũng có thể giữ lại cả một bầu trời cảm xúc.</p><div class="interact-actions"><button id="secretAgain">OPEN ANOTHER NOTE</button></div>');el.querySelector('#secretAgain').onclick=()=>{el.innerHTML='<p>✦ Keep looking closely. Poetry is hiding in the little things.</p>';if(sfxOn)ping(820,.1)}},
 2(){const el=openPanel('WHAT MAKES POETRY?','<p>Bấm từng từ khóa để mở ý nghĩa trong định nghĩa.</p><div class="interact-actions"><button data-note="Thơ được tổ chức theo những quy tắc riêng về hình thức.">THI LUẬT</button><button data-note="Nhịp điệu góp phần tạo âm hưởng cho lời thơ.">NHỊP ĐIỆU</button><button data-note="Thơ diễn tả những tình cảm, cảm xúc mãnh liệt của con người.">CẢM XÚC</button></div><div class="feedback" id="noteOut">Chọn một mảnh giấy để khám phá.</div>');el.querySelectorAll('[data-note]').forEach(b=>b.onclick=()=>{el.querySelector('#noteOut').textContent=b.dataset.note;if(sfxOn)ping(660,.08)})},
@@ -348,7 +391,14 @@ const activities={
 7(){const groups=[{name:'TRUYỀN THỐNG',items:['Lục bát','Song thất lục bát']},{name:'LINH HOẠT',items:['Thơ tự do','Bốn chữ · Năm chữ · Tám chữ']},{name:'ĐƯỜNG LUẬT',items:['Tứ tuyệt','Bát cú']}];const cards=['Bát cú','Lục bát','Thơ tự do','Tứ tuyệt','Song thất lục bát','Bốn chữ · Năm chữ · Tám chữ'];const el=openPanel('MATCH THE POETIC FORMS','<p>Kéo tên thể thơ vào nhóm phù hợp, hoặc bấm thẻ rồi bấm nhóm.</p><div id="formTokens">'+cards.map(x=>'<button class="drag-token" draggable="true" data-value="'+x+'">'+x+'</button>').join('')+'</div><div class="drag-board">'+groups.map(g=>'<div class="drop-zone" data-group="'+g.name+'"><strong>'+g.name+'</strong><div class="zone-items"></div></div>').join('')+'</div><div class="interact-actions"><button id="checkForms">CHECK</button><button id="resetForms">RESET</button></div><div id="formFeedback"></div>');wireGroups(el,groups,cards)},
 8(){const el=openPanel('RHYME DETECTIVE','<p>Ghép ví dụ với loại vần đã được giải thích trên slide.</p><div id="rhymeTokens"><button class="drag-token" draggable="true" data-value="mây / bay">mây / bay</button><button class="drag-token" draggable="true" data-value="giữa / nhớ">giữa / nhớ</button></div><div class="drag-board"><div class="drop-zone" data-rhyme="VẦN CHÂN">VẦN CHÂN</div><div class="drop-zone" data-rhyme="VẦN LƯNG">VẦN LƯNG</div></div><div class="interact-actions"><button id="checkRhyme">CHECK</button><button id="resetRhyme">RESET</button></div><div id="rhymeFeedback"></div>');wireRhyme(el)},
 9(){const qs=[{q:'Theo định nghĩa trên slide, thơ là hình thức ngôn ngữ theo…',a:['Thi luật, nhịp điệu','Chỉ có vần','Chỉ có hình ảnh'],ok:0,why:'Định nghĩa nêu rõ thi luật và nhịp điệu.'},{q:'Nhân vật trữ tình là…',a:['Luôn luôn là tác giả','Người trực tiếp bộc lộ cảm xúc trong bài thơ','Người đọc bài thơ'],ok:1,why:'Nhân vật trữ tình có liên hệ với tác giả nhưng không hoàn toàn đồng nhất.'},{q:'Vần chân được gieo ở đâu?',a:['Giữa dòng thơ','Cuối dòng thơ','Đầu bài thơ'],ok:1,why:'Vần chân là vần được gieo ở cuối dòng thơ.'}];let q=0,score=0;function render(){const x=qs[q];const el=openPanel('MINI QUIZ · '+(q+1)+' / '+qs.length,'<p><strong>'+x.q+'</strong></p>'+x.a.map((a,i)=>'<button class="choice" data-choice="'+i+'">'+String.fromCharCode(65+i)+'. '+a+'</button>').join('')+'<div id="quizFeedback"></div><div class="interact-actions"><button id="quizNext" disabled>'+(q===qs.length-1?'SEE SCORE':'NEXT QUESTION')+'</button></div>');el.querySelectorAll('[data-choice]').forEach(b=>b.onclick=()=>{if(el.dataset.answered)return;el.dataset.answered='1';const ok=Number(b.dataset.choice)===x.ok;if(ok)score++;b.classList.add(ok?'correct':'wrong');el.querySelectorAll('[data-choice]')[x.ok].classList.add('correct');el.querySelector('#quizFeedback').className='feedback';el.querySelector('#quizFeedback').textContent=(ok?'Chính xác! ':'Chưa đúng. ')+x.why;el.querySelector('#quizNext').disabled=false;if(sfxOn)ping(ok?880:300,.12)});el.querySelector('#quizNext').onclick=()=>{if(q<qs.length-1){q++;render()}else{const end=openPanel('YOUR RESULT ✦','<p>Bạn trả lời đúng <strong>'+score+' / '+qs.length+'</strong> câu.</p><p>'+ (score===qs.length?'Tuyệt vời! Bạn đã nắm chắc những ý chính.':'Cùng xem lại các ghi chú ở những slide trước nhé!')+'</p><div class="interact-actions"><button id="again">PLAY AGAIN</button></div>');end.querySelector('#again').onclick=()=>{q=0;score=0;render()}}}}render()},
-10(){const el=openPanel('A LETTER TO THE READER ♡','<p>Thơ không chỉ nằm trong những con chữ. Thơ còn ở nhịp điệu, hình ảnh và những rung động mà người đọc mang theo.</p><p class="feedback">Cảm ơn bạn đã cùng khám phá POETRY IN FOCUS.</p><p>Keep a little poetry with you. ✦</p>')}
+10(){const qs=[
+{q:'Điều gì góp phần tạo nên âm hưởng của thơ?',a:['Thi luật và nhịp điệu','Chỉ độ dài bài thơ','Chỉ tên tác giả'],ok:0,why:'Thơ sử dụng thi luật và nhịp điệu để diễn tả cảm xúc.'},
+{q:'Mạch cảm xúc là gì?',a:['Số lượng câu thơ','Sự vận động, phát triển cảm xúc từ đầu đến cuối tác phẩm','Tên gọi của thể thơ'],ok:1,why:'Mạch cảm xúc cho thấy cảm xúc chuyển biến trong toàn bài thơ.'},
+{q:'Ngôn ngữ thơ thường có đặc điểm nào?',a:['Dài dòng, kể lể','Chỉ dùng từ ngữ thông thường','Cô đọng, hàm súc, giàu hình ảnh và nhạc điệu'],ok:2,why:'Ngôn ngữ thơ thường cô đọng và có sức gợi.'},
+{q:'Hình ảnh thơ có thể giúp người đọc…',a:['Hình dung, cảm nhận và liên tưởng','Chỉ xác định số tiếng','Chỉ tìm tên tác giả'],ok:0,why:'Hình ảnh thơ gợi cảm giác, hình dung và những liên tưởng.'},
+{q:'Khi đọc thơ, nên chú ý kết hợp những yếu tố nào?',a:['Chỉ nhan đề','Hình ảnh, ngôn ngữ, vần nhịp và mạch cảm xúc','Chỉ số khổ thơ'],ok:1,why:'Đọc thơ cần kết nối nhiều yếu tố để cảm nhận tác phẩm.'}
+];let q=0,score=0;function render(){const x=qs[q];const el=openPanel('RECAP QUIZ · '+(q+1)+' / '+qs.length,'<p><strong>'+x.q+'</strong></p>'+x.a.map((a,i)=>'<button class="choice" data-choice="'+i+'">'+String.fromCharCode(65+i)+'. '+a+'</button>').join('')+'<div id="quizFeedback"></div><div class="interact-actions"><button id="quizNext" disabled>'+(q===qs.length-1?'SEE FINAL SCORE':'NEXT QUESTION')+'</button></div>');el.querySelectorAll('[data-choice]').forEach(b=>b.onclick=()=>{if(el.dataset.answered)return;el.dataset.answered='1';const ok=Number(b.dataset.choice)===x.ok;if(ok)score++;b.classList.add(ok?'correct':'wrong');el.querySelectorAll('[data-choice]')[x.ok].classList.add('correct');el.querySelector('#quizFeedback').className='feedback';el.querySelector('#quizFeedback').textContent=(ok?'Chính xác! ':'Chưa đúng. ')+x.why;el.querySelector('#quizNext').disabled=false;if(sfxOn)ping(ok?880:300,.12)});el.querySelector('#quizNext').onclick=()=>{if(q<qs.length-1){q++;render()}else{const end=openPanel('BẠN ĐÃ HOÀN THÀNH ✦','<p>Bạn trả lời đúng <strong>'+score+' / '+qs.length+'</strong> câu tổng kết.</p><p>'+(score===qs.length?'Xuất sắc! Bạn đã kết nối rất tốt các kiến thức về thơ.':'Không sao, hãy xem lại những mảnh ghi chú và thử lại nhé!')+'</p><div class="interact-actions"><button id="again">TRY AGAIN</button></div>');end.querySelector('#again').onclick=()=>{q=0;score=0;render()}}}}render()},
+11(){const el=openPanel('A LETTER TO THE READER ♡','<p>Thơ không chỉ nằm trong những con chữ. Thơ còn ở nhịp điệu, hình ảnh và những rung động mà người đọc mang theo.</p><p class="feedback">Cảm ơn bạn đã cùng khám phá POETRY IN FOCUS.</p><p>Keep a little poetry with you. ✦</p>')},'<p>Thơ không chỉ nằm trong những con chữ. Thơ còn ở nhịp điệu, hình ảnh và những rung động mà người đọc mang theo.</p><p class="feedback">Cảm ơn bạn đã cùng khám phá POETRY IN FOCUS.</p><p>Keep a little poetry with you. ✦</p>')}
 };
 document.querySelectorAll('.explore-btn').forEach(b=>b.addEventListener('click',()=>activities[Number(b.dataset.slide)]?.()));
 function wireDrag(el,selector,onDrop){let selected=null;el.querySelectorAll(selector).forEach(t=>{t.addEventListener('dragstart',e=>{selected=t;e.dataTransfer.setData('text/plain',t.dataset.value)});t.addEventListener('click',()=>{selected=t;el.querySelectorAll(selector).forEach(x=>x.style.outline='');t.style.outline='2px dashed #3979b9'})});el.querySelectorAll('.drop-zone').forEach(z=>{z.addEventListener('dragover',e=>{e.preventDefault();z.classList.add('over')});z.addEventListener('dragleave',()=>z.classList.remove('over'));z.addEventListener('drop',e=>{e.preventDefault();z.classList.remove('over');const v=e.dataTransfer.getData('text/plain');const t=[...el.querySelectorAll(selector)].find(x=>x.dataset.value===v);if(t)onDrop(t,z)});z.addEventListener('click',()=>{if(selected){onDrop(selected,z);selected.style.outline='';selected=null}})})}
